@@ -4,10 +4,11 @@ import javax.swing.*;
 public class panel_test {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		JFrame frame = new JFrame("JFrame Example");
+		// set the JFrame to fullscreen
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-<<<<<<< Updated upstream
-=======
 		// JFrame bounds when rescaled
 		frame.setBounds(100,100,1280,720);
 
@@ -24,7 +25,7 @@ public class panel_test {
 
 		frame.setVisible(true);
 //		test ghaz
->>>>>>> Stashed changes
+
 	}
 
 }
