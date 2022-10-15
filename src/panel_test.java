@@ -27,7 +27,7 @@ public class panel_test {
 //		test ghaz
 		
 		System.out.println("what the fuck");
-
+		System.out.println("what the fuck");
 	}
 
 }
