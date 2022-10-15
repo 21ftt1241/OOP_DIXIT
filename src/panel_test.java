@@ -24,6 +24,8 @@ public class panel_test {
 		frame.add(container);
 
 		frame.setVisible(true);
+//		test ghaz
+
 	}
 
 }
