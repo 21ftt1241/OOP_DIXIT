@@ -24,6 +24,7 @@ public class panel_test {
 		frame.add(container);
 
 		frame.setVisible(true);
+		System.out.println("Test by Mus");
 	}
 
 }
