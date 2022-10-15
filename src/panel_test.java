@@ -24,10 +24,6 @@ public class panel_test {
 		frame.add(container);
 
 		frame.setVisible(true);
-//		test ghaz
-		
-		System.out.println("what the fuck");
-		System.out.println("what the fuck");
 	}
 
 }
