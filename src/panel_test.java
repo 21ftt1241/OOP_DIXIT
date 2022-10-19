@@ -14,15 +14,40 @@ public class panel_test {
 
 		// create a new panel
 		JPanel container = new JPanel();
-		container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
+
+		container.setBackground(Color.black);
+		
+		JButton btn1 = new JButton("Start Game");    
+		JButton btn2 = new JButton("Game Rules");    
+		JButton btn3 = new JButton("Exit Game");
+		
+		btn1.setFont(new Font("Arial", Font.PLAIN, 32));
+		btn2.setFont(new Font("Arial", Font.PLAIN, 32));
+		btn3.setFont(new Font("Arial", Font.PLAIN, 32));
+		
+	    btn1.setPreferredSize(new Dimension(300, 100));
+	    btn2.setPreferredSize(new Dimension(300, 100));
+	    btn3.setPreferredSize(new Dimension(300, 100));
+	    
 		JPanel panel1 = new JPanel();
 		panel1.setBackground(Color.gray);
-		panel1.setBounds(100,50,300,300);
+
+		panel1.setLayout(new GridBagLayout());
+		frame.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridwidth = GridBagConstraints.REMAINDER;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.insets = new Insets(10, 10, 10, 10);
+		
+		panel1.add(btn1, gbc);
+		panel1.add(btn2, gbc);
+		panel1.add(btn3, gbc);
 
 		container.add(panel1);
-
+		
+		
 		frame.add(container);
-
+		
 		frame.setVisible(true);
 		System.out.println("Test by Mus");
 	}
