@@ -1,5 +1,6 @@
-/panel_test$Main.class
-/panel_test$1.class
-/start_game.class
-/panel_test$CLayout.class
 /game_rules.class
+/panel_test.class
+/start_game.class
+/CardLayoutManager.class
+/MainMenu.class
+/GameRules.class

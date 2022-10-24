@@ -14,5 +14,5 @@ public class start_game extends JPanel {
 		add(backBtn);
 		backBtn.setPreferredSize(new Dimension (20,20));
 	}
-	
+
 }
