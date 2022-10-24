@@ -10,8 +10,7 @@ public class panel_test extends JFrame implements ActionListener {
 	public JButton b1, b2, b3;
 	public JLabel lb;
 	
-	
-	//define buttons
+	//define button's method'
 	public void createButton() {
 		
 		b1 = new JButton("Start Game");
@@ -40,7 +39,7 @@ public class panel_test extends JFrame implements ActionListener {
 		createButton();
 		setLayout(new GridBagLayout());
 		
-		//set things to grids using this
+		//add an element to the gridbag constraint using this
 		GridBagConstraints gb = new GridBagConstraints();
 		
 		gb.gridx = 1;
@@ -69,9 +68,10 @@ public class panel_test extends JFrame implements ActionListener {
 	
 	//main method
 	public static void main(String[] args)  {
-		panel_test bruh = new panel_test();
+		panel_test main_menu = new panel_test();
 	}
 
+	// button action event
 	@Override
 	public void actionPerformed(ActionEvent btnclick) {
 		if(btnclick.getSource() == b1) {
