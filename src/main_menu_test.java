@@ -21,6 +21,7 @@ public class main_menu_test extends JFrame implements ActionListener {
         btn2 = new JButton("Load Game");
         btn3 = new JButton("Exit Game ");
 
+
         lbl1 = new JLabel("DIXIT");
 
         btn1.setPreferredSize(new Dimension(200, 100));
