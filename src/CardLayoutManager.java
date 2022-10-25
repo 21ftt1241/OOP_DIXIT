@@ -41,9 +41,12 @@ public class CardLayoutManager {
 	//assigns number to pages, can be used in other java files/classes
 	public static void showPage(int pageNumber) {
 		switch(pageNumber) {
-		case 1: cl.show(container, "MainMenu"); break;
-		case 2: cl.show(container, "GameRule"); break;
-		case 3: cl.show(container, "PlayerSelect"); break;
+		case 1: cl.show(container, "MainMenu"); 
+		break;
+		case 2: cl.show(container, "GameRule"); 
+		break;
+		case 3: cl.show(container, "PlayerSelect"); 
+		break;
 		}
 	}
 }
