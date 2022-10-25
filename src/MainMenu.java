@@ -53,7 +53,7 @@ public class MainMenu extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		if(btnclick.getSource() == b1) {
-			
+			CardLayoutManager.showPage(3);
 		}
 		else if(btnclick.getSource() == b2) {
 			CardLayoutManager.showPage(2); //calls CLM class and the showPage method
