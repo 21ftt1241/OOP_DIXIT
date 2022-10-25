@@ -4,8 +4,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-
-
 public class MainMenu extends JPanel implements ActionListener {
 	final JButton b1, b2, b3;
 	final JLabel lb;

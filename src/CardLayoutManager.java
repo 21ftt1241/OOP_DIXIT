@@ -26,9 +26,13 @@ public class CardLayoutManager {
 		//import MainMenu java class
 		MainMenu mainPage = new MainMenu();
 		container.add(mainPage, "MainMenu"); //adds Main Menu inside container
+		
 		//import GameRules java class
 		GameRules ruleGame = new GameRules();
 		container.add(ruleGame, "GameRule");
+		
+		PlayerSelect selectPlayers = new PlayerSelect();
+		container.add(selectPlayers, "PlayerSelect");
 
 		//Responsible for showing the very first screen of the game
 		showPage(1);
@@ -39,6 +43,7 @@ public class CardLayoutManager {
 		switch(pageNumber) {
 		case 1: cl.show(container, "MainMenu"); break;
 		case 2: cl.show(container, "GameRule"); break;
+		case 3: cl.show(container, "PlayerSelect"); break;
 		}
 	}
 }
