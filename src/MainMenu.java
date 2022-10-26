@@ -11,6 +11,8 @@ public class MainMenu extends JPanel implements ActionListener {
 	public JButton yes_btn, no_btn;
 	public JDialog exit;
 
+	dialogPU dialog = new dialogPU();
+
 	public MainMenu() {
 
 		b1 = new JButton("Start Game");
@@ -54,38 +56,6 @@ public class MainMenu extends JPanel implements ActionListener {
 		add(b3, gb);
 	}
 	
-//EXIT CONFIRMATION DIALOG
-	
-	public void exit_dialog(){
-		
-		JFrame exitDialog = new JFrame();
-		JLabel exitLabel = new JLabel("Are you sure you want to quit? ");
-		
-		GridBagConstraints gbc = new GridBagConstraints();
-
-		exit = new JDialog(exitDialog);
-		exit.setLayout(new GridBagLayout());
-		exit.setSize(250, 150);
-        exit.setLocationRelativeTo(null);
-       
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-		gbc.insets = new Insets(20, 0, 0, 0);
-		exit.add(exitLabel, gbc);
-		
-		gbc.insets = new Insets(20, 15, 0, 0);
-		yes_btn = new JButton("Yes");
-		no_btn = new JButton("No");
-		yes_btn.setPreferredSize(new Dimension(60, 30));
-		no_btn.setPreferredSize(new Dimension(60, 30));
-		
-		yes_btn.addActionListener(this);
-		no_btn.addActionListener(this);
-		
-		gbc.gridwidth = GridBagConstraints.RELATIVE;
-		exit.add(yes_btn, gbc);
-		exit.add(no_btn, gbc);
-		exit.setVisible(true);  
-	}
 
 	public void actionPerformed(ActionEvent btnclick) {
 		
@@ -97,16 +67,7 @@ public class MainMenu extends JPanel implements ActionListener {
 			CardLayoutManager.showPage(2); //calls CLM class and the showPage method
 		}
 		else if(btnclick.getSource() == b3) {
-			exit_dialog();
-			exit.setTitle("Exit Dixit");
-		}
-		
-		//Exit confirmation dialog buttons
-		if(btnclick.getSource() == no_btn){
-			exit.setVisible(false);
-		}
-		else if(btnclick.getSource() == yes_btn){
-			System.exit(0);
+			dialog.dialog_ext();
 		}
 	}
 }
