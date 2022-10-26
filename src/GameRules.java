@@ -16,30 +16,37 @@ public class GameRules extends JPanel implements ActionListener {
 	JTextArea ruleExplain = new JTextArea(10, 30);
 		
 	public GameRules() {
-		//setLayout(new GridBagLayout());
-		//set things to grids using this
-		//GridBagConstraints gb = new GridBagConstraints();		
+		setLayout(new GridBagLayout());
+		setBackground(Color.GRAY);
+		
+		GridBagConstraints gb = new GridBagConstraints();
+		gb.anchor = GridBagConstraints.NORTHWEST;
+		gb.insets = new Insets(20,20,0,0);
+		add(backBtn, gb);
+		backBtn.addActionListener(this);
+		
+		gb.insets = new Insets(0,0,0,0);
+		gb.weightx = 0.5;
+		gb.weighty = 0.5;
+		gb.anchor = GridBagConstraints.CENTER;
+		
 		ruleExplain.setEditable(false);
 		ruleExplain.append("text");
+		
 		RulesTab.setLayout(new BorderLayout());
-		
-		RulesTab.add(RuleLbl1, BorderLayout.WEST);  
+		RulesTab.add(RuleLbl1);  
 		PointsTab.add(RuleLbl2);
-		RulesTab.add(ruleExplain, BorderLayout.EAST);
+		RulesTab.add(ruleExplain);
 		
+		tabbedPane.setPreferredSize(new Dimension(800,600));
 		tabbedPane.add("Game Rules", RulesTab);
 		tabbedPane.add("Point System",PointsTab);
 		tabbedPane.setFont( new Font(Font.SANS_SERIF,  Font.BOLD, 18));
-		add(tabbedPane);
-		add(backBtn);
+		add(tabbedPane, gb);
+
 		
-		setLayout(null);
-		setBackground(Color.cyan);
-		backBtn.setBounds(10, 10, 50, 30);
-		tabbedPane.setBounds(50,50,500,300);
-		setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		
-		backBtn.addActionListener(this);
+
 	}
 
 	public void actionPerformed(ActionEvent back) {
