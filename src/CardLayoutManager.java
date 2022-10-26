@@ -14,7 +14,7 @@ public class CardLayoutManager {
 	public static void main(String[] args)  {
 
 		JFrame mainWindow = new JFrame("Dixit");
-		mainWindow.setSize(600,600);
+		mainWindow.setSize(1280,720);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
