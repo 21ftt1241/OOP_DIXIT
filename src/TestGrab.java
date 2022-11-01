@@ -8,12 +8,10 @@ import java.awt.event.ActionListener;
 public class TestGrab extends JPanel implements ActionListener{
 	
 	JButton backBtn;
+	static int totalPlayer;
 	
-	PlayerSelect1 g = new PlayerSelect1();
-	
-	public int x;
-	
-	int totalPlayer = g.getPlayer();
+	static String pName, pClrName;
+	static Color pClr;
 	
 	public TestGrab() {
 		
@@ -30,8 +28,18 @@ public class TestGrab extends JPanel implements ActionListener{
 		container.insets = new Insets (5, 5, 5, 5);
 		add(backBtn, container);
 	}
-		
-		
+			
+	public static int getPlayer(int finalPlayer) {
+		return totalPlayer = finalPlayer;
+	}
+	
+//	public static String getPlayerInfo(String pName1, String pClrName1) {
+//		return pName = pName1;
+//	}
+//	
+//	public static Color getPlayerColor(Color pClr1) {
+//		return pClr = pClr1;
+//	}
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		
