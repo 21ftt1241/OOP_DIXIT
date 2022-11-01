@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 public class PlayerSelect1 extends JPanel implements ActionListener{
 	
+	JPanel playerScreen = new JPanel();
 	JButton backBtn, startBtn;
 	JLabel l1;
 	
@@ -25,7 +26,6 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
 	
 	public int totalPlayer, finalPlayer;
-	
 	public String [] pName;
 	
 	
@@ -115,9 +115,6 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		container.gridx = 1;
 		container.gridy = 5;
 		add(startBtn, container);
-		
-		
-		
 	}
 	
 	public class NotEnoughPlayer {
