@@ -24,7 +24,7 @@ public class CardLayoutManager {
 		mainWindow.add(container);
 
 		//import MainMenu java class
-		MainMenu mainPage = new MainMenu();
+		Test mainPage = new Test();
 		container.add(mainPage, "MainMenu"); //adds Main Menu inside container
 		
 		//import GameRules java class
@@ -41,7 +41,7 @@ public class CardLayoutManager {
 	//assigns number to pages, can be used in other java files/classes
 	public static void showPage(int pageNumber) {
 		switch(pageNumber) {
-		case 1: cl.show(container, "MainMenu"); 
+		case 1: cl.show(container, "Test"); 
 		break;
 		case 2: cl.show(container, "GameRule"); 
 		break;
