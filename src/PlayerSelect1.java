@@ -24,10 +24,14 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
 	
-	private int totalPlayer = 0, finalPlayer;
+	public int totalPlayer, finalPlayer;
+	
+	public String [] pName;
 	
 	
 	public PlayerSelect1() {
+		
+		totalPlayer = 0;
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
@@ -123,20 +127,9 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			JOptionPane.showMessageDialog(f,  "Requires 3 or more player to start the game.");
 		}
 	}
-	
-	public int getPlayer() {
-		finalPlayer = totalPlayer;
-		return finalPlayer;
-	}
-	
-	public void setTest(int bruhh) {
-		finalPlayer = totalPlayer;
 		
-		TestGrab tt = new TestGrab();
-		tt.x = finalPlayer;
-		
-		System.out.println(finalPlayer);
-	}
+	
+	
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		
@@ -144,9 +137,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			CardLayoutManager.showPage(1);
 		}
 		
-		
 //		Button performs
-		
 		
 		for (int k = 0 ; k < 6 ; k++) {
 			if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == false){
@@ -161,9 +152,6 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 				
 				totalPlayer-=1;
 			}
-			
-			
-			
 		}
 		
 		
@@ -173,8 +161,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			
 			int x = 0;
 			
-//			setTest(totalPlayer);
-			
+			TestGrab.getPlayer(totalPlayer); 			
 			
 //			System.out.println(totalPlayer);
 			String [] pName = new String[totalPlayer];
@@ -192,21 +179,16 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 						x+=1;
 					}					
 				}
-				
-				for (int i = 0 ; i < totalPlayer ; i++) {
-					System.out.print(pName[i] + " " + pClrName[i] + "\n");
-				}	
+				CardLayoutManager.showPage(69);
 			}
 			
 			else {
 				new NotEnoughPlayer();
+				CardLayoutManager.showPage(3);
 			}
 			
-			CardLayoutManager.showPage(69);
 			
-		}
-		
-		
+			
+		}	
 	}
-
 }
