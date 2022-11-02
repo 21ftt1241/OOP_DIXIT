@@ -196,13 +196,15 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 				for (int i = 0 ; i < totalPlayer ; i++) {
 					System.out.print(pName[i] + " " + pClrName[i] + "\n");
 				}	
+				CardLayoutManager.showPage(69);
 			}
 			
 			else {
 				new NotEnoughPlayer();
+				CardLayoutManager.showPage(3);
 			}
 			
-			CardLayoutManager.showPage(69);
+			
 			
 		}
 		
