@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 import javax.swing.*;
@@ -40,13 +41,16 @@ public class GameRules extends JPanel implements ActionListener {
 		
 		//ruleExplain.setEditable(false);
 		ruleExplain.setLineWrap(true);
-		try(BufferedReader rulesText = new BufferedReader(new FileReader("resources\\text_file/gamerules.txt"))){
-		ruleExplain.read(rulesText, "gamerules");
+		
+		BufferedReader rulesText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/gamerules.txt")));
+		
+		try {
+			ruleExplain.read(rulesText, "gamerules");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-        } catch (IOException e){
-
-            e.printStackTrace();
-        }
 		
 		RulesTab.setLayout(new BorderLayout());
 		RulesTab.add(RuleLbl1);  
