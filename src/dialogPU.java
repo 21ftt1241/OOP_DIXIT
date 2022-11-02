@@ -25,20 +25,20 @@ public class dialogPU extends JPanel implements ActionListener{
 
         JLabel text1 = new JLabel("Are you sure you want to quit? ");
 
-        cancel_btn = new JButton("Cancel");
+        cancel_btn = new JButton("No");
         cancel_btn.addActionListener(this);
 
-        close_btn = new JButton("Close");
+        close_btn = new JButton("Yes");
         close_btn.addActionListener(this);
        
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.insets = new Insets(0, 0, 0, 10);
+        gbc.insets = new Insets(0, 20, 0, 10);
         ex_dialog.add(close_btn, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.insets = new Insets(0, 10, 0, 0);
+        gbc.insets = new Insets(0, 0, 0, 0);
         ex_dialog.add(cancel_btn, gbc);
 
          // The text
