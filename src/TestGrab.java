@@ -10,7 +10,6 @@ public class TestGrab extends JPanel implements ActionListener{
 	JButton backBtn;
 	static int totalPlayer;
 	
-	static String pName, pClrName;
 	static Color pClr;
 	
 	public TestGrab() {
@@ -36,10 +35,17 @@ public class TestGrab extends JPanel implements ActionListener{
 //	public static String getPlayerInfo(String pName1, String pClrName1) {
 //		return pName = pName1;
 //	}
-//	
-//	public static Color getPlayerColor(Color pClr1) {
-//		return pClr = pClr1;
+	
+//	public static String getPlayerInfo1(String [] pName1, String [] pClrName1) {
+//		String [][] pInfo = new String[totalPlayer][totalPlayer];
+//		
 //	}
+	
+	public static Color getPlayerColor(Color pClr1) {
+		return pClr = pClr1;
+	}
+	
+	
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		
