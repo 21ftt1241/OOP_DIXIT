@@ -31,11 +31,17 @@ public class CardLayoutManager {
 		GameRules ruleGame = new GameRules();
 		container.add(ruleGame, "GameRule");
 		
+		STTurn st = new STTurn();
+		container.add(st, "Storyteller");
+		
+		showCards sc = new showCards();
+		container.add(sc, "showCards");
+		
 		PlayerSelect1 selectPlayers = new PlayerSelect1();
 		container.add(selectPlayers, "PlayerSelect1");
 		
-		TestGrab grabTest = new TestGrab();
-		container.add(grabTest, "TestGrab");
+//		TestGrab grabTest = new TestGrab();
+//		container.add(grabTest, "TestGrab");
 
 		//Responsible for showing the very first screen of the game
 		showPage(1);
@@ -49,6 +55,10 @@ public class CardLayoutManager {
 		case 2: cl.show(container, "GameRule"); 
 		break;
 		case 3: cl.show(container, "PlayerSelect1"); 
+		break;
+		case 4: cl.show(container, "Storyteller"); 
+		break;
+		case 5: cl.show(container, "showCards"); 
 		break;
 		case 69: cl.show(container, "TestGrab");
 		break;

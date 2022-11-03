@@ -155,7 +155,6 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 //		Start game logics
 		
 		if(btnclick.getSource() == startBtn) {
-			finalPlayer = totalPlayer;
 			int x = 0;		
 
 			String [][] pInfo = new String[totalPlayer][2];
