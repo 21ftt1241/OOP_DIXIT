@@ -34,6 +34,8 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	
 	public PlayerSelect1() {
 		
+//		setBackground(Color.color1);
+		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
 		
@@ -173,17 +175,20 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 					}	
 				}
 				
-				TestGrab.getPlayerInfo(pInfo);
-				TestGrab.getPlayerColor(pClr);
+				STTurn.getPlayerInfo(pInfo);
+				STTurn.getPlayerColor(pClr);
 				
-				TestGrab.bruh();
+				STTurn.bruh();
+				
+				//run the gameflow punya class
 				
 				
+				// 1. loop (conditionnya ikut points, if ada player yang pointnya
+				//    labih dari 30, it stops
+				// 2. dalam loop, showpage
 				
-				// create the next page
-//				TestGrab.CreateButton();
 				
-				CardLayoutManager.showPage(69);
+				CardLayoutManager.showPage(4);
 			}
 			
 			else {

@@ -40,8 +40,8 @@ public class CardLayoutManager {
 		PlayerSelect1 selectPlayers = new PlayerSelect1();
 		container.add(selectPlayers, "PlayerSelect1");
 		
-//		TestGrab grabTest = new TestGrab();
-//		container.add(grabTest, "TestGrab");
+		TestGrab grabTest = new TestGrab();
+		container.add(grabTest, "TestGrab");
 
 		//Responsible for showing the very first screen of the game
 		showPage(1);

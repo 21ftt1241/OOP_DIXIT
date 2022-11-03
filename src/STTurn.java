@@ -9,16 +9,22 @@ import javax.swing.JPanel;
 
 public class STTurn extends JPanel {
 	
+	static String [][] pInfo;
+	static Color [] pClr1;
+	
 	JPanel score = new JPanel();
-	JPanel text = new JPanel();
+	static JPanel text = new JPanel();
 	JPanel cont = new JPanel();
 	
-	JPanel[] plPanel = new JPanel[6];
+	static JPanel[] plPanel = new JPanel[6];
 	Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
 			Color.BLUE, Color.CYAN, Color.MAGENTA};
 	
 	int[] point = {0, 0, 0, 0, 0, 0};
 	
+	static JLabel one = new JLabel();
+	
+	static GridBagConstraints gb2 = new GridBagConstraints();
 	
 	public STTurn(){
 		
@@ -53,17 +59,17 @@ public class STTurn extends JPanel {
 		text.setLayout(new GridBagLayout());
 		text.setBackground(Color.GRAY);
 		text.setPreferredSize(new Dimension(700,400));
-		GridBagConstraints gb2 = new GridBagConstraints();
+		
 		gb2.insets = new Insets(55,0,55,0);
 		
-		JLabel one = new JLabel("Color (Username)");
-		one.setFont(new Font("ARIAL", Font.PLAIN, 18));
+		one = new JLabel("Color (Username)");
+		one.setFont(new Font("ARIAL", Font.PLAIN, 24));
 		
 		JLabel two = new JLabel("Storyteller's Turn");
 		two.setFont(new Font("ARIAL", Font.PLAIN, 40));
 		
 		JLabel three = new JLabel("Press continue if ready");
-		three.setFont(new Font("ARIAL", Font.PLAIN, 14));
+		three.setFont(new Font("ARIAL", Font.PLAIN, 20));
 		
 		gb2.gridx = 0;
         gb2.gridy = 0;
@@ -83,7 +89,6 @@ public class STTurn extends JPanel {
         
         cont.setLayout(new GridBagLayout());
         GridBagConstraints gb3 = new GridBagConstraints();
-
 		
 		JButton cont = new JButton("continue");
 		cont.setPreferredSize(new Dimension(200,50));
@@ -92,6 +97,28 @@ public class STTurn extends JPanel {
 		gb3.gridy = 2;
 		add(cont, gb3);
 		
+	}
+	
+	
+	public static void bruh() {
+
+		one.setText(pInfo[0][1] + " (" + pInfo[0][0] + ")");
+		
+		for (int i = 0 ; i < 6 ; i++) {
+			if (PlayerSelect1.status[i] == 0) {
+				plPanel[i].setVisible(false);
+			}
+		}
+		
+        
+	}
+	
+	public static String[][] getPlayerInfo(String [][] array1) {
+		return pInfo = array1;
+	}
+	
+	public static Color[] getPlayerColor(Color [] pClr2) {
+		return pClr1 = pClr2;
 	}
 
 }
