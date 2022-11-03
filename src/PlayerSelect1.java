@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +11,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	
 	JButton [] pb = new JButton[6];
 	JTextField [] ptf = new JTextField[6];
+	
 	String [][] p = {
 			{"Player 1", "RED"},
 			{"Player 2", "YELLOW"},
@@ -21,11 +21,16 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			{"Player 6", "MAGENTA"}
 	};
 	
-	Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
+	public static int [] status = new int[6];
+	
+	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
 	
-	private int totalPlayer = 0, finalPlayer;
+	public static int totalPlayer, finalPlayer;
+	public static String [] pName;
 	
+	public static String [][] pInfo;
+	public static Color [] pClr;
 	
 	public PlayerSelect1() {
 		
@@ -35,20 +40,19 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		GridBagConstraints container = new GridBagConstraints();
 		
 		backBtn = new JButton("<");
-//		backBtn.setPreferredSize(new Dimension (40, 40));
 		backBtn.addActionListener(this);		
 		
 		container.anchor = GridBagConstraints.NORTHWEST;
-		container.insets = new Insets (5, 5, 5, 5);
+		container.insets = new Insets(5, 5, 5, 5);
 		add(backBtn, container);
+		
+		
 		
 		container.insets = new Insets(5, 5, 5, 5);
 		container.weightx = 0.5;
 		container.weighty = 0.5;
 		container.anchor = GridBagConstraints.CENTER;
 		
-		container.weightx = 9;
-		container.weighty = 9;
 		l1 = new JLabel("Choose your Color");
 		l1.setFont(new Font("Arial", Font.PLAIN, 32));
 		
@@ -110,11 +114,9 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		
 		container.gridx = 1;
 		container.gridy = 5;
-		add(startBtn, container);
-		
-		
-		
+		add(startBtn, container);	
 	}
+	
 	
 	public class NotEnoughPlayer {
 		JFrame f;
@@ -123,20 +125,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			JOptionPane.showMessageDialog(f,  "Requires 3 or more player to start the game.");
 		}
 	}
-	
-	public int getPlayer() {
-		finalPlayer = totalPlayer;
-		return finalPlayer;
-	}
-	
-	public void setTest(int bruhh) {
-		finalPlayer = totalPlayer;
 		
-		TestGrab tt = new TestGrab();
-		tt.x = finalPlayer;
-		
-		System.out.println(finalPlayer);
-	}
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		
@@ -144,69 +133,67 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			CardLayoutManager.showPage(1);
 		}
 		
-		
 //		Button performs
-		
 		
 		for (int k = 0 ; k < 6 ; k++) {
 			if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == false){
 				ptf[k].setEnabled(true);
 				ptf[k].setText(p[k][0]);
 				
+				status[k] = 1;
+				
 				totalPlayer+=1;
 			}
 			else if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == true) {
 				ptf[k].setEnabled(false);
 				ptf[k].setText(" ");
-				
+				status[k] = 0;
 				totalPlayer-=1;
 			}
-			
-			
-			
 		}
 		
-		
-		
 //		Start game logics
+		
 		if(btnclick.getSource() == startBtn) {
-			
-			int x = 0;
-			
-//			setTest(totalPlayer);
-			
-			
-//			System.out.println(totalPlayer);
-			String [] pName = new String[totalPlayer];
+			finalPlayer = totalPlayer;
+			int x = 0;		
+
+			String [][] pInfo = new String[totalPlayer][2];
 			Color [] pClr = new Color[totalPlayer];
-			String [] pClrName = new String[totalPlayer];
 			
 			if (totalPlayer >= 3) {
 				
 				for (int i = 0 ; i < 6 ; i++) {
 					
 					if (ptf[i].isEnabled() == true) {
-						pName[x] = ptf[i].getText();
+						
+						pInfo[x][0] = ptf[i].getText();
 						pClr[x] = btnColor[i];
-						pClrName[x] = p[i][1];
+						pInfo[x][1] = p[i][1];
 						x+=1;
-					}					
+					}	
 				}
 				
-				for (int i = 0 ; i < totalPlayer ; i++) {
-					System.out.print(pName[i] + " " + pClrName[i] + "\n");
-				}	
+				TestGrab.getPlayerInfo(pInfo);
+				TestGrab.getPlayerColor(pClr);
+				
+				TestGrab.bruh();
+				
+				
+				
+				// create the next page
+//				TestGrab.CreateButton();
+				
+				CardLayoutManager.showPage(69);
 			}
 			
 			else {
 				new NotEnoughPlayer();
+				CardLayoutManager.showPage(3);
 			}
 			
-			CardLayoutManager.showPage(69);
 			
-		}
-		
-		
+			
+		}	
 	}
-
 }

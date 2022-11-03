@@ -1,10 +1,15 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 
 import javax.swing.*;
 
 public class GameRules extends JPanel implements ActionListener {
+	
 	static JButton backBtn = new JButton("<");
 	JPanel RulesTab = new JPanel();
 	JPanel PointsTab = new JPanel();
@@ -13,7 +18,10 @@ public class GameRules extends JPanel implements ActionListener {
 	JLabel RuleLbl2 = new JLabel("Point System");
 	
 	JTabbedPane tabbedPane = new JTabbedPane();
-	JTextArea ruleExplain = new JTextArea(10, 30);
+	JTextArea ruleExplain = new JTextArea(10, 1);
+	JScrollPane ruleScroll = new JScrollPane(ruleExplain);
+	 
+	//static final String FILE_PATH = "gamerules.txt";
 		
 	public GameRules() {
 		setLayout(new GridBagLayout());
@@ -30,8 +38,15 @@ public class GameRules extends JPanel implements ActionListener {
 		gb.weighty = 0.5;
 		gb.anchor = GridBagConstraints.CENTER;
 		
-		ruleExplain.setEditable(false);
-		ruleExplain.append("text");
+		//ruleExplain.setEditable(false);
+		ruleExplain.setLineWrap(true);
+		try(BufferedReader rulesText = new BufferedReader(new FileReader("resources\\text_file/gamerules.txt"))){
+		ruleExplain.read(rulesText, "gamerules");
+
+        } catch (IOException e){
+
+            e.printStackTrace();
+        }
 		
 		RulesTab.setLayout(new BorderLayout());
 		RulesTab.add(RuleLbl1);  
@@ -43,9 +58,6 @@ public class GameRules extends JPanel implements ActionListener {
 		tabbedPane.add("Point System",PointsTab);
 		tabbedPane.setFont( new Font(Font.SANS_SERIF,  Font.BOLD, 18));
 		add(tabbedPane, gb);
-
-		
-		
 
 	}
 
