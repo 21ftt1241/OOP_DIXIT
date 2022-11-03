@@ -8,52 +8,103 @@ import java.awt.event.ActionListener;
 public class TestGrab extends JPanel implements ActionListener{
 	
 	JButton backBtn;
-	static int totalPlayer;
 	
-	static Color pClr;
+	static GridBagConstraints container = new GridBagConstraints();
+	static JButton [] testColor;
+	
+	static String [][] pInfo;
+	static Color [] pClr;
+	
+	static int totalPlayer;
+	static JButton [] pb = new JButton[6];
 	
 	public TestGrab() {
 		
-		setLayout(new GridBagLayout());
-		setBackground(Color.WHITE);
 		
-		GridBagConstraints container = new GridBagConstraints();
+		
+		
+		
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			System.out.println(pInfo[i][0] + " " + pInfo[i][1]);
+		}
+		
+		
+				
+//		System.out.println(totalPlayer);
+		
+		setLayout(new GridBagLayout());
+		setBackground(Color.WHITE);		
 		
 		backBtn = new JButton("<");
-//		backBtn.setPreferredSize(new Dimension (40, 40));
+//		backBtn.setBackground(pClr[0]);
 		backBtn.addActionListener(this);		
 		
-		container.anchor = GridBagConstraints.NORTHWEST;
+		container.anchor = GridBagConstraints.NORTH;
+		container.gridx = 1;
+		container.gridy = 0;
+		
 		container.insets = new Insets (5, 5, 5, 5);
+		
 		add(backBtn, container);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new FlowLayout());
+		
+		container.insets = new Insets (5, 5, 5, 5);
+		container.weightx = 1;
+		container.weightx = 1;
+		container.anchor = GridBagConstraints.CENTER;
+		
+		
+		for (int i = 0 ; i < 6; i++) {
+			pb[i] = new JButton(i + "");
+			pb[i].setPreferredSize(new Dimension(50, 50));
+			pb[i].setBackground(PlayerSelect1.btnColor[i]);
+			panel1.add(pb[i]);	
+		}
+		
+		container.gridx = 1;
+		container.gridy = 1;
+		
+		add(panel1, container);
+		
+		
+		
 	}
-			
-	public static int getPlayer(int finalPlayer) {
-		return totalPlayer = finalPlayer;
+		
+	public static String[][] getPlayerInfo(String [][] array1) {
+		return pInfo = array1;
 	}
 	
-//	public static String getPlayerInfo(String pName1, String pClrName1) {
-//		return pName = pName1;
-//	}
-	
-//	public static String getPlayerInfo1(String [] pName1, String [] pClrName1) {
-//		String [][] pInfo = new String[totalPlayer][totalPlayer];
-//		
-//	}
-	
-	public static Color getPlayerColor(Color pClr1) {
+	public static Color[] getPlayerColor(Color [] pClr1) {
 		return pClr = pClr1;
 	}
-	
-	
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		
 		if (btnclick.getSource() == backBtn) {
+			
+			totalPlayer = PlayerSelect1.totalPlayer;
+			
 			System.out.println(totalPlayer);
+			
+			CardLayoutManager.showPage(69);
+			
 		}
 			
 	}
+	
+	public static void bruh() {
+		
+		for (int i = 0 ; i < 6 ; i++) {
+			if (PlayerSelect1.status[i] == 0) {
+				pb[i].setVisible(false);
+			}
+		}
+		
+	}
+
+
 		
 		
 
