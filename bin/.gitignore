@@ -1,9 +1,6 @@
-/CardLayoutManager.class
-/GameRules.class
-/MainMenu.class
-/PlayerSelect.class
+/TestGrab.class
+/TestGrab$NotEnoughPlayer.class
 /PlayerSelect1$NotEnoughPlayer.class
 /PlayerSelect1.class
-/TestGrab.class
-/dialogPU.class
-/PlayerSelect$NotEnoughPlayer.class
+/STTurn.class
+/showCards.class

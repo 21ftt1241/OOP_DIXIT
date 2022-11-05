@@ -17,9 +17,7 @@ public class PlayerSelect extends JPanel implements ActionListener{
 	JButton startBtn;
 	JButton [] pb = new JButton[6];
 	JTextField [] ptf = new JTextField[6];
-	Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
-			Color.BLUE,Color.CYAN,Color.MAGENTA};
-
+	
 	String [][] p = {
 			{"Player 1", "RED"},
 			{"Player 2", "YELLOW"},
@@ -28,6 +26,14 @@ public class PlayerSelect extends JPanel implements ActionListener{
 			{"Player 5", "CYAN"},
 			{"Player 6", "MAGENTA"}
 	};
+	
+	public static int [] status = new int[6];
+	
+	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
+			Color.BLUE,Color.CYAN,Color.MAGENTA};
+	
+	public static String [][] pInfo;
+	public static Color [] pClr;
 
 
 	public PlayerSelect() {
@@ -60,11 +66,11 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		gb.gridx = 1;
 		gb.gridy = 0;
 
-		
+
 		playerScreen.add(l1, gb);
-		
-		
-		
+
+
+
 		//		Player buttons
 		int x = 0;
 		int y = 1;
@@ -127,7 +133,6 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		add(playerScreen, gbc);
 	}
 
-	//If not enough player dialog
 	public class NotEnoughPlayer {
 		JFrame f;
 		NotEnoughPlayer() {
@@ -136,7 +141,7 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		}
 	}
 
-	//Button logics
+
 	public void actionPerformed(ActionEvent btnclick) {
 
 		if (btnclick.getSource() == backBtn) {
@@ -150,41 +155,50 @@ public class PlayerSelect extends JPanel implements ActionListener{
 				ptf[k].setEnabled(true);
 				ptf[k].setText(p[k][0]);
 
+				status[k] = 1;
+
 				totalPlayer+=1;
 			}
 			else if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == true) {
 				ptf[k].setEnabled(false);
 				ptf[k].setText(" ");
-
+				status[k] = 0;
 				totalPlayer-=1;
 			}
 		}
 
-
-
 		//		Start game logics
+
 		if(btnclick.getSource() == startBtn) {
+			finalPlayer = totalPlayer;
+			int x = 0;		
 
-			int x = 0;
-
-			TestGrab.getPlayer(totalPlayer); 			
-
-			//			System.out.println(totalPlayer);
-			String [] pName = new String[totalPlayer];
+			String [][] pInfo = new String[totalPlayer][2];
 			Color [] pClr = new Color[totalPlayer];
-			String [] pClrName = new String[totalPlayer];
 
 			if (totalPlayer >= 3) {
 
 				for (int i = 0 ; i < 6 ; i++) {
 
 					if (ptf[i].isEnabled() == true) {
-						pName[x] = ptf[i].getText();
+
+						pInfo[x][0] = ptf[i].getText();
 						pClr[x] = btnColor[i];
-						pClrName[x] = p[i][1];
+						pInfo[x][1] = p[i][1];
 						x+=1;
-					}					
+					}	
 				}
+
+				TestGrab.getPlayerInfo(pInfo);
+				TestGrab.getPlayerColor(pClr);
+
+				TestGrab.bruh();
+
+
+
+				// create the next page
+				//				TestGrab.CreateButton();
+
 				CardLayoutManager.showPage(69);
 			}
 
@@ -192,8 +206,6 @@ public class PlayerSelect extends JPanel implements ActionListener{
 				new NotEnoughPlayer();
 				CardLayoutManager.showPage(3);
 			}
-
-
 
 		}	
 	}

@@ -1,30 +1,40 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class MainMenu extends JPanel implements ActionListener {
 	final JButton b1, b2, b3;
 	final JLabel lb;
+	//private BufferedImage image;
 	public JButton yes_btn, no_btn;
 	public JDialog exit;
-
+	
 	dialogPU dialog = new dialogPU();
 
 	public MainMenu() {
 
+		ImageIcon icon = new ImageIcon(getClass().getResource("/resources/images/dixit-logo.png")); // assign image to a new ImageIcon
+		Image image = icon.getImage(); // transform it 
+		Image newimg = image.getScaledInstance(715, 260,  java.awt.Image.SCALE_SMOOTH); // scale it smoothly  
+		
+		ImageIcon dixitLogo = new ImageIcon(newimg);  // assign to a new ImageIcon instance
+
+		
 		b1 = new JButton("Start Game");
 		b2 = new JButton("Game Rules");
 		b3 = new JButton("Exit Game");
-		lb = new JLabel("DIXIT");
-
+		lb = new JLabel(dixitLogo);
+		
 		b1.setPreferredSize(new Dimension(200, 100));
 		b2.setPreferredSize(new Dimension(200, 100));
 		b3.setPreferredSize(new Dimension(200, 100));
 
-		lb.setFont(new Font("Arial", Font.PLAIN, 32));
 		b1.setFont(new Font("Arial", Font.PLAIN, 24));
 		b2.setFont(new Font("Arial", Font.PLAIN, 24));
 		b3.setFont(new Font("Arial", Font.PLAIN, 24));
