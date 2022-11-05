@@ -41,8 +41,8 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		GridBagConstraints gb = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.insets = new Insets(20,20,0,0);
-		gbc.weightx = 0.01;
-		gbc.weighty = 0.01;
+		//gbc.weightx = 0.01;
+		//gbc.weighty = 0.01;
 
 		add(backBtn, gbc);
 		backBtn.addActionListener(this);
