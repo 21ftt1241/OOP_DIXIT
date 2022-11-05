@@ -105,7 +105,7 @@ public class STTurn extends JPanel {
 		one.setText(pInfo[0][1] + " (" + pInfo[0][0] + ")");
 		
 		for (int i = 0 ; i < 6 ; i++) {
-			if (PlayerSelect1.status[i] == 0) {
+			if (PlayerSelect.status[i] == 0) {
 				plPanel[i].setVisible(false);
 			}
 		}
