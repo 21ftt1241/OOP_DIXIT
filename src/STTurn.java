@@ -100,9 +100,9 @@ public class STTurn extends JPanel {
 	}
 	
 	
-	public static void bruh() {
+	public static void setLabel() {
 
-		one.setText(pInfo[0][1] + " (" + pInfo[0][0] + ")");
+		one.setText(GameFlow.s.get(GameFlow.turn).getClrArr() + " (" + GameFlow.s.get(GameFlow.turn).getNameArr() + ")");
 		
 		for (int i = 0 ; i < 6 ; i++) {
 			if (PlayerSelect1.status[i] == 0) {
@@ -112,13 +112,4 @@ public class STTurn extends JPanel {
 		
         
 	}
-	
-	public static String[][] getPlayerInfo(String [][] array1) {
-		return pInfo = array1;
-	}
-	
-	public static Color[] getPlayerColor(Color [] pClr2) {
-		return pClr1 = pClr2;
-	}
-
 }
