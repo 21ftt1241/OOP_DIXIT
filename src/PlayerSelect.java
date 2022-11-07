@@ -12,12 +12,12 @@ public class PlayerSelect extends JPanel implements ActionListener{
 
 
 	//Inside playerScreen JPanel
-	//ARRAYS
 	JLabel l1 = new JLabel("Choose your Color");;
 	JButton startBtn;
 	JButton [] pb = new JButton[6];
 	JTextField [] ptf = new JTextField[6];
 	
+	//Player 2D Array
 	String [][] p = {
 			{"Player 1", "RED"},
 			{"Player 2", "YELLOW"},
@@ -27,6 +27,7 @@ public class PlayerSelect extends JPanel implements ActionListener{
 			{"Player 6", "MAGENTA"}
 	};
 	
+	//Check status
 	public static int [] status = new int[6];
 	
 	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
@@ -47,8 +48,8 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		GridBagConstraints gb = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.insets = new Insets(20,20,0,0);
-		gbc.weightx = 0.01;
-		gbc.weighty = 0.01;
+		//gbc.weightx = 0.01;
+		//gbc.weighty = 0.01;
 
 		add(backBtn, gbc);
 		backBtn.addActionListener(this);
@@ -189,17 +190,20 @@ public class PlayerSelect extends JPanel implements ActionListener{
 					}	
 				}
 
-				TestGrab.getPlayerInfo(pInfo);
-				TestGrab.getPlayerColor(pClr);
+				STTurn.getPlayerInfo(pInfo);
+				STTurn.getPlayerColor(pClr);
+				
+				STTurn.bruh();
 
-				TestGrab.bruh();
-
-
-
-				// create the next page
-				//				TestGrab.CreateButton();
-
-				CardLayoutManager.showPage(69);
+				///run the gameflow punya class
+				
+				
+				// 1. loop (conditionnya ikut points, if ada player yang pointnya
+				//    labih dari 30, it stops
+				// 2. dalam loop, showpage
+				
+				
+				CardLayoutManager.showPage(4);
 			}
 
 			else {

@@ -86,13 +86,13 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		}
 		
 //		Player Name TextField
-		
 		x = 0;
 		y = 2;
-		
+
 		for (int j = 0 ; j < 6; j++) {
 			ptf[j] = new JTextField();
 			ptf[j].setPreferredSize(new Dimension(200, 40));
+			ptf[j].setDocument(new JTextFieldLimit(10));
 			ptf[j].setEnabled(false);
 			
 			container.gridx = x;
@@ -100,14 +100,11 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			add(ptf[j], container);
 			
 			x = x + 1;
-			
 			if (x == 3) {
 				x = 0;
 				y = 4;
 			}
-			
 		}
-
 		
 //		StartGame Button
 		startBtn = new JButton("Start Game");

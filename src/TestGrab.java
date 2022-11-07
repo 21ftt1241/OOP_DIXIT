@@ -20,10 +20,6 @@ public class TestGrab extends JPanel implements ActionListener{
 	
 	public TestGrab() {
 		
-		
-		
-		
-		
 		for (int i = 0 ; i < totalPlayer ; i++) {
 			System.out.println(pInfo[i][0] + " " + pInfo[i][1]);
 		}
