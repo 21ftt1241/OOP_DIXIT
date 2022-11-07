@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class PlayerSelect extends JPanel implements ActionListener{
 	static JButton backBtn = new JButton("<");
-	public int totalPlayer, finalPlayer;
+	public int totalPlayer;
 	public String [] pName;
 	JPanel playerScreen = new JPanel();
 
@@ -49,12 +49,10 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.insets = new Insets(20,20,0,0);
 		//gbc.weightx = 0.01;
-		//gbc.weighty = 0.01;
+		gb.weighty = 0.01;
 
 		add(backBtn, gbc);
 		backBtn.addActionListener(this);
-
-
 
 		//gb.insets = new Insets(0,0,0,0);
 		//gb.anchor = GridBagConstraints.CENTER;
@@ -63,14 +61,12 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		l1.setFont(new Font("Arial", Font.PLAIN, 32));
 
 		playerScreen.setLayout(new GridBagLayout());
-		playerScreen.setPreferredSize(new Dimension(1000,600));
+		playerScreen.setPreferredSize(new Dimension(1280,720));
 		gb.gridx = 1;
 		gb.gridy = 0;
 
 
 		playerScreen.add(l1, gb);
-
-
 
 		//		Player buttons
 		int x = 0;
@@ -171,7 +167,6 @@ public class PlayerSelect extends JPanel implements ActionListener{
 		//		Start game logics
 
 		if(btnclick.getSource() == startBtn) {
-			finalPlayer = totalPlayer;
 			int x = 0;		
 
 			String [][] pInfo = new String[totalPlayer][2];

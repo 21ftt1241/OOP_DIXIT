@@ -25,7 +25,6 @@ public class MainMenu extends JPanel implements ActionListener {
 		
 		ImageIcon dixitLogo = new ImageIcon(newimg);  // assign to a new ImageIcon instance
 
-		
 		b1 = new JButton("Start Game");
 		b2 = new JButton("Game Rules");
 		b3 = new JButton("Exit Game");
@@ -38,13 +37,22 @@ public class MainMenu extends JPanel implements ActionListener {
 		b1.setFont(new Font("Arial", Font.PLAIN, 24));
 		b2.setFont(new Font("Arial", Font.PLAIN, 24));
 		b3.setFont(new Font("Arial", Font.PLAIN, 24));
-
+		
+		b1.setBackground(Color.decode("#55475B"));
+	    b1.setForeground(Color.decode("#F9DBA5"));
+	    b2.setBackground(Color.decode("#55475B"));
+	    b2.setForeground(Color.decode("#F9DBA5"));
+	    b3.setBackground(Color.decode("#55475B"));
+	    b3.setForeground(Color.decode("#F9DBA5"));
+	    
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
 
 		setLayout(new GridBagLayout());
-
+		setBackground(Color.decode("#EBD6B1"));
+		
+		
 		//set things to grids using this
 		GridBagConstraints gb = new GridBagConstraints();
 
@@ -66,21 +74,20 @@ public class MainMenu extends JPanel implements ActionListener {
 		add(b3, gb);
 	}
 	
-
 	public void actionPerformed(ActionEvent btnclick) {
 		
 		//Main Menu button performs
 		if(btnclick.getSource() == b1) {
-			// CardLayoutManager.showPage(3);
-			String x = dialog.getText();
-			System.out.println(x);
+			CardLayoutManager.showPage(3);
+			//String x = dialog.getText();
+			//System.out.println(x);
 		}
 		else if(btnclick.getSource() == b2) {
 			CardLayoutManager.showPage(2); //calls CLM class and the showPage method
 		}
 		else if(btnclick.getSource() == b3) {
-			// dialog.dialog_ext();
-			dialog.card_descPU();
+			 dialog.dialog_ext();
+			//dialog.card_descPU();
 		}
 	}
 }

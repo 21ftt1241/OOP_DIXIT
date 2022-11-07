@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class STTurn extends JPanel {
-	
+public class STTurn extends JPanel implements ActionListener {
+	static JButton exitBtn = new JButton("X");
 	static String [][] pInfo;
 	static Color [] pClr1;
 	
@@ -30,6 +30,14 @@ public class STTurn extends JPanel {
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
+		
+		//Exit button
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.anchor = GridBagConstraints.NORTHEAST;
+		gbc.insets = new Insets(20,20,0,0);
+		gbc.gridx = 2;
+		add(exitBtn, gbc);
+		exitBtn.addActionListener(this);
 		
 		score.setLayout(new GridBagLayout());
 		score.setBackground(Color.WHITE);
@@ -108,9 +116,7 @@ public class STTurn extends JPanel {
 			if (PlayerSelect.status[i] == 0) {
 				plPanel[i].setVisible(false);
 			}
-		}
-		
-        
+		} 
 	}
 	
 	public static String[][] getPlayerInfo(String [][] array1) {
@@ -119,6 +125,12 @@ public class STTurn extends JPanel {
 	
 	public static Color[] getPlayerColor(Color [] pClr2) {
 		return pClr1 = pClr2;
+	}
+
+	//Button actions
+	public void actionPerformed(ActionEvent e) {
+		
+		
 	}
 
 }

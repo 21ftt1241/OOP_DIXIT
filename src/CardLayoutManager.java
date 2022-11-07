@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class CardLayoutManager {
 
-	static JFrame mainWindow;
+	public static JFrame mainWindow;
 	static CardLayout cl;
 	static JPanel container;
 
@@ -14,7 +14,9 @@ public class CardLayoutManager {
 	public static void main(String[] args)  {
 
 		JFrame mainWindow = new JFrame("Dixit");
-		mainWindow.setSize(1280,720);
+		mainWindow.setSize(1920,1080);
+		//mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//mainWindow.setUndecorated(true);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
