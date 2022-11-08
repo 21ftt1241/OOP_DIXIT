@@ -48,7 +48,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 
 		add(backBtn, container);	
 
-		btnSettings = new JButton("Settings");
+		btnSettings = new JButton("X");
 		btnSettings.addActionListener(this);
 		container.anchor = GridBagConstraints.NORTHEAST;	
 		container.gridx = 2;
