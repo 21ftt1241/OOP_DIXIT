@@ -32,14 +32,6 @@ public class STTurn extends JPanel implements ActionListener {
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
 		
-		//Exit button
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = GridBagConstraints.NORTHEAST;
-		gbc.insets = new Insets(20,20,0,0);
-		gbc.gridx = 2;
-		add(exitBtn, gbc);
-		exitBtn.addActionListener(this);
-		
 		score.setLayout(new GridBagLayout());
 		score.setBackground(Color.WHITE);
 		GridBagConstraints gb1 = new GridBagConstraints();
@@ -58,7 +50,6 @@ public class STTurn extends JPanel implements ActionListener {
 			gb1.insets = new Insets(0,10,0,10);
 			
 			score.add(plPanel[i], gb1);
-			
 		}
 		
 		gb1.gridx = 1;
@@ -114,18 +105,15 @@ public class STTurn extends JPanel implements ActionListener {
 		one.setText(GameFlow.s.get(GameFlow.turn).getClrArr() + " (" + GameFlow.s.get(GameFlow.turn).getNameArr() + ")");
 		
 		for (int i = 0 ; i < 6 ; i++) {
-			if (PlayerSelect1.status[i] == 0) {
+			if (PlayerSelect.status[i] == 0) {
 				plPanel[i].setVisible(false);
 			}
 		}
-		
-        
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 }

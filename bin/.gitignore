@@ -1,4 +1,5 @@
 /CardLayoutManager.class
+/GameFlow.class
 /GameRules.class
 /JTextFieldLimit.class
 /MainMenu.class
@@ -11,4 +12,3 @@
 /dialogPU.class
 /resources/
 /showCards.class
-/GameFlow.class

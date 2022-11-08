@@ -91,9 +91,9 @@ public class GameFlow {
 		String pClr;
 		Color pClr1;
 		
-		pName = PlayerSelect1.name; 
-		pClr = PlayerSelect1.color;
-		pClr1 = PlayerSelect1.color1;
+		pName = PlayerSelect.name; 
+		pClr = PlayerSelect.color;
+		pClr1 = PlayerSelect.color1;
 		
 		s.add(new GameFlow(pName,pClr, pClr1, pPoint));
 	}

@@ -9,15 +9,14 @@ public class PlayerSelect extends JPanel implements ActionListener{
 	dialogPU dialog = new dialogPU();
 
 	JPanel playerScreen = new JPanel();
-
+	JButton backBtn, startBtn, btnSettings;
 
 	//Inside playerScreen JPanel
 	JLabel l1;
 	JButton [] pb = new JButton[6];
-	JButton backBtn, startBtn, btnSettings;
 	JTextField [] ptf = new JTextField[6];
-
-	//Player 2D Array
+	public static int [] status = new int[6];
+	
 	String [][] p = {
 			{"Player 1", "RED"},
 			{"Player 2", "YELLOW"},
@@ -26,9 +25,6 @@ public class PlayerSelect extends JPanel implements ActionListener{
 			{"Player 5", "CYAN"},
 			{"Player 6", "MAGENTA"}
 	};
-
-	//Check status
-	public static int [] status = new int[6];
 
 	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
@@ -42,16 +38,17 @@ public class PlayerSelect extends JPanel implements ActionListener{
 
 	public PlayerSelect() {
 
-		totalPlayer = 0;
-
 		setLayout(new GridBagLayout());
 		setBackground(Color.GRAY);
 
 		//Back button
+		backBtn = new JButton("<");
+		backBtn.addActionListener(this);	
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		gbc.insets = new Insets(20,20,0,0);
 		add(backBtn, gbc);
+		
 		backBtn.addActionListener(this);
 
 		btnSettings = new JButton("Settings");
