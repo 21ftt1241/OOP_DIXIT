@@ -7,8 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class STTurn extends JPanel {
+public class STTurn extends JPanel implements ActionListener {
 	
+	static JButton exitBtn;
 	static String [][] pInfo;
 	static Color [] pClr1;
 	
@@ -30,6 +31,14 @@ public class STTurn extends JPanel {
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
+		
+		//Exit button
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.anchor = GridBagConstraints.NORTHEAST;
+		gbc.insets = new Insets(20,20,0,0);
+		gbc.gridx = 2;
+		add(exitBtn, gbc);
+		exitBtn.addActionListener(this);
 		
 		score.setLayout(new GridBagLayout());
 		score.setBackground(Color.WHITE);
@@ -111,5 +120,12 @@ public class STTurn extends JPanel {
 		}
 		
         
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
