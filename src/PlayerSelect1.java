@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 
 public class PlayerSelect1 extends JPanel implements ActionListener{
 	
-	JButton backBtn, startBtn;
+	dialogPU dialog = new dialogPU();
+
+	JButton backBtn, startBtn, btnSettings;
 	JLabel l1;
 	
 	JButton [] pb = new JButton[6];
 	JTextField [] ptf = new JTextField[6];
+	public static int [] status = new int[6];
 	
 	String [][] p = {
 			{"Player 1", "RED"},
@@ -20,21 +23,17 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			{"Player 5", "CYAN"},
 			{"Player 6", "MAGENTA"}
 	};
-	
-	public static int [] status = new int[6];
-	
+		
 	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
+
+	public static int totalPlayer;
+	public static Color color1;
+	public static String name, color;
 	
-	public static int totalPlayer, finalPlayer;
-	public static String [] pName;
-	
-	public static String [][] pInfo;
-	public static Color [] pClr;
+	public static int point;
 	
 	public PlayerSelect1() {
-		
-//		setBackground(Color.color1);
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
@@ -46,15 +45,20 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		
 		container.anchor = GridBagConstraints.NORTHWEST;
 		container.insets = new Insets(5, 5, 5, 5);
-		add(backBtn, container);
-		
-		
+
+		add(backBtn, container);	
+
+		btnSettings = new JButton("Settings");
+		btnSettings.addActionListener(this);
+		container.anchor = GridBagConstraints.NORTHEAST;	
+		container.gridx = 2;
+		add(btnSettings, container);
 		
 		container.insets = new Insets(5, 5, 5, 5);
 		container.weightx = 0.5;
 		container.weighty = 0.5;
-		container.anchor = GridBagConstraints.CENTER;
-		
+		container.anchor = GridBagConstraints.CENTER;		
+
 		l1 = new JLabel("Choose your Color");
 		l1.setFont(new Font("Arial", Font.PLAIN, 32));
 		
@@ -121,16 +125,21 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		JFrame f;
 		NotEnoughPlayer() {
 			f = new JFrame();
-			JOptionPane.showMessageDialog(f,  "Requires 3 or more player to start the game.");
+			JOptionPane.showMessageDialog(f, "Requires 3 or more player to start the game.");
 		}
 	}
-		
+	
 	
 	public void actionPerformed(ActionEvent btnclick) {
 		
 		if (btnclick.getSource() == backBtn) {
 			CardLayoutManager.showPage(1);
 		}
+
+		if (btnclick.getSource() == btnSettings){
+			dialog.settings();
+		} 
+		
 		
 //		Button performs
 		
@@ -151,39 +160,29 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			}
 		}
 		
+		
 //		Start game logics
 		
 		if(btnclick.getSource() == startBtn) {
-			int x = 0;		
-
-			String [][] pInfo = new String[totalPlayer][2];
-			Color [] pClr = new Color[totalPlayer];
+			
+			GameFlow.getTotalPlayer();	
 			
 			if (totalPlayer >= 3) {
-				
 				for (int i = 0 ; i < 6 ; i++) {
-					
 					if (ptf[i].isEnabled() == true) {
 						
-						pInfo[x][0] = ptf[i].getText();
-						pClr[x] = btnColor[i];
-						pInfo[x][1] = p[i][1];
-						x+=1;
+						name = ptf[i].getText();
+						color = p[i][1];
+						color1 = btnColor[i];
+						
+						GameFlow.getDetail();
+						
 					}	
 				}
 				
-				STTurn.getPlayerInfo(pInfo);
-				STTurn.getPlayerColor(pClr);
-				
-				STTurn.bruh();
-				
-				//run the gameflow punya class
-				
-				
-				// 1. loop (conditionnya ikut points, if ada player yang pointnya
-				//    labih dari 30, it stops
-				// 2. dalam loop, showpage
-				
+				GameFlow.shuffleCard();
+				STTurn.setLabel();
+				GameFlow.test1();
 				
 				CardLayoutManager.showPage(4);
 			}
@@ -192,9 +191,6 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 				new NotEnoughPlayer();
 				CardLayoutManager.showPage(3);
 			}
-			
-			
-			
 		}	
 	}
 }

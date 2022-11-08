@@ -7,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class STTurn extends JPanel implements ActionListener {
-	static JButton exitBtn = new JButton("X");
+public class STTurn extends JPanel {
+	
 	static String [][] pInfo;
 	static Color [] pClr1;
 	
@@ -30,14 +30,6 @@ public class STTurn extends JPanel implements ActionListener {
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
-		
-		//Exit button
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = GridBagConstraints.NORTHEAST;
-		gbc.insets = new Insets(20,20,0,0);
-		gbc.gridx = 2;
-		add(exitBtn, gbc);
-		exitBtn.addActionListener(this);
 		
 		score.setLayout(new GridBagLayout());
 		score.setBackground(Color.WHITE);
@@ -108,29 +100,16 @@ public class STTurn extends JPanel implements ActionListener {
 	}
 	
 	
-	public static void bruh() {
+	public static void setLabel() {
 
-		one.setText(pInfo[0][1] + " (" + pInfo[0][0] + ")");
+		one.setText(GameFlow.s.get(GameFlow.turn).getClrArr() + " (" + GameFlow.s.get(GameFlow.turn).getNameArr() + ")");
 		
 		for (int i = 0 ; i < 6 ; i++) {
-			if (PlayerSelect.status[i] == 0) {
+			if (PlayerSelect1.status[i] == 0) {
 				plPanel[i].setVisible(false);
 			}
-		} 
-	}
-	
-	public static String[][] getPlayerInfo(String [][] array1) {
-		return pInfo = array1;
-	}
-	
-	public static Color[] getPlayerColor(Color [] pClr2) {
-		return pClr1 = pClr2;
-	}
-
-	//Button actions
-	public void actionPerformed(ActionEvent e) {
+		}
 		
-		
+        
 	}
-
 }

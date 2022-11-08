@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class dialogPU extends JPanel implements ActionListener{
 
-    public JButton no_btn, yes_btn, btn1, btn2;
-    public JDialog ex_dialog, dialogDesc;
+    public JButton no_btn, yes_btn, btn1, btn2, btnReturn, btnMainMenu, btnExit;
+    public JDialog ex_dialog, dialogDesc, dialogSettings;
     public JTextArea desc_area;
 
     public String text;
@@ -102,6 +102,21 @@ public class dialogPU extends JPanel implements ActionListener{
         dialogDesc.add(desc_area, gbc);
 
         dialogDesc.setVisible(true);
+    }
+
+
+    // do this shit for tomorrow
+    public void settings(){
+        JFrame settings_dialog = new JFrame();
+        
+        dialogSettings = new JDialog(settings_dialog);
+        dialogSettings.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        dialogSettings.setSize(300,150);
+        dialogSettings.setLocationRelativeTo(null);
+        dialogSettings.setTitle("Settings");
+        dialogSettings.setVisible(true);
     }
 
     public String getText(){
