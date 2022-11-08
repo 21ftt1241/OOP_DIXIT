@@ -183,7 +183,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 				// create the next page
 //				TestGrab.CreateButton();
 				
-				CardLayoutManager.showPage(69);
+				CardLayoutManager.showPage(4);
 			}
 			
 			else {
