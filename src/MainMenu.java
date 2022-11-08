@@ -61,16 +61,14 @@ public class MainMenu extends JPanel implements ActionListener {
 		
 		//Main Menu button performs
 		if(btnclick.getSource() == b1) {
-			// CardLayoutManager.showPage(3);
-			String x = dialog.getText();
-			System.out.println(x);
+			CardLayoutManager.showPage(3);
 		}
 		else if(btnclick.getSource() == b2) {
 			CardLayoutManager.showPage(2); //calls CLM class and the showPage method
 		}
 		else if(btnclick.getSource() == b3) {
-			// dialog.dialog_ext();
-			dialog.card_descPU();
+			dialog.dialog_ext();
+			// dialog.card_descPU();
 		}
 	}
 }
