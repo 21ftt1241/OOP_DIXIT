@@ -150,7 +150,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		}
 		
 		
-//		Start game logics
+//		Start game logics test
 		
 		if(btnclick.getSource() == startBtn) {
 			
