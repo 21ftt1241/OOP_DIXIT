@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 
 public class PlayerSelect1 extends JPanel implements ActionListener{
 	
-	JButton backBtn, startBtn;
+	dialogPU dialog = new dialogPU();
+
+	JButton backBtn, startBtn, btnSettings;
 	JLabel l1;
 	
 	JButton [] pb = new JButton[6];
@@ -43,13 +45,20 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		
 		container.anchor = GridBagConstraints.NORTHWEST;
 		container.insets = new Insets(5, 5, 5, 5);
-		add(backBtn, container);
+
+		add(backBtn, container);	
+
+		btnSettings = new JButton("Settings");
+		btnSettings.addActionListener(this);
+		container.anchor = GridBagConstraints.NORTHEAST;	
+		container.gridx = 2;
+		add(btnSettings, container);
 		
 		container.insets = new Insets(5, 5, 5, 5);
 		container.weightx = 0.5;
 		container.weighty = 0.5;
-		container.anchor = GridBagConstraints.CENTER;
-		
+		container.anchor = GridBagConstraints.CENTER;		
+
 		l1 = new JLabel("Choose your Color");
 		l1.setFont(new Font("Arial", Font.PLAIN, 32));
 		
@@ -81,13 +90,13 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		}
 		
 //		Player Name TextField
-		
 		x = 0;
 		y = 2;
-		
+
 		for (int j = 0 ; j < 6; j++) {
 			ptf[j] = new JTextField();
 			ptf[j].setPreferredSize(new Dimension(200, 40));
+			ptf[j].setDocument(new JTextFieldLimit(10));
 			ptf[j].setEnabled(false);
 			
 			container.gridx = x;
@@ -95,13 +104,11 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			add(ptf[j], container);
 			
 			x = x + 1;
-			
 			if (x == 3) {
 				x = 0;
 				y = 4;
 			}
 		}
-
 		
 //		StartGame Button
 		startBtn = new JButton("Start Game");
@@ -128,6 +135,10 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		if (btnclick.getSource() == backBtn) {
 			CardLayoutManager.showPage(1);
 		}
+
+		if (btnclick.getSource() == btnSettings){
+			dialog.settings();
+		} 
 		
 		
 //		Button performs
