@@ -26,6 +26,14 @@ public class GameRules extends JPanel implements ActionListener {
 	//static final String FILE_PATH = "gamerules.txt";
 		
 	public GameRules() {
+		BufferedReader rulesText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/gamerules.txt")));
+		
+		try {
+			ruleExplain.read(rulesText, "gamerules");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setLayout(new GridBagLayout());
 		setBackground(Color.GRAY);
 		
@@ -40,23 +48,19 @@ public class GameRules extends JPanel implements ActionListener {
 		gb.weighty = 0.5;
 		gb.anchor = GridBagConstraints.CENTER;
 		
-		//ruleExplain.setEditable(false);
-		ruleExplain.setLineWrap(true);
+        ruleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		ruleScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
-		BufferedReader rulesText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/gamerules.txt")));
+		ruleExplain.setEditable(false);
+		//ruleExplain.setLineWrap(true);
 		
-		try {
-			ruleExplain.read(rulesText, "gamerules");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 		
 		RulesTab.setLayout(new BorderLayout());
 		RulesTab.add(RuleLbl1);  
 		PointsTab.add(RuleLbl2);
-		RulesTab.add(ruleExplain);
+		RulesTab.add(ruleScroll);
 		
 		tabbedPane.setPreferredSize(new Dimension(800,600));
 		tabbedPane.add("Game Rules", RulesTab);
