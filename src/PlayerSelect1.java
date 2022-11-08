@@ -180,7 +180,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 					}	
 				}
 				
-				GameFlow.shuffleCard();
+//				GameFlow.shuffleCard();
 				STTurn.setLabel();
 				GameFlow.test1();
 				

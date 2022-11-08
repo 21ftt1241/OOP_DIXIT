@@ -11,7 +11,7 @@ public class GameFlow {
 	
 	
 	
-	static ArrayList<GameFlow> s = new ArrayList<GameFlow>();
+	static ArrayList<GameFlow> playerArrList = new ArrayList<GameFlow>();
 	
 	
 	public GameFlow(String name, String color, Color color1, int point) {
@@ -24,10 +24,10 @@ public class GameFlow {
 	// Test
 	public static void test1() {
 		
-		for (int i = 0 ; i < s.size(); i++) {
-			System.out.print(s.get(i).getNameArr());
-			System.out.print(" " + s.get(i).getClrArr());
-			System.out.print(" " + s.get(i).getPoint());
+		for (int i = 0 ; i < playerArrList.size(); i++) {
+			System.out.print(playerArrList.get(i).getNameArr());
+			System.out.print(" " + playerArrList.get(i).getClrArr());
+			System.out.print(" " + playerArrList.get(i).getPoint());
 			System.out.println();
 		}
 		
@@ -35,7 +35,7 @@ public class GameFlow {
 	}
 	
 	public static void shuffleCard() {
-		Collections.shuffle(s);
+		Collections.shuffle(playerArrList);
 	}
 	
 	
@@ -72,7 +72,7 @@ public class GameFlow {
 	}
 	
 	
-	// methods for Player Select
+	// Methods for PlayerSelect
 	public static void createArrList() {
 		
 	}
@@ -95,7 +95,7 @@ public class GameFlow {
 		pClr = PlayerSelect1.color;
 		pClr1 = PlayerSelect1.color1;
 		
-		s.add(new GameFlow(pName,pClr, pClr1, pPoint));
+		playerArrList.add(new GameFlow(pName,pClr, pClr1, pPoint));
 	}
 
 	
@@ -110,13 +110,14 @@ public class GameFlow {
 		
 	}
 	
+	
 //	For reference: 
 //	update points
 	
-//	GameFlow.s.get(0).setPoint(var point);
+//	GameFlow.playerArrList.get(0).setPoint(var point);
 	
-//	for (int i = 0 ; i < GameFlow.s.size(); i++) {
-//		System.out.println(GameFlow.s.get(i).getPoint());
+//	for (int i = 0 ; i < GameFlow.playerArrList.size(); i++) {
+//		System.out.println(GameFlow.playerArrList.get(i).getPoint());
 //	}
 	
 	

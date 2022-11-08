@@ -7,24 +7,23 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class STTurn extends JPanel {
-	
-	static String [][] pInfo;
-	static Color [] pClr1;
+public class STTurn extends JPanel implements ActionListener {
 	
 	JPanel score = new JPanel();
 	static JPanel text = new JPanel();
 	JPanel cont = new JPanel();
 	
 	static JPanel[] plPanel = new JPanel[6];
-	Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
+	static Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
 			Color.BLUE, Color.CYAN, Color.MAGENTA};
 	
-	int[] point = {0, 0, 0, 0, 0, 0};
+//	int[] point = {0, 0, 0, 0, 0, 0};
 	
 	static JLabel one = new JLabel();
 	
 	static GridBagConstraints gb2 = new GridBagConstraints();
+	
+	static JLabel npoint = new JLabel();
 	
 	public STTurn(){
 		
@@ -42,7 +41,8 @@ public class STTurn extends JPanel {
 			plPanel[i].setPreferredSize(new Dimension(50,50));
 			plPanel[i].setBackground(pClr[i]);
 			
-			JLabel npoint = new JLabel(String.valueOf(point[i]));
+			
+			npoint = new JLabel(" ");
 			
 			plPanel[i].add(npoint);
 			
@@ -90,7 +90,8 @@ public class STTurn extends JPanel {
         cont.setLayout(new GridBagLayout());
         GridBagConstraints gb3 = new GridBagConstraints();
 		
-		JButton cont = new JButton("continue");
+		JButton cont = new JButton("Continue");
+		cont.addActionListener(this);
 		cont.setPreferredSize(new Dimension(200,50));
 		
 		gb3.gridx = 1;
@@ -99,17 +100,27 @@ public class STTurn extends JPanel {
 		
 	}
 	
+	public void actionPerformed(ActionEvent btnClick) {
+		if (btnClick.getSource() == cont) {
+			CardLayoutManager.showPage(5);
+		}
+	}
 	
 	public static void setLabel() {
 
-		one.setText(GameFlow.s.get(GameFlow.turn).getClrArr() + " (" + GameFlow.s.get(GameFlow.turn).getNameArr() + ")");
+		one.setText(GameFlow.playerArrList.get(GameFlow.turn).getClrArr() + " (" + GameFlow.playerArrList.get(GameFlow.turn).getNameArr() + ")");
 		
-		for (int i = 0 ; i < 6 ; i++) {
-			if (PlayerSelect1.status[i] == 0) {
-				plPanel[i].setVisible(false);
+//		for (int i = 0 ; i < 6 ; i++) {
+//			if (PlayerSelect1.status[i] == 0) {
+//				plPanel[i].setVisible(false);
+//				npoint.setText("0");
+//			}
+		for (int i = 0 ; i < GameFlow.totalPlayer; i++) {
+			
+			if (GameFlow.playerArrList.get(i).getClr1Arr() == pClr[i]) {
+				npoint.setText(String.valueOf(GameFlow.playerArrList.get(i).getPoint()));
+				
 			}
 		}
-		
-        
 	}
 }
