@@ -39,8 +39,8 @@ public class CardLayoutManager {
 		showCards sc = new showCards();
 		container.add(sc, "showCards");
 		
-		PlayerSelect selectPlayers = new PlayerSelect();
-		container.add(selectPlayers, "PlayerSelect");
+		PlayerSelect1 selectPlayers = new PlayerSelect1();
+		container.add(selectPlayers, "PlayerSelect1");
 		
 		TestGrab grabTest = new TestGrab();
 		container.add(grabTest, "TestGrab");
@@ -56,7 +56,7 @@ public class CardLayoutManager {
 		break;
 		case 2: cl.show(container, "GameRule"); 
 		break;
-		case 3: cl.show(container, "PlayerSelect"); 
+		case 3: cl.show(container, "PlayerSelect1"); 
 		break;
 		case 4: cl.show(container, "Storyteller"); 
 		break;

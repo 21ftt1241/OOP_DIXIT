@@ -161,7 +161,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		}
 		
 		
-//		Start game logics
+//		Start game logics test
 		
 		if(btnclick.getSource() == startBtn) {
 			
@@ -180,9 +180,25 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 					}	
 				}
 				
-				GameFlow.shuffleCard();
+//				GameFlow.addPoint();
 				STTurn.setLabel();
-				GameFlow.test1();
+				GameFlow.shuffleCard();
+//				GameFlow.test1();
+				
+				
+				// 1. create deck
+				GameFlow.createMainDeck();
+				
+				// 2. create player deck
+				GameFlow.createPlayerDeck();
+				
+//				GameFlow.testt();
+				
+				// 3. Allocate 6 cards
+//				GameFlow.allocateFirstCards();
+				
+//				STTurn stTurn = new STTurn();
+//				STTurn.displayPlayerCards();
 				
 				CardLayoutManager.showPage(4);
 			}
