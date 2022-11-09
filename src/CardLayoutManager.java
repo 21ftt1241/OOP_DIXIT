@@ -44,12 +44,10 @@ public class CardLayoutManager {
 		
 		TestGrab grabTest = new TestGrab();
 		container.add(grabTest, "TestGrab");
-		
-		ArrayArrayList imageTest = new ArrayArrayList();
-		container.add(imageTest, "ImageTest");
+
 
 		//Responsible for showing the very first screen of the game
-		showPage(1);
+		showPage(5);
 	}
 
 	//assigns number to pages, can be used in other java files/classes
@@ -66,8 +64,6 @@ public class CardLayoutManager {
 		case 5: cl.show(container, "showCards"); 
 		break;
 		case 69: cl.show(container, "TestGrab");
-		break;
-		case 420: cl.show(container, "ImageTest");
 		break;
 		}
 	}

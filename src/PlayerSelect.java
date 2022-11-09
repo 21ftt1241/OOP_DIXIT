@@ -192,13 +192,27 @@ public class PlayerSelect extends JPanel implements ActionListener{
 					}	
 				}
 
-				GameFlow.shuffleCard();
+				GameFlow.addPoint();
 				STTurn.setLabel();
-				GameFlow.test1();
-
+				GameFlow.shufflePlayer();
+//				GameFlow.test1();
+				
+				
+				// 1. create deck
+				GameFlow.createMainDeck();
+				
+				
+				// 2. create player deck
+				GameFlow.createPlayerDeck();
+				
+//				GameFlow.testt();
+				
+//				STTurn stTurn = new STTurn();
+//				STTurn.displayPlayerCards();
+				
 				CardLayoutManager.showPage(4);
 			}
-
+			
 			else {
 				new NotEnoughPlayer();
 				CardLayoutManager.showPage(3);
