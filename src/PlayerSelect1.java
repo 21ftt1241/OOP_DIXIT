@@ -7,12 +7,14 @@ import java.awt.event.ActionListener;
 public class PlayerSelect1 extends JPanel implements ActionListener{
 	
 	dialogPU dialog = new dialogPU();
-
-	JButton backBtn, startBtn, btnSettings;
+	
 	JLabel l1;
 	
+	JButton backBtn, startBtn, btnSettings;
 	JButton [] pb = new JButton[6];
+	
 	JTextField [] ptf = new JTextField[6];
+	
 	public static int [] status = new int[6];
 	
 	String [][] p = {
@@ -27,12 +29,14 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
 
-	public static int totalPlayer;
+	public static int totalPlayer, point;
 	public static Color color1;
 	public static String name, color;
 	
-	public static int point;
 	
+
+	
+	// -----------------------------------------------------------------------------------------
 	public PlayerSelect1() {
 		
 		setLayout(new GridBagLayout());
@@ -110,7 +114,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			}
 		}
 		
-//		StartGame Button
+		// StartGame Button
 		startBtn = new JButton("Start Game");
 		startBtn.setPreferredSize(new Dimension(300, 50));
 		startBtn.addActionListener(this);
@@ -120,7 +124,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		add(startBtn, container);	
 	}
 	
-	
+	// Method to show JOptionPane
 	public class NotEnoughPlayer {
 		JFrame f;
 		NotEnoughPlayer() {
@@ -130,6 +134,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	}
 	
 	
+	// ActionPerform -----------------------------------------------------------------------------------------
 	public void actionPerformed(ActionEvent btnclick) {
 		
 		if (btnclick.getSource() == backBtn) {
@@ -141,8 +146,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		} 
 		
 		
-//		Button performs
-		
+		// Player Button -----------------------------------------------------------------------------------------
 		for (int k = 0 ; k < 6 ; k++) {
 			if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == false){
 				ptf[k].setEnabled(true);
@@ -161,8 +165,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		}
 		
 		
-//		Start game logics test
-		
+		// Start game logics test -----------------------------------------------------------------------------------------
 		if(btnclick.getSource() == startBtn) {
 			
 			GameFlow.getTotalPlayer();	
@@ -179,25 +182,38 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 						
 					}	
 				}
+
+				// Shuffle the player's arraylist
+//				GameFlow.shufflePlayer();
+//				GameFlow.printTest();
 				
-//				GameFlow.addPoint();
-				STTurn.setLabel();
-				GameFlow.shufflePlayer();
-//				GameFlow.test1();
 				
+				// Set turn to 0
+				GameFlow.setTurn();
 				
-				// 1. create deck
+				// Set page to 1
+				GameFlow.setPage();
+				GameFlow.declareST();
+				
+				// Change label at STTurn
+				STTurn.hidePlayer();
+				STTurn.setLabel1();
+				STTurn.setScore();
+				
+				// Create main deck
+//				GameFlow gf = new GameFlow();
 				GameFlow.createMainDeck();
 				
+				// Create player hand
+				GameFlow.createPlayerHand();
 				
-				// 2. create player deck
-				GameFlow.createPlayerDeck();
-				
-//				GameFlow.testt();
-				
-//				STTurn stTurn = new STTurn();
+				// Display the first player hand
 				STTurn.displayPlayerCards();
 				
+				
+				
+				
+				// Open STTurn
 				CardLayoutManager.showPage(4);
 			}
 			
