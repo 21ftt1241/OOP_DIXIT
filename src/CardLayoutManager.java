@@ -14,7 +14,7 @@ public class CardLayoutManager {
 	public static void main(String[] args)  {
 
 		JFrame mainWindow = new JFrame("Dixit");
-		mainWindow.setSize(1280,720);
+		mainWindow.setSize(1920	,1080);
 		//mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH); 
 		//mainWindow.setUndecorated(true);
 		mainWindow.setVisible(true);
@@ -49,7 +49,7 @@ public class CardLayoutManager {
 		container.add(imageTest, "ImageTest");
 
 		//Responsible for showing the very first screen of the game
-		showPage(420);
+		showPage(1);
 	}
 
 	//assigns number to pages, can be used in other java files/classes
