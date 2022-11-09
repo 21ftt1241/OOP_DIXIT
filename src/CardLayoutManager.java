@@ -54,11 +54,11 @@ public class CardLayoutManager {
 		break;
 		case 2: cl.show(container, "GameRule"); 
 		break;
-		case 3: cl.show(container, "PlayerSelect1"); 
-		break;
+//		case 3: cl.show(container, "PlayerSelect1"); 
+//		break;
 		case 4: cl.show(container, "Storyteller"); 
 		break;
-		case 5: cl.show(container, "showCards"); 
+		case 3: cl.show(container, "showCards"); 
 		break;
 		case 69: cl.show(container, "TestGrab");
 		break;

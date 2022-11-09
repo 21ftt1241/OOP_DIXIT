@@ -40,20 +40,29 @@ public class showCards extends JPanel {
 		JPanel userClr = new JPanel();
 		userClr.setBackground(pClr[0]);
 		userClr.setPreferredSize(new Dimension(10,50));
-		JLabel username = new JLabel("username");
-		JLabel turn = new JLabel("red turn");
 		
+		JLabel username = new JLabel("username");
+		username.setFont(new Font("ARIAL", Font.PLAIN, 24));
+		
+		JLabel turn = new JLabel("red turn");
+		turn.setFont(new Font("ARIAL", Font.PLAIN, 14));
+		
+		gb11.gridheight = 2;
 		gb11.gridx = 0;
 		gb11.gridy = 0;
-		user.add(userClr, gb1);
+		user.add(userClr, gb11);
 		
+		gb11.anchor = GridBagConstraints.WEST;
+		gb11.insets = new Insets(0,10,20,0);
 		gb11.gridx = 1;
 		gb11.gridy = 0;
-		user.add(username, gb1);
+		user.add(username, gb11);
 		
+		gb11.anchor = GridBagConstraints.WEST;
+		gb11.insets = new Insets(20,10,0,0);
 		gb11.gridx = 1;
 		gb11.gridy = 1;
-		user.add(turn, gb1);
+		user.add(turn, gb11);
 		
 		gb11.gridx = 0;
 		gb11.gridy = 0;
@@ -67,7 +76,7 @@ public class showCards extends JPanel {
 			
 			JLabel npoint = new JLabel(String.valueOf(point[i]));
 			
-			plPanel[i].add(npoint);
+			plPanel[i].add(npoint, gb1);
 			
 			gb1.insets = new Insets(0,10,0,10);
 			
