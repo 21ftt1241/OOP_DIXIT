@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class CardLayoutManager {
 
-	public static JFrame mainWindow;
+	static JFrame mainWindow;
 	static CardLayout cl;
 	static JPanel container;
 
@@ -14,9 +14,7 @@ public class CardLayoutManager {
 	public static void main(String[] args)  {
 
 		JFrame mainWindow = new JFrame("Dixit");
-		mainWindow.setSize(1920	,1080);
-		//mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-		//mainWindow.setUndecorated(true);
+		mainWindow.setSize(1280,720);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -45,9 +43,8 @@ public class CardLayoutManager {
 		TestGrab grabTest = new TestGrab();
 		container.add(grabTest, "TestGrab");
 
-
 		//Responsible for showing the very first screen of the game
-		showPage(5);
+		showPage(1);
 	}
 
 	//assigns number to pages, can be used in other java files/classes
