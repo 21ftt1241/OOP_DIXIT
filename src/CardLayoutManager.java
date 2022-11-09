@@ -45,6 +45,7 @@ public class CardLayoutManager {
 
 		//Responsible for showing the very first screen of the game
 		showPage(1);
+		System.out.println("hehe");
 	}
 
 	//assigns number to pages, can be used in other java files/classes
