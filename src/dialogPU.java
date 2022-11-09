@@ -15,9 +15,7 @@ public class dialogPU extends JPanel implements ActionListener{
     // void method with no returnable value to be called in other class
     public void dialog_ext(){
         JFrame exit_dialog = new JFrame();
-        
         ex_dialog = new JDialog(exit_dialog);
-
         ex_dialog.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -105,15 +103,44 @@ public class dialogPU extends JPanel implements ActionListener{
     }
 
 
-    // do this shit for tomorrow
+    
+    // in game settings dialog
     public void settings(){
         JFrame settings_dialog = new JFrame();
-        
         dialogSettings = new JDialog(settings_dialog);
         dialogSettings.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        dialogSettings.setSize(300,150);
+        dialogSettings.setSize(300, 200);
+        dialogSettings.setLocationRelativeTo(null);
+        dialogSettings.setTitle("Settings");
+
+        // add return btn
+        btnReturn = new JButton("Return");
+        btnReturn.addActionListener(this);
+        btnReturn.setPreferredSize(new Dimension(100, 100)); 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        dialogSettings.add(btnReturn, gbc);
+
+        // add main menu button
+        btnMainMenu = new JButton("Main Menu");
+        btnMainMenu.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(15, 0, 0, 0);
+        dialogSettings.add(btnMainMenu, gbc);
+
+        // add exit game button
+        btnExit = new JButton("Exit");
+        btnExit.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(15, 0, 0, 0);
+        dialogSettings.add(btnExit, gbc);
+
         dialogSettings.setLocationRelativeTo(null);
         dialogSettings.setTitle("Settings");
         dialogSettings.setVisible(true);
@@ -131,6 +158,16 @@ public class dialogPU extends JPanel implements ActionListener{
 
     // pop up action event
     public void actionPerformed(ActionEvent btnClick) {
+
+        // setting dialog event
+        if (btnClick.getSource() == btnReturn){
+            dialogSettings.setVisible(false);
+        }else if (btnClick.getSource() == btnMainMenu){
+            dialogSettings.setVisible(false);
+            CardLayoutManager.showPage(1);
+        }else if (btnClick.getSource() == btnExit){
+            System.exit(0);
+        }
 
         // Exit Dialog event
         if (btnClick.getSource() == no_btn) {
