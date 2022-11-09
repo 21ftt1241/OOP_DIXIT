@@ -33,7 +33,7 @@ public class GameFlow {
 		for (int i = 0 ; i < playerArrList.size(); i++) {
 			System.out.print(playerArrList.get(i).getNameArr());
 			System.out.print(" " + playerArrList.get(i).getClrArr());
-			System.out.print(" " + playerArrList.get(i).getPoint());
+			System.out.print(" " + playerArrList.get(i) .getPoint());
 			System.out.println();
 		}
 		

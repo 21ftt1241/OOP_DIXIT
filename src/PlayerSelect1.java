@@ -196,7 +196,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 //				GameFlow.testt();
 				
 //				STTurn stTurn = new STTurn();
-//				STTurn.displayPlayerCards();
+				STTurn.displayPlayerCards();
 				
 				CardLayoutManager.showPage(4);
 			}
