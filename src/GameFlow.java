@@ -203,14 +203,14 @@ public class GameFlow {
 		ArrayList<String> playerHand[] = new ArrayList[totalPlayer];
 		
 		for (int i = 0 ; i < totalPlayer ; i++) {
-//			playerHand[i] = new ArrayList<>();
+			playerHand[i] = new ArrayList<>();
 			
 			for (int j = 0 ; j < 6 ; j++) {
 				playerHand[i].add(mainDeck.get(0));
 				mainDeck.remove(0);
 			}
 			
-//			System.out.println(playerHand[i]);
+			System.out.println(playerHand[i]);
 		}
 		
 		
