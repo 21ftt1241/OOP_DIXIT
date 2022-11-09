@@ -21,12 +21,15 @@ public class GameRules extends JPanel implements ActionListener {
 	
 	JTabbedPane tabbedPane = new JTabbedPane();
 	JTextArea ruleExplain = new JTextArea(10, 1);
+	JTextArea pointExplain = new JTextArea(10, 1);
 	JScrollPane ruleScroll = new JScrollPane(ruleExplain);
+	JScrollPane pointScroll = new JScrollPane(pointExplain);
 	 
 	//static final String FILE_PATH = "gamerules.txt";
 		
 	public GameRules() {
 		BufferedReader rulesText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/gamerules.txt")));
+		
 		
 	     
 		try {
@@ -35,6 +38,16 @@ public class GameRules extends JPanel implements ActionListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		BufferedReader pointsText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/pointsrules.txt")));
+		
+		try {
+			pointExplain.read(pointsText, "gamerules");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setLayout(new GridBagLayout());
 		setBackground(Color.GRAY);
 		
@@ -52,18 +65,23 @@ public class GameRules extends JPanel implements ActionListener {
         ruleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		ruleScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		
+		pointScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		pointScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
 		ruleExplain.setFont(new Font("Arial", Font.PLAIN, 24));
 		ruleExplain.setLineWrap(true);
 		ruleExplain.setWrapStyleWord(true);
 		ruleExplain.setEditable(false);
+		
+		pointExplain.setFont(new Font("Arial", Font.PLAIN, 24));
+		pointExplain.setLineWrap(true);
+		pointExplain.setWrapStyleWord(true);
+		pointExplain.setEditable(false);
 		//ruleExplain.setLineWrap(true);
 		
 		
-
-		
 		RulesTab.setLayout(new BorderLayout());
-		RulesTab.add(RuleLbl1);  
-		PointsTab.add(RuleLbl2);
+		PointsTab.setLayout(new BorderLayout());
 		RulesTab.add(ruleScroll);
 		
 		tabbedPane.setPreferredSize(new Dimension(800,600));
@@ -75,7 +93,6 @@ public class GameRules extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent back) {
-		System.out.println("Go back listens");
 		CardLayoutManager.showPage(1);
 	}
 }
