@@ -14,27 +14,18 @@ public class GameFlow {
 	
 	static ArrayList<GameFlow> playerArrList = new ArrayList<GameFlow>();
 	
-	static ArrayList<String> mainDeck = new ArrayList<String>();
-	
-	public static ArrayList<String> playerHand[]; 
-	
-	
-	public static ArrayList<String> player1Deck = new ArrayList<String>();
-	static ArrayList<String> player2Deck = new ArrayList<String>();
-	static ArrayList<String> player3Deck = new ArrayList<String>();
-	static ArrayList<String> player4Deck = new ArrayList<String>();
-	static ArrayList<String> player5Deck = new ArrayList<String>();
-	static ArrayList<String> player6Deck = new ArrayList<String>();
-	
-	
-	
-	
+	public static ArrayList<String> mainDeck = new ArrayList<String>();
+ 
+	public static ArrayList<String> playerHand[] = new ArrayList[6];
+		
 	public GameFlow(String name, String color, Color color1, int point) {
 		pName = name;
 		pClr = color;
 		pClr1 = color1;
 		pPoint = point;
 	}
+	
+	
 	
 	// Test
 	public static void test1() {
@@ -53,6 +44,10 @@ public class GameFlow {
 		turn = 0;
 	}
 	
+	public static void setPage() {
+		page = 1;
+	}
+	
 //	public static void getPage() {
 //		page = STTurn.page;
 //	}
@@ -62,7 +57,7 @@ public class GameFlow {
 		playerArrList.get(1).setPoint(testPoint);
 	}
 	
-	public static void shuffleCard() {
+	public static void shufflePlayer() {
 		Collections.shuffle(playerArrList);
 	}
 	
@@ -71,26 +66,28 @@ public class GameFlow {
 		if (page == 1) {
 			
 			STTurn.displayPage2();
-//			page = 2;
-			STTurn.displayPlayerCards();
+			page = 2;
+			
 			System.out.println(page);
 		}
 		else if (page == 2) {
 			
 			STTurn.displayPage1();
-//			page = 1;
+			STTurn.displayPlayerCards();
+			page = 1;
 			System.out.println(page);
 		}
 	}
 	
-//	public static void testt() {
-//		System.out.println(playerHand);
-//	}
-	
-	public static void grabber() {
-		page = 1;
-		System.out.println(page);
+	public static void testt() {
+		
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			System.out.println(playerHand[i]);
+		}
+		
+		
 	}
+	
 	
 	
 //	public static void displayPlayerCards() {
@@ -177,12 +174,6 @@ public class GameFlow {
 	
 	// Methods for STTurn
 	
-	public static void setLabel1() {
-		
-		
-	}
-	
-	
 	
 	// ArrayList methods for card related
 	
@@ -190,8 +181,10 @@ public class GameFlow {
 		
 		for (int i = 0 ; i < 84 ; i++) {
 			mainDeck.add("dixit_cards/" + (i+1) + ".png");
-//			System.out.println(mainDeck.get(i));;
+//			System.out.println(mainDeck.get(i));
 		}
+		
+		Collections.shuffle(mainDeck);
 		
 		
 	}
@@ -199,11 +192,11 @@ public class GameFlow {
 	public static void createPlayerDeck() {
 		
 		getTotalPlayer();
-		System.out.println(totalPlayer);
-		ArrayList<String> playerHand[] = new ArrayList[totalPlayer];
+//		System.out.println(totalPlayer);
+		
 		
 		for (int i = 0 ; i < totalPlayer ; i++) {
-//			playerHand[i] = new ArrayList<>();
+			playerHand[i] = new ArrayList<>();
 			
 			for (int j = 0 ; j < 6 ; j++) {
 				playerHand[i].add(mainDeck.get(0));

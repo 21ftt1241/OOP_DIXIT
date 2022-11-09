@@ -49,8 +49,9 @@ public class STTurn extends JPanel implements ActionListener {
 	static ImageIcon icon;
 	
 	public STTurn(){
-//		page = 1;
-		GameFlow.grabber();
+		
+		GameFlow.setPage();
+		
 		GameFlow.setTurn();
 		
 		setLayout(new GridBagLayout());
@@ -203,6 +204,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 			
 			GameFlow.pageChecker();
+//			GameFlow.grabber();
 
 			
 			
@@ -230,10 +232,10 @@ public class STTurn extends JPanel implements ActionListener {
 		for (int i = 0; i < 6; i++) {
 			
 //			icon = new ImageIcon(getClass().getResource(GameFlow.playerHand[0].get(i)));
-			String link = GameFlow.playerHand[1].get(i);
-			System.out.println(link);
-//			icon = new ImageIcon("dixit_cards/" + (j) + ".png");
-			icon = new ImageIcon(STTurn.class.getResource(link));
+//			String link = GameFlow.playerHand[1].get(i);
+//			System.out.println(link);
+			icon = new ImageIcon(GameFlow.playerHand[0].get(i));
+//			icon = new ImageIcon("dixit_cards/" + (i+1) + ".png");
 			
 //			image[i] = new JLabel();
 			image[i].setIcon(icon);
