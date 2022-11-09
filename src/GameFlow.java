@@ -4,16 +4,20 @@ import java.util.*;
 
 public class GameFlow {
 
-	public static int totalPlayer, turn=0;
+	public static int totalPlayer, turn;
 	public String pName, pClr;
 	public int pPoint;
 	public Color pClr1;
+	public static int page;
 	
 	
 	
-	static ArrayList<GameFlow> s = new ArrayList<GameFlow>();
+	static ArrayList<GameFlow> playerArrList = new ArrayList<GameFlow>();
 	
-	
+	public static ArrayList<String> mainDeck = new ArrayList<String>();
+ 
+	public static ArrayList<String> playerHand[] = new ArrayList[6];
+		
 	public GameFlow(String name, String color, Color color1, int point) {
 		pName = name;
 		pClr = color;
@@ -21,22 +25,87 @@ public class GameFlow {
 		pPoint = point;
 	}
 	
+	
+	
 	// Test
 	public static void test1() {
 		
-		for (int i = 0 ; i < s.size(); i++) {
-			System.out.print(s.get(i).getNameArr());
-			System.out.print(" " + s.get(i).getClrArr());
-			System.out.print(" " + s.get(i).getPoint());
+		for (int i = 0 ; i < playerArrList.size(); i++) {
+			System.out.print(playerArrList.get(i).getNameArr());
+			System.out.print(" " + playerArrList.get(i).getClrArr());
+			System.out.print(" " + playerArrList.get(i).getPoint());
 			System.out.println();
 		}
 		
 		
 	}
 	
-	public static void shuffleCard() {
-		Collections.shuffle(s);
+	public static void setTurn() {
+		turn = 0;
 	}
+	
+	public static void setPage() {
+		page = 1;
+	}
+	
+//	public static void getPage() {
+//		page = STTurn.page;
+//	}
+	
+	public static void addPoint() {
+		int testPoint = 2;
+		playerArrList.get(1).setPoint(testPoint);
+	}
+	
+	public static void shufflePlayer() {
+		Collections.shuffle(playerArrList);
+	}
+	
+	public static void pageChecker() {
+		
+		if (page == 1) {
+			
+			STTurn.displayPage2();
+			page = 2;
+			
+			System.out.println(page);
+		}
+		else if (page == 2) {
+			
+			STTurn.displayPage1();
+			STTurn.displayPlayerCards();
+			page = 1;
+			System.out.println(page);
+		}
+	}
+	
+	public static void testt() {
+		
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			System.out.println(playerHand[i]);
+		}
+		
+		
+	}
+	
+	
+	
+//	public static void displayPlayerCards() {
+//		for (int i = 0; i < 6; i++) {
+//			ImageIcon icon = new ImageIcon(player1Deck.get(0));
+//			STTurn.image = new JLabel(icon);
+//			STTurn.cardBtn[i].add(STTurn.image);
+//		}
+//	}
+	
+	
+	
+	
+	//testing for mainDeck
+	
+	
+	
+	
 	
 	
 	
@@ -72,7 +141,7 @@ public class GameFlow {
 	}
 	
 	
-	// methods for Player Select
+	// Methods for PlayerSelect
 	public static void createArrList() {
 		
 	}
@@ -95,7 +164,7 @@ public class GameFlow {
 		pClr = PlayerSelect1.color;
 		pClr1 = PlayerSelect1.color1;
 		
-		s.add(new GameFlow(pName,pClr, pClr1, pPoint));
+		playerArrList.add(new GameFlow(pName,pClr, pClr1, pPoint));
 	}
 
 	
@@ -105,18 +174,50 @@ public class GameFlow {
 	
 	// Methods for STTurn
 	
-	public static void setLabel1() {
+	
+	// ArrayList methods for card related
+	
+	public static void createMainDeck() {
+		
+		for (int i = 0 ; i < 84 ; i++) {
+			mainDeck.add("dixit_cards/" + (i+1) + ".png");
+//			System.out.println(mainDeck.get(i));
+		}
+		
+		Collections.shuffle(mainDeck);
 		
 		
 	}
 	
+	public static void createPlayerDeck() {
+		
+		getTotalPlayer();
+//		System.out.println(totalPlayer);
+		
+		
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			playerHand[i] = new ArrayList<>();
+			
+			for (int j = 0 ; j < 6 ; j++) {
+				playerHand[i].add(mainDeck.get(0));
+				mainDeck.remove(0);
+			}
+			
+//			System.out.println(playerHand[i]);
+		}
+		
+		
+		
+	}
+	
+
 //	For reference: 
 //	update points
 	
-//	GameFlow.s.get(0).setPoint(var point);
+//	GameFlow.playerArrList.get(0).setPoint(var point);
 	
-//	for (int i = 0 ; i < GameFlow.s.size(); i++) {
-//		System.out.println(GameFlow.s.get(i).getPoint());
+//	for (int i = 0 ; i < GameFlow.playerArrList.size(); i++) {
+//		System.out.println(GameFlow.playerArrList.get(i).getPoint());
 //	}
 	
 	
