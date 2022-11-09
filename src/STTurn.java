@@ -234,7 +234,7 @@ public class STTurn extends JPanel implements ActionListener {
 //			icon = new ImageIcon(getClass().getResource(GameFlow.playerHand[0].get(i)));
 //			String link = GameFlow.playerHand[1].get(i);
 //			System.out.println(link);
-			icon = new ImageIcon(GameFlow.playerHand[0].get(i));
+			icon = new ImageIcon(STTurn.class.getResource(GameFlow.playerHand[0].get(i)));
 //			icon = new ImageIcon("dixit_cards/" + (i+1) + ".png");
 			
 //			image[i] = new JLabel();

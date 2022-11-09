@@ -166,11 +166,6 @@ public class GameFlow {
 		
 		playerArrList.add(new GameFlow(pName,pClr, pClr1, pPoint));
 	}
-
-	
-	
-	
-	
 	
 	// Methods for STTurn
 	

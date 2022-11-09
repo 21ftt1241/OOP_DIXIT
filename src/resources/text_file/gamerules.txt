@@ -1,17 +1,15 @@
 Game Components
 
-    One game board inside the box (scoring track)
-    84 cards
-    36 voting tokens in 6 different colours numbered from 1 to 6
-    6 wooden rabbits (rabbeeples)
+- Storyteller
+- Voters
+- 6 cards given to each player
 
 Setup
 
-Each player chooses one rabbit and place it on the 0 space of the scoring track. Shuffle the 84 images and give 6 of them to each player. Make a draw pile with the remaining cards.
+In each round, there is one storyteller assigned. After a round ends, the storyteller will shift to another player. As a storyteller, your job is to pick a card from your hand,
+and describe the card with either one word, or a sentence (without showing the card to the other players).
 
-    With 4 players, each one takes 4 voting tokens (from 1 to 4).
-    With 5 players, each one takes 5 voting tokens (from 1 to 5).
-    With 6 players, each one takes 6 voting tokens (from 1 to 6).
+After the storyteller has describe the card that they have chosen, the other players select amongst their 6 cards, the one that best matches the sentence made up by the storyteller.
 
 Note: Do not show your hand of cards to anyone.
 
