@@ -189,7 +189,7 @@ public class GameFlow {
 	public static void createMainDeck() {
 		
 		for (int i = 0 ; i < 84 ; i++) {
-			mainDeck.add("dixit_cards/" + (i+1) + ".png");
+			mainDeck.add("resources/images/dixit_cards/" + (i+1) + ".png");
 //			System.out.println(mainDeck.get(i));;
 		}
 		

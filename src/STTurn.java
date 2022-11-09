@@ -137,7 +137,7 @@ public class STTurn extends JPanel implements ActionListener {
 		
 		for(int i = 0; i < 6; i++) {
 			
-			icon = new ImageIcon("dixit_cards/1.png");
+			icon = new ImageIcon("resources/images/dixit_cards/1.png");
 			image[i] = new JLabel();
 			image[i].setIcon(icon);
 //	
