@@ -48,7 +48,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 
 		add(backBtn, container);	
 
-		btnSettings = new JButton("Settings");
+		btnSettings = new JButton("X");
 		btnSettings.addActionListener(this);
 		container.anchor = GridBagConstraints.NORTHEAST;	
 		container.gridx = 2;
@@ -161,7 +161,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		}
 		
 		
-//		Start game logics
+//		Start game logics test
 		
 		if(btnclick.getSource() == startBtn) {
 			
@@ -180,9 +180,23 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 					}	
 				}
 				
-				GameFlow.shuffleCard();
+//				GameFlow.addPoint();
 				STTurn.setLabel();
-				GameFlow.test1();
+				GameFlow.shufflePlayer();
+//				GameFlow.test1();
+				
+				
+				// 1. create deck
+				GameFlow.createMainDeck();
+				
+				
+				// 2. create player deck
+				GameFlow.createPlayerDeck();
+				
+//				GameFlow.testt();
+				
+//				STTurn stTurn = new STTurn();
+//				STTurn.displayPlayerCards();
 				
 				CardLayoutManager.showPage(4);
 			}

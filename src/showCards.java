@@ -94,6 +94,9 @@ public class showCards extends JPanel {
 		gb1.gridy = 0;
 		add(exitOpt, gb1);
 		
+		
+		
+		
 		JLabel stTurn = new JLabel("Storyteller turn");
 		
 		text1.setLayout(new GridBagLayout());
