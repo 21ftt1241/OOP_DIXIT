@@ -77,11 +77,10 @@ public class GameRules extends JPanel implements ActionListener {
 		pointExplain.setLineWrap(true);
 		pointExplain.setWrapStyleWord(true);
 		pointExplain.setEditable(false);
-		//ruleExplain.setLineWrap(true);
-		
 		
 		RulesTab.setLayout(new BorderLayout());
 		PointsTab.setLayout(new BorderLayout());
+		PointsTab.add(pointScroll);
 		RulesTab.add(ruleScroll);
 		
 		tabbedPane.setPreferredSize(new Dimension(800,600));

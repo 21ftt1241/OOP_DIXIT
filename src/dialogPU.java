@@ -6,8 +6,8 @@ import javax.swing.*;
 
 public class dialogPU extends JPanel implements ActionListener{
 
-    public JButton no_btn, yes_btn, btn1, btn2, btnReturn, btnMainMenu, btnExit;
-    public JDialog ex_dialog, dialogDesc, dialogSettings;
+    public JButton no_btn, yes_btn, btn1, btn2, btnReturn, btnMainMenu, btnExit, windowedSize, fullscreenSize;
+    public JDialog ex_dialog, dialogDesc, dialogSettings, mainDialogSettings;
     public JTextArea desc_area;
 
     public String text;
@@ -102,7 +102,39 @@ public class dialogPU extends JPanel implements ActionListener{
         dialogDesc.setVisible(true);
     }
 
+ // in game settings dialog
+    public void mainSettings(){
+        JFrame mainSettings_dialog = new JFrame();
+        mainDialogSettings = new JDialog(mainSettings_dialog);
+        mainDialogSettings.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
+        mainDialogSettings.setSize(300, 200);
+        mainDialogSettings.setLocationRelativeTo(null);
+        mainDialogSettings.setTitle("Settings");
+
+        // 1920 x 1080
+        windowedSize = new JButton("1920 x 1080");
+        windowedSize.addActionListener(this);
+        windowedSize.setPreferredSize(new Dimension(200, 200)); 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        mainDialogSettings.add(windowedSize, gbc);
+
+        // Fullscreen
+        fullscreenSize = new JButton("Fullscreen");
+        fullscreenSize.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(15, 0, 0, 0);
+        mainDialogSettings.add(fullscreenSize, gbc);
+
+        mainDialogSettings.setLocationRelativeTo(null);
+        mainDialogSettings.setTitle("Settings");
+        mainDialogSettings.setVisible(true);
+    }
     
     // in game settings dialog
     public void settings(){
@@ -183,5 +215,21 @@ public class dialogPU extends JPanel implements ActionListener{
         }else if (btnClick.getSource() == btn2){
             dialogDesc.setVisible(false);
         }
+        
+        if (btnClick.getSource() == windowedSize){
+        	CardLayoutManager.mainWindow.dispose();
+        	CardLayoutManager.mainWindow.setUndecorated(false);
+        	CardLayoutManager.mainWindow.setVisible(true);
+            CardLayoutManager.mainWindow.setSize(new Dimension(1920,1080));
+            CardLayoutManager.mainWindow.setLocationRelativeTo(null);
+        }
+        
+        if (btnClick.getSource() == fullscreenSize){
+        	CardLayoutManager.mainWindow.dispose();
+        	CardLayoutManager.mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        	CardLayoutManager.mainWindow.setUndecorated(true);
+        	CardLayoutManager.mainWindow.setVisible(true);
+        }
+        
     }
 }

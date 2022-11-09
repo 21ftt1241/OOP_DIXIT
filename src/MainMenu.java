@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class MainMenu extends JPanel implements ActionListener {
-	final JButton b1, b2, b3;
+	final JButton b1, b2, b3, b4;
 	final JLabel lb;
 	//private BufferedImage image;
 	public JButton yes_btn, no_btn;
@@ -28,15 +28,18 @@ public class MainMenu extends JPanel implements ActionListener {
 		b1 = new JButton("Start Game");
 		b2 = new JButton("Game Rules");
 		b3 = new JButton("Exit Game");
+		b4 = new JButton("Settings");
 		lb = new JLabel(dixitLogo);
 		
 		b1.setPreferredSize(new Dimension(200, 100));
 		b2.setPreferredSize(new Dimension(200, 100));
 		b3.setPreferredSize(new Dimension(200, 100));
+		b4.setPreferredSize(new Dimension(200, 100));
 
 		b1.setFont(new Font("Arial", Font.PLAIN, 24));
 		b2.setFont(new Font("Arial", Font.PLAIN, 24));
 		b3.setFont(new Font("Arial", Font.PLAIN, 24));
+		b4.setFont(new Font("Arial", Font.PLAIN, 24));
 		
 		b1.setBackground(Color.decode("#55475B"));
 	    b1.setForeground(Color.decode("#F9DBA5"));
@@ -44,10 +47,13 @@ public class MainMenu extends JPanel implements ActionListener {
 	    b2.setForeground(Color.decode("#F9DBA5"));
 	    b3.setBackground(Color.decode("#55475B"));
 	    b3.setForeground(Color.decode("#F9DBA5"));
+	    b4.setBackground(Color.decode("#55475B"));
+	    b4.setForeground(Color.decode("#F9DBA5"));
 	    
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
+		b4.addActionListener(this);
 
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode("#EBD6B1"));
@@ -71,6 +77,10 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		gb.gridx = 1;
 		gb.gridy = 3;
+		add(b4, gb);
+		
+		gb.gridx = 1;
+		gb.gridy = 4;
 		add(b3, gb);
 	}
 	
@@ -79,13 +89,21 @@ public class MainMenu extends JPanel implements ActionListener {
 		//Main Menu button performs
 		if(btnclick.getSource() == b1) {
 			CardLayoutManager.showPage(3);
-
+			//
 		}
 		else if(btnclick.getSource() == b2) {
 			CardLayoutManager.showPage(2); //calls CLM class and the showPage method
 		}
+		
+		else if(btnclick.getSource() == b4) {
+			dialog.mainSettings();
+		}
+		
 		else if(btnclick.getSource() == b3) {
 			 dialog.dialog_ext();
 		}
+		
+		
+		
 	}
 }
