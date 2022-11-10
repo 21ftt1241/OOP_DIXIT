@@ -43,7 +43,7 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	// test
 	
-	String stDesc;
+	static String stDesc;
 	
 	
 	// new
@@ -254,12 +254,14 @@ public class STTurn extends JPanel implements ActionListener {
 				confBtn.setVisible(false);
 				stBtn.setVisible(true);
 				voteBtn.setVisible(false);
+				updateLabel1();
 			}
 			else {
 				contBtn.setVisible(false);
 				confBtn.setVisible(true);
 				stBtn.setVisible(false);
 				voteBtn.setVisible(false);
+//				updateLabel2();
 			}
 			
 			GameFlow.pageChecker();
@@ -434,6 +436,10 @@ public class STTurn extends JPanel implements ActionListener {
 	public static void setLabel3() {
 		one.setText(GameFlow.playerArrList.get(GameFlow.turn).getClrArr() + " (" + GameFlow.playerArrList.get(GameFlow.turn).getNameArr() + ")");
 		two.setText("Vote a card");
+	}
+	
+	public static void updateLabel1() {
+		label1.setText("Storyteller Turn");
 	}
 	
 	public static void hidePlayer() {
