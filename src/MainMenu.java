@@ -21,14 +21,18 @@ public class MainMenu extends JPanel implements ActionListener {
 	public dialogPU dialog = new dialogPU();
 	
 	public URL is = MainMenu.class.getResource("dixit_cards/menuMusic.wav");
+	public URL is2 = MainMenu.class.getResource("dixit_cards/clickSound.wav");
 	public AudioInputStream audioStream = AudioSystem.getAudioInputStream(is);
+	public AudioInputStream audioStream2 = AudioSystem.getAudioInputStream(is2);
 	public static Clip clip;
+	public static Clip clip2;
 	
 	
 	public MainMenu()  throws UnsupportedAudioFileException, IOException, LineUnavailableException  {
 		
 		//Calls Main menu music method
 		playMenuMusic();
+		playClick();
 		
 		ImageIcon icon = new ImageIcon(getClass().getResource("dixit_cards/dixit-logo.png")); // assign image to a new ImageIcon
 		Image image = icon.getImage(); // transform it 
@@ -52,14 +56,14 @@ public class MainMenu extends JPanel implements ActionListener {
 		b3.setFont(new Font("Arial", Font.PLAIN, 24));
 		b4.setFont(new Font("Arial", Font.PLAIN, 24));
 
-		b1.setBackground(Color.decode("#55475B"));
-		b1.setForeground(Color.decode("#F9DBA5"));
-		b2.setBackground(Color.decode("#55475B"));
-		b2.setForeground(Color.decode("#F9DBA5"));
-		b3.setBackground(Color.decode("#55475B"));
-		b3.setForeground(Color.decode("#F9DBA5"));
-		b4.setBackground(Color.decode("#55475B"));
-		b4.setForeground(Color.decode("#F9DBA5"));
+		b1.setBackground(Color.decode("#F3C94E"));
+		b1.setForeground(Color.decode("#000000"));
+		b2.setBackground(Color.decode("#F3C94E"));
+		b2.setForeground(Color.decode("#000000"));
+		b3.setBackground(Color.decode("#F3C94E"));
+		b3.setForeground(Color.decode("#000000"));
+		b4.setBackground(Color.decode("#F3C94E"));
+		b4.setForeground(Color.decode("#000000"));
 
 		b1.addActionListener(this);
 		b2.addActionListener(this);
@@ -102,8 +106,23 @@ public class MainMenu extends JPanel implements ActionListener {
 		clip.loop(clip.LOOP_CONTINUOUSLY);
 		clip.start();
 		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-30.0f); // Reduce volume by 10 decibels.
+			gainControl.setValue(-30.0f); // Reduce volume by 30 decibels.
 	}
+	
+	public void playClick() throws LineUnavailableException, IOException, LineUnavailableException   {
+		 //clip2.setMicrosecondPosition(0);
+		clip2 = AudioSystem.getClip();
+		clip2.open(audioStream2);
+		FloatControl gainControl = (FloatControl) clip2.getControl(FloatControl.Type.MASTER_GAIN);
+		gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
+		   	       
+	}
+	
+	public static void playClick2()   {
+		clip2.setMicrosecondPosition(0);
+		clip2.start();   	       
+	}
+	
 	public static void playMusic()   {
 		 clip.setMicrosecondPosition(0);
 		 clip.start();   	       
@@ -114,7 +133,8 @@ public class MainMenu extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent btnclick) {
-
+		playClick2();
+		
 		//Main Menu button performs
 		if(btnclick.getSource() == b1) {
 			CardLayoutManager.showPage(3);
@@ -130,6 +150,8 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		else if(btnclick.getSource() == b3) {
 			dialog.dialog_ext();
-		}	
+		}
+		
+		
 	}
 }

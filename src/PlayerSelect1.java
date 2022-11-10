@@ -40,11 +40,14 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	public PlayerSelect1() {
 		
 		setLayout(new GridBagLayout());
-		setBackground(Color.WHITE);
+		setBackground(Color.decode("#EBD6B1"));
 		
 		GridBagConstraints container = new GridBagConstraints();
 		
 		backBtn = new JButton("<");
+		backBtn.setBackground(Color.decode("#F3C94E"));
+		backBtn.setForeground(Color.decode("#000000"));
+		backBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		backBtn.addActionListener(this);		
 		
 		container.anchor = GridBagConstraints.NORTHWEST;
@@ -53,6 +56,9 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		add(backBtn, container);	
 
 		btnSettings = new JButton("X");
+		btnSettings.setBackground(Color.decode("#F3C94E"));
+		btnSettings.setForeground(Color.decode("#000000"));
+		btnSettings.setFont(new Font("Arial", Font.BOLD, 24));
 		btnSettings.addActionListener(this);
 		container.anchor = GridBagConstraints.NORTHEAST;	
 		container.gridx = 2;
@@ -64,7 +70,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		container.anchor = GridBagConstraints.CENTER;		
 
 		l1 = new JLabel("Choose your Color");
-		l1.setFont(new Font("Arial", Font.PLAIN, 32));
+		l1.setFont(new Font("Arial", Font.BOLD, 32));
 		
 		container.gridx = 1;
 		container.gridy = 0;
@@ -99,7 +105,9 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 
 		for (int j = 0 ; j < 6; j++) {
 			ptf[j] = new JTextField();
+			ptf[j].setBackground(Color.decode("#CA9064"));
 			ptf[j].setPreferredSize(new Dimension(200, 40));
+			ptf[j].setFont(new Font("Arial", Font.PLAIN, 24));
 			ptf[j].setDocument(new JTextFieldLimit(10));
 			ptf[j].setEnabled(false);
 			
@@ -116,6 +124,9 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		
 		// StartGame Button
 		startBtn = new JButton("Start Game");
+		startBtn.setForeground(Color.decode("#000000"));
+		startBtn.setBackground(Color.decode("#F3C94E"));
+		startBtn.setFont(new Font("Arial", Font.PLAIN, 24));
 		startBtn.setPreferredSize(new Dimension(300, 50));
 		startBtn.addActionListener(this);
 		
@@ -136,7 +147,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	
 	// ActionPerform -----------------------------------------------------------------------------------------
 	public void actionPerformed(ActionEvent btnclick) {
-		
+		MainMenu.playClick2();
 		if (btnclick.getSource() == backBtn) {
 			CardLayoutManager.showPage(1);
 		}
@@ -150,6 +161,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		for (int k = 0 ; k < 6 ; k++) {
 			if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == false){
 				ptf[k].setEnabled(true);
+				ptf[k].setBackground(Color.decode("#FFFFFF"));
 				ptf[k].setText(p[k][0]);
 				
 				status[k] = 1;
@@ -158,6 +170,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			}
 			else if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == true) {
 				ptf[k].setEnabled(false);
+				ptf[k].setBackground(Color.decode("#CA9064"));
 				ptf[k].setText(" ");
 				status[k] = 0;
 				totalPlayer-=1;

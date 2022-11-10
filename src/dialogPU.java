@@ -80,6 +80,7 @@ public class dialogPU extends JPanel implements ActionListener {
         dialogDesc.add(btn2, gbc);
 
         JLabel text1 = new JLabel("Describe your card", SwingConstants.CENTER);
+        text1.setFont(new Font("Arial", Font.PLAIN, 24));
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.insets = new Insets(0, 0, 10, 0);
@@ -245,10 +246,12 @@ public class dialogPU extends JPanel implements ActionListener {
         
         if (btnClick.getSource() == muteMusic) {
         	MainMenu.stopMusic();
+        	mainDialogSettings.setVisible(false);
         }
         
         if (btnClick.getSource() == playMusic) {
         	MainMenu.playMusic();
+        	mainDialogSettings.setVisible(false);
         }
         if (btnClick.getSource() == windowedSize){
         	CardLayoutManager.mainWindow.dispose();
@@ -256,6 +259,7 @@ public class dialogPU extends JPanel implements ActionListener {
         	CardLayoutManager.mainWindow.setVisible(true);
             CardLayoutManager.mainWindow.setSize(new Dimension(1920,1080));
             CardLayoutManager.mainWindow.setLocationRelativeTo(null);
+            mainDialogSettings.setVisible(false);
         }
         
         if (btnClick.getSource() == fullscreenSize){
@@ -263,6 +267,7 @@ public class dialogPU extends JPanel implements ActionListener {
         	CardLayoutManager.mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         	CardLayoutManager.mainWindow.setUndecorated(true);
         	CardLayoutManager.mainWindow.setVisible(true);
+        	mainDialogSettings.setVisible(false);
         }
         
     }
