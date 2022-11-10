@@ -14,6 +14,8 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	static Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
 			Color.BLUE, Color.CYAN, Color.MAGENTA};
+
+	
 	
 	JPanel score = new JPanel();
 	static JPanel text = new JPanel();
@@ -42,8 +44,8 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	
 	// test
-	
-	String stDesc;
+	dialogPU dialog = new dialogPU();
+	// String stDesc;
 	
 	
 	// new
@@ -52,7 +54,7 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	// -----------------------------------------------------------------------------------------
 	public STTurn(){
-		
+	
 		GameFlow.varTest();
 		
 		setLayout(new GridBagLayout());
@@ -123,7 +125,7 @@ public class STTurn extends JPanel implements ActionListener {
         cardsMainPanel.setBackground(Color.WHITE);
         
         // Label
-        label1 = new JLabel("Storyteller turn");
+        label1 = new JLabel("Storyteller Turn");
         gb3.insets = new Insets(30,0,30,0);
         gb3.gridx = 0;
 		gb3.gridy = 0;
@@ -148,10 +150,6 @@ public class STTurn extends JPanel implements ActionListener {
 			cardBtn[i].add(image[i]);
 			cardBtn[i].addActionListener(this);
 			
-			
-			
-			
-			
 			gb4.insets = new Insets(0,10,0,10);
 			displayCards.add(cardBtn[i], gb4);
 			
@@ -169,8 +167,6 @@ public class STTurn extends JPanel implements ActionListener {
 	    add(cardsMainPanel, gb2);
 	        
 	    cardsMainPanel.setVisible(false);
-        
-	    
 	    
         // 4th Panel: Label2 and Button -----------------------------------------------------------------------------------------
 	    GridBagConstraints gb5 = new GridBagConstraints();
@@ -266,10 +262,8 @@ public class STTurn extends JPanel implements ActionListener {
 		
 		
 		if (btnClick.getSource() == stBtn) {
-			
 			dialogPU dialog = new dialogPU();
-			dialog.card_descPU();
-			stDesc = dialog.getText();
+			dialog.card_descPU();			
 			
 			contBtn.setVisible(true);
 			confBtn.setVisible(false);
