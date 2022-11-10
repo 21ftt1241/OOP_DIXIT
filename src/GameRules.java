@@ -28,10 +28,11 @@ public class GameRules extends JPanel implements ActionListener {
 	//static final String FILE_PATH = "gamerules.txt";
 		
 	public GameRules() {
+		setLayout(new GridBagLayout());
+		setBackground(Color.decode("#EBD6B1"));
+		
+		//Import rules text from text file
 		BufferedReader rulesText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/gamerules.txt")));
-		
-		
-	     
 		try {
 			ruleExplain.read(rulesText, "gamerules");
 		} catch (IOException e) {
@@ -39,6 +40,7 @@ public class GameRules extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		
+		//Import points text from text file
 		BufferedReader pointsText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/pointsrules.txt")));
 		
 		try {
@@ -48,14 +50,15 @@ public class GameRules extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		setLayout(new GridBagLayout());
-		setBackground(Color.GRAY);
-		
+
 		GridBagConstraints gb = new GridBagConstraints();
 		gb.anchor = GridBagConstraints.NORTHWEST;
 		gb.insets = new Insets(20,20,0,0);
-		add(backBtn, gb);
+		backBtn.setBackground(Color.decode("#F3C94E"));
+		backBtn.setForeground(Color.decode("#000000"));
+		backBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		backBtn.addActionListener(this);
+		add(backBtn, gb);
 		
 		gb.insets = new Insets(0,0,0,0);
 		gb.weightx = 0.5;
@@ -72,6 +75,7 @@ public class GameRules extends JPanel implements ActionListener {
 		ruleExplain.setLineWrap(true);
 		ruleExplain.setWrapStyleWord(true);
 		ruleExplain.setEditable(false);
+		ruleExplain.setBackground(Color.decode("#FFFFFF"));
 		
 		pointExplain.setFont(new Font("Arial", Font.PLAIN, 24));
 		pointExplain.setLineWrap(true);
@@ -86,8 +90,9 @@ public class GameRules extends JPanel implements ActionListener {
 		tabbedPane.setPreferredSize(new Dimension(800,600));
 		tabbedPane.add("Game Rules", RulesTab);
 		tabbedPane.add("Point System",PointsTab);
-		tabbedPane.setFont( new Font(Font.SANS_SERIF,  Font.BOLD, 18));
+		tabbedPane.setFont(new Font(Font.SANS_SERIF,  Font.BOLD, 18));
 		add(tabbedPane, gb);
+		
 
 	}
 
