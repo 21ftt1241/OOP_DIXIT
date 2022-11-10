@@ -90,7 +90,6 @@ public class MainMenu extends JPanel implements ActionListener {
 		//Main Menu button performs
 		if(btnclick.getSource() == b1) {
 			CardLayoutManager.showPage(3);
-			//
 		}
 		else if(btnclick.getSource() == b2) {
 			CardLayoutManager.showPage(2); //calls CLM class and the showPage method
@@ -101,11 +100,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		}
 		
 		else if(btnclick.getSource() == b3) {
-			//  dialog.dialog_ext();
-			dialog.dialogEnd();
-		}
-		
-		
-		
+			 dialog.dialog_ext();
+		}				
 	}
 }

@@ -63,22 +63,14 @@ public class dialogPU extends JPanel implements ActionListener{
         GridBagConstraints gbc = new GridBagConstraints();
 
         btn1 = new JButton("Confirm");
-        btn2 = new JButton("Cancel");
 
         btn1.addActionListener(this);
-        btn2.addActionListener(this);
 
         // add confirm btn to frame
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.insets = new Insets (0, 0, 0, 150);
+        // gbc.insets = new Insets (0, 0, 0, 150);
         dialogDesc.add(btn1, gbc);
-
-        // add cancel btn to frame
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.insets = new Insets (0, 150, 0, 0);
-        dialogDesc.add(btn2, gbc);
 
         JLabel text1 = new JLabel("Describe your card", SwingConstants.CENTER);
         gbc.gridx = 1;
@@ -264,10 +256,7 @@ public class dialogPU extends JPanel implements ActionListener{
         // Desc dialog event
         if (btnClick.getSource() == btn1){        
             dialogDesc.setVisible(false);
-            
             STTurn.label1.setText("Card description: " + getText());
-        }else if (btnClick.getSource() == btn2){
-            dialogDesc.setVisible(false);
         }
         
         if (btnClick.getSource() == windowedSize){
