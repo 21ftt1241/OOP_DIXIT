@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class STTurn extends JPanel implements ActionListener {
 	
 	JPanel score = new JPanel();
+	JPanel user = new JPanel();
 	static JPanel text = new JPanel();
 	
 	JPanel contLayout = new JPanel();
@@ -29,18 +30,26 @@ public class STTurn extends JPanel implements ActionListener {
 	static JLabel npoint[] = new JLabel[6];
 	
 	// cards
+	static JPanel scoreMainPanel = new JPanel();
 	static JPanel cardsMainPanel = new JPanel();
 	static JPanel buttonMainPanel = new JPanel();
 	static JButton cont1 = new JButton();
 	static JLabel label1 = new JLabel();
 	static JLabel label2 = new JLabel();
 	
+	//voting
+	JPanel[] plVoting = new JPanel[6];
+	JPanel[] sixBox = new JPanel[6];
+	JPanel[] voters = new JPanel[5];
+	
 	
 //	public static int page;
 	public static JLabel image[] = new JLabel[6];
 	
+	static JPanel votingPanel = new JPanel();
 	static JPanel displayCards = new JPanel();
 	static JButton[] cardBtn = new JButton[6];
+	static JPanel displayVoters = new JPanel();
 	
 	static int j = 1;
 	
@@ -58,11 +67,52 @@ public class STTurn extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 		
 		
-		// 1st Panel: Player Score
+		// 1st Panel: Player Score	
+		scoreMainPanel.setLayout(new GridBagLayout());
+		scoreMainPanel.setBackground(Color.WHITE);
+		
 		score.setLayout(new GridBagLayout());
 		score.setBackground(Color.WHITE);
 		GridBagConstraints gb1 = new GridBagConstraints();
 		
+		//user
+		user.setLayout(new GridBagLayout());
+		user.setBackground(Color.WHITE);
+		GridBagConstraints gb11 = new GridBagConstraints();
+		
+		JPanel userClr = new JPanel();
+		userClr.setBackground(pClr[0]);
+		userClr.setPreferredSize(new Dimension(10,50));
+		
+		JLabel username = new JLabel("username");
+		username.setFont(new Font("ARIAL", Font.PLAIN, 24));
+		
+		JLabel turn = new JLabel("red turn");
+		turn.setFont(new Font("ARIAL", Font.PLAIN, 14));
+		
+		gb11.gridheight = 2;
+		gb11.gridx = 0;
+		gb11.gridy = 0;
+		user.add(userClr, gb11);
+		
+		gb11.anchor = GridBagConstraints.WEST;
+		gb11.insets = new Insets(0,10,20,0);
+		gb11.gridx = 1;
+		gb11.gridy = 0;
+		user.add(username, gb11);
+		
+		gb11.anchor = GridBagConstraints.WEST;
+		gb11.insets = new Insets(20,10,0,0);
+		gb11.gridx = 1;
+		gb11.gridy = 1;
+		user.add(turn, gb11);
+		
+//		gb1.anchor = GridBagConstraints.WEST;
+		gb1.gridx = 0;
+		gb1.gridy = 0;
+		add(user, gb1);
+		
+		//score
 		for(int i = 0; i < 6; i++) {
 			
 			plPanel[i] = new JPanel();
@@ -70,15 +120,20 @@ public class STTurn extends JPanel implements ActionListener {
 			plPanel[i].setBackground(pClr[i]);
 			npoint[i] = new JLabel("test");
 			plPanel[i].add(npoint[i]);
+			gb1.gridx = i + 1;
 			
 			gb1.insets = new Insets(0,10,0,10);
-			
 			score.add(plPanel[i], gb1);
 		}
 		
+//		gb1.anchor = GridBagConstraints.CENTER;
 		gb1.gridx = 1;
 		gb1.gridy = 0;
 		add(score, gb1);
+		
+//		gb1.gridx = 1;
+//		gb1.gridy = 0;
+//		add(scoreMainPanel, gb1);
 		
 		
 		
@@ -123,11 +178,31 @@ public class STTurn extends JPanel implements ActionListener {
         
         // Label
         label1 = new JLabel("Storyteller turn");
-        gb3.insets = new Insets(30,0,30,0);
-        gb3.gridx = 0;
+        gb3.insets = new Insets(5,0,5,0);
+        gb3.gridx = 1;
 		gb3.gridy = 0;
 		cardsMainPanel.add(label1, gb3);
         
+		//Voting
+		votingPanel.setLayout(new GridBagLayout());
+		votingPanel.setBackground(Color.WHITE);
+		GridBagConstraints gbz = new GridBagConstraints();
+		
+		for(int i = 0; i < 6; i++) {
+		
+		plVoting[i] = new JPanel();
+		plVoting[i].setPreferredSize(new Dimension(180,20));
+		plVoting[i].setBackground(pClr[i]);
+		
+		gbz.anchor = GridBagConstraints.SOUTH;
+		gbz.insets = new Insets(0,10,0,10);
+		votingPanel.add(plVoting[i], gbz);
+		
+	}
+		
+		gb3.gridx = 1;
+		gb3.gridy = 1;
+		cardsMainPanel.add(votingPanel, gb3);
 		
 		// Cards
 		GridBagConstraints gb4 = new GridBagConstraints();
@@ -143,18 +218,55 @@ public class STTurn extends JPanel implements ActionListener {
 			image[i].setIcon(icon);
 //	
 			cardBtn[i] = new JButton();
-			cardBtn[i].setPreferredSize(new Dimension(160,300));
+			cardBtn[i].setPreferredSize(new Dimension(180,300));
 			cardBtn[i].add(image[i]);
 			gb4.insets = new Insets(0,10,0,10);
 			displayCards.add(cardBtn[i], gb4);
 			
 		}
-		//
-		gb3.insets = new Insets(20,0,20,0);
 		
-		gb3.gridx = 0;
-        gb3.gridy = 1;
+		//
+		gb3.insets = new Insets(0,0,0,0);
+		
+		gb3.gridx = 1;
+        gb3.gridy = 2;
         cardsMainPanel.add(displayCards, gb3);
+        
+      //Voters
+        displayVoters.setLayout(new GridBagLayout());
+        displayVoters.setBackground(Color.WHITE);
+      		GridBagConstraints gbv = new GridBagConstraints();
+      		
+      		for(int i = 0; i < 6; i++) {
+      			
+      				
+      				sixBox[i] = new JPanel();
+      				
+      				sixBox[i].setPreferredSize(new Dimension(180,18));
+      				sixBox[i].setBackground(Color.WHITE);
+//      				sixBox[i].setLayout(new GridBagLayout());
+      			for(int j = 0; j < 5; j++) {
+      			
+      				
+      				voters[j] = new JPanel();
+      				voters[j].setPreferredSize(new Dimension(30,18));
+      				voters[j].setBackground(Color.GRAY);
+      				
+      				gbv.insets = new Insets(0,10,0,10);
+      				sixBox[i].add(voters[j], gbv);
+      		
+      				
+      			}
+      		
+      				gbv.insets = new Insets(5,10,5,10);
+      				displayVoters.add(sixBox[i], gbv);
+      		
+      	}
+      		
+      		gb3.gridx = 1;
+      		gb3.gridy = 3;
+      		cardsMainPanel.add(displayVoters, gb3);
+        
         
 		// add everything to the cardsMainPanel
 		gb2.gridx = 1;

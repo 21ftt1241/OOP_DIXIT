@@ -20,6 +20,7 @@ public class showCards extends JPanel {
 	JPanel user = new JPanel();
 	
 	JPanel[] plPanel = new JPanel[6];
+	JPanel[] plVoting = new JPanel[6];
 	Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
 			Color.BLUE, Color.CYAN, Color.MAGENTA};
 	int[] point = {0, 0, 0, 0, 0, 0};
@@ -117,13 +118,20 @@ public class showCards extends JPanel {
 		cardDisplay.setBackground(Color.WHITE);
 		GridBagConstraints gb3 = new GridBagConstraints();
 		
+		int x = 0;
+		int y = 0;
+		
 		for(int i = 0; i < 6; i++) {
+			
+			plVoting[i] = new JPanel();
+			plVoting[i].setPreferredSize(new Dimension(150,50));
+			plVoting[i].setBackground(pClr[i]);
 			
 			card[i] = new JButton();
 			card[i].setPreferredSize(new Dimension(160,300));
 //			card[i].setBackground(image); 
 			
-			gb3.insets = new Insets(0,10,0,10);
+			gb3.insets = new Insets(10,10,10,10);
 			
 			cardDisplay.add(card[i], gb3);
 			

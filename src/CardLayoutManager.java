@@ -14,7 +14,7 @@ public class CardLayoutManager {
 	public static void main(String[] args)  {
 
 		JFrame mainWindow = new JFrame("Dixit");
-		mainWindow.setSize(1280,720);
+		mainWindow.setSize(1920,1080);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,11 +54,11 @@ public class CardLayoutManager {
 		break;
 		case 2: cl.show(container, "GameRule"); 
 		break;
-//		case 3: cl.show(container, "PlayerSelect1"); 
-//		break;
+		case 3: cl.show(container, "PlayerSelect1"); 
+		break;
 		case 4: cl.show(container, "Storyteller"); 
 		break;
-		case 3: cl.show(container, "showCards"); 
+		case 5: cl.show(container, "showCards"); 
 		break;
 		case 69: cl.show(container, "TestGrab");
 		break;
