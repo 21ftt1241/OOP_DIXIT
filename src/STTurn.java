@@ -38,7 +38,7 @@ public class STTurn extends JPanel implements ActionListener {
 	static JButton vote1Btn = new JButton();
 	static JButton[] cardBtn = new JButton[6];
 	
-	static ImageIcon icon;
+	static ImageIcon icon, newicon;
 	
 	
 	// test
@@ -140,11 +140,12 @@ public class STTurn extends JPanel implements ActionListener {
 		for(int i = 0; i < 6; i++) {
 			
 			icon = new ImageIcon("dixit_cards/1.png");
+			
 			image[i] = new JLabel();
 			image[i].setIcon(icon);
 			
 			cardBtn[i] = new JButton();
-			cardBtn[i].setPreferredSize(new Dimension(160,300));
+			cardBtn[i].setPreferredSize(new Dimension(200,300));
 			cardBtn[i].add(image[i]);
 			cardBtn[i].addActionListener(this);
 			
@@ -394,7 +395,11 @@ public class STTurn extends JPanel implements ActionListener {
 		
 		for (int i = 0; i < 6; i++) {
 			icon = new ImageIcon(STTurn.class.getResource(GameFlow.playerHand[GameFlow.turn].get(i)));
-			image[i].setIcon(icon);
+			Image tempimage = icon.getImage(); // transform it 
+			Image newimg = tempimage.getScaledInstance(200, 300,  java.awt.Image.SCALE_SMOOTH); // scale it smoothly  
+			newicon = new ImageIcon(newimg); 
+			image[i].setIcon(newicon);
+			
 		}
 	}
 	
@@ -407,7 +412,10 @@ public class STTurn extends JPanel implements ActionListener {
 	public static void votingCards() {
 		for (int i = 0; i < GameFlow.tableCard.size(); i++) {
 			icon = new ImageIcon(STTurn.class.getResource(GameFlow.tempTableCard.get(i)));
-			image[i].setIcon(icon);
+			Image tempimage = icon.getImage(); // transform it 
+			Image newimg = tempimage.getScaledInstance(200, 300,  java.awt.Image.SCALE_SMOOTH); // scale it smoothly  
+			newicon = new ImageIcon(newimg); 
+			image[i].setIcon(newicon);
 			cardBtn[i].setVisible(true);
 		}
 	}
