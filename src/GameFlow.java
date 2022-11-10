@@ -45,6 +45,12 @@ public class GameFlow {
 	
 	// Player ArrayList -----------------------------------------------------------------------------------------
 	
+	public static void resetPlayer() {
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			playerArrList.remove(0);
+		}
+		
+	}
 	public String getNameArr() {
 		return pName;
 	}
@@ -175,27 +181,55 @@ public class GameFlow {
 	
 	public static void pointChecker() {
 		
+		dialogPU dialog = new dialogPU();
+		
 		int highest = 0;
 		// winner
 		
 		
+		
 		for (int i = 0 ; i < totalPlayer ; i++) {
-			
-			if (playerArrList.get(i).getPoint()>highest) {
-				highest = playerArrList.get(i).getPoint();
-			}
 
-		}
-		
-		for (int j = 0 ; j < totalPlayer ; j++) {
-			if (playerArrList.get(j).getPoint() == highest) {
-				wName = playerArrList.get(j).getNameArr();
-				wClr = playerArrList.get(j).getClrArr();
+			if (playerArrList.get(i).getPoint() > 30) {
+				
+				if (playerArrList.get(i).getPoint() > highest) {
+					highest = playerArrList.get(i).getPoint();
+					wName = playerArrList.get(i).getNameArr();
+					wClr = playerArrList.get(i).getClrArr();
+				}
+				
+				dialog.dialogEnd();
 			}
 		}
-		
 	}
 	
+	public static void addClrToPLV() {
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			
+			for (int j = 0 ; j < totalPlayer ; j++) {
+				if (playerArrList.get(i).getPC().equals(tempTableCard.get(j))) {
+					STTurn.plVoting[j].setBackground(playerArrList.get(i).getClr1Arr());
+				}
+			}
+		}
+	}
+	
+	
+	
+	public static void addClrToVoter() {
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			
+			for (int j = 0 ; j < totalPlayer ; j++) {
+				
+				if (playerArrList.get(i).getVC().equals(tempTableCard.get(j))) {
+					STTurn.voters[j].setBackground(playerArrList.get(i).getClr1Arr());
+				}
+				
+				
+				
+			}
+		}
+	}
 	
 	public static void removeTableCard() {
 		for (int i = 0 ; i < totalPlayer; i++) {
@@ -304,6 +338,8 @@ public class GameFlow {
 			STTurn.displayPlayerCards();
 			STTurn.setLabel1();
 			STTurn.displayPage2();
+			STTurn.enablePlayerInfo();
+			STTurn.updatePlayerInfo();
 			page = 2;
 			
 		}
@@ -313,6 +349,8 @@ public class GameFlow {
 			STTurn.displayPlayerCards();
 			STTurn.setLabel2();
 			STTurn.displayPage1();
+			STTurn.disablePlayerInfo();
+			STTurn.updatePlayerInfo();
 			page = 1;
 			
 		}
@@ -325,6 +363,7 @@ public class GameFlow {
 		// Card
 		if (page == 1) {
 			STTurn.displayPage2();
+			STTurn.enablePlayerInfo();
 			page = 2;
 			
 		}
@@ -333,6 +372,7 @@ public class GameFlow {
 		else if (page == 2) {
 			STTurn.setLabel3();
 			STTurn.displayPage1();
+			STTurn.disablePlayerInfo();
 			page = 1;
 			
 		}
@@ -432,6 +472,8 @@ public class GameFlow {
 //	for (int i = 0 ; i < GameFlow.playerArrList.size(); i++) {
 //		System.out.println(GameFlow.playerArrList.get(i).getPoint());
 //	}
+	
+
 	
 	
 	
