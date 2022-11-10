@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 import javax.swing.*;
@@ -20,11 +21,33 @@ public class GameRules extends JPanel implements ActionListener {
 	
 	JTabbedPane tabbedPane = new JTabbedPane();
 	JTextArea ruleExplain = new JTextArea(10, 1);
+	JTextArea pointExplain = new JTextArea(10, 1);
 	JScrollPane ruleScroll = new JScrollPane(ruleExplain);
+	JScrollPane pointScroll = new JScrollPane(pointExplain);
 	 
 	//static final String FILE_PATH = "gamerules.txt";
 		
 	public GameRules() {
+		BufferedReader rulesText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/gamerules.txt")));
+		
+		
+	     
+		try {
+			ruleExplain.read(rulesText, "gamerules");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		BufferedReader pointsText = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/resources/text_file/pointsrules.txt")));
+		
+		try {
+			pointExplain.read(pointsText, "gamerules");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setLayout(new GridBagLayout());
 		setBackground(Color.GRAY);
 		
@@ -39,20 +62,26 @@ public class GameRules extends JPanel implements ActionListener {
 		gb.weighty = 0.5;
 		gb.anchor = GridBagConstraints.CENTER;
 		
-		//ruleExplain.setEditable(false);
+        ruleScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		ruleScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		pointScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		pointScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		ruleExplain.setFont(new Font("Arial", Font.PLAIN, 24));
 		ruleExplain.setLineWrap(true);
-		try(BufferedReader rulesText = new BufferedReader(new FileReader("resources\\text_file/gamerules.txt"))){
-		ruleExplain.read(rulesText, "gamerules");
-
-        } catch (IOException e){
-
-            e.printStackTrace();
-        }
+		ruleExplain.setWrapStyleWord(true);
+		ruleExplain.setEditable(false);
+		
+		pointExplain.setFont(new Font("Arial", Font.PLAIN, 24));
+		pointExplain.setLineWrap(true);
+		pointExplain.setWrapStyleWord(true);
+		pointExplain.setEditable(false);
 		
 		RulesTab.setLayout(new BorderLayout());
-		RulesTab.add(RuleLbl1);  
-		PointsTab.add(RuleLbl2);
-		RulesTab.add(ruleExplain);
+		PointsTab.setLayout(new BorderLayout());
+		PointsTab.add(pointScroll);
+		RulesTab.add(ruleScroll);
 		
 		tabbedPane.setPreferredSize(new Dimension(800,600));
 		tabbedPane.add("Game Rules", RulesTab);
@@ -63,7 +92,6 @@ public class GameRules extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent back) {
-		System.out.println("Go back listens");
 		CardLayoutManager.showPage(1);
 	}
 }
