@@ -13,7 +13,7 @@ public class CardLayoutManager {
 	//main method
 	public static void main(String[] args)  {
 
-		mainWindow.setSize(1920,1080);
+		mainWindow.setSize(1280, 720);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
