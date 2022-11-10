@@ -62,8 +62,6 @@ public class CardLayoutManager {
 		break;
 		case 5: cl.show(container, "showCards"); 
 		break;
-		case 69: cl.show(container, "TestGrab");
-		break;
 		}
 	}
 }
