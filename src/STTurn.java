@@ -400,17 +400,23 @@ public class STTurn extends JPanel implements ActionListener {
 		// vote2Btn ----------------------------------------------
 		if (btnClick.getSource() == vote2Btn) {
 			
-			// run a method for the card checking
-			
+			GameFlow.storeIntoVC();
 			GameFlow.turnChecker();
+			
 
 			
-				if (GameFlow.turn == GameFlow.n && GameFlow.st == GameFlow.n) {
+			if (GameFlow.turn == GameFlow.n && GameFlow.st == GameFlow.n) {
 				
 				// methods for calculation and card checking here
 				// methods to add points to the players
+					
+				GameFlow.cardChecker();
+//				GameFlow.checkss();
+				GameFlow.pointCalc();
 				
+
 				// technically show panel yang voting results
+				
 				System.out.println("this is the voting results");
 				
 				contBtn.setVisible(false);
@@ -424,6 +430,7 @@ public class STTurn extends JPanel implements ActionListener {
 			}
 			
 			else {
+				
 				
 				contBtn.setVisible(false);
 				confBtn.setVisible(false);
@@ -443,6 +450,9 @@ public class STTurn extends JPanel implements ActionListener {
 		
 		// nextBtn ----------------------------------------------
 		if (btnClick.getSource() == nextBtn) {
+			
+//			GameFlow.checkss();
+			GameFlow.pointChecker();
 			
 			
 			if (GameFlow.st+1 == GameFlow.totalPlayer) {
