@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class MainMenu extends JPanel implements ActionListener {
+	public static Object userName;
 	final JButton b1, b2, b3, b4;
 	final JLabel lb;
 	//private BufferedImage image;
@@ -100,7 +101,8 @@ public class MainMenu extends JPanel implements ActionListener {
 		}
 		
 		else if(btnclick.getSource() == b3) {
-			 dialog.dialog_ext();
+			//  dialog.dialog_ext();
+			dialog.dialogEnd();
 		}
 		
 		
