@@ -14,6 +14,8 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	static Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
 			Color.BLUE, Color.CYAN, Color.MAGENTA};
+
+	
 	
 	JPanel score = new JPanel();
 	static JPanel text = new JPanel();
@@ -34,16 +36,18 @@ public class STTurn extends JPanel implements ActionListener {
 	static JButton contBtn = new JButton();
 	static JButton confBtn = new JButton();
 	static JButton stBtn = new JButton();
-	static JButton voteBtn = new JButton();
+	static JButton sVoteBtn = new JButton();
 	static JButton vote1Btn = new JButton();
+	static JButton vote2Btn = new JButton();
+	static JButton nextBtn = new JButton();
 	static JButton[] cardBtn = new JButton[6];
 	
 	static ImageIcon icon, newicon;
 	
 	
 	// test
-	
-	String stDesc;
+	dialogPU dialog = new dialogPU();
+	// String stDesc;
 	
 	
 	// new
@@ -52,8 +56,8 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	// -----------------------------------------------------------------------------------------
 	public STTurn(){
-		
-		GameFlow.varTest();
+	
+		GameFlow.setVar();
 		
 		setLayout(new GridBagLayout());
 		setBackground(Color.WHITE);
@@ -123,7 +127,7 @@ public class STTurn extends JPanel implements ActionListener {
         cardsMainPanel.setBackground(Color.WHITE);
         
         // Label
-        label1 = new JLabel("Storyteller turn");
+        label1 = new JLabel("Storyteller Turn");
         gb3.insets = new Insets(30,0,30,0);
         gb3.gridx = 0;
 		gb3.gridy = 0;
@@ -149,10 +153,6 @@ public class STTurn extends JPanel implements ActionListener {
 			cardBtn[i].add(image[i]);
 			cardBtn[i].addActionListener(this);
 			
-			
-			
-			
-			
 			gb4.insets = new Insets(0,10,0,10);
 			displayCards.add(cardBtn[i], gb4);
 			
@@ -170,8 +170,6 @@ public class STTurn extends JPanel implements ActionListener {
 	    add(cardsMainPanel, gb2);
 	        
 	    cardsMainPanel.setVisible(false);
-        
-	    
 	    
         // 4th Panel: Label2 and Button -----------------------------------------------------------------------------------------
 	    GridBagConstraints gb5 = new GridBagConstraints();
@@ -215,14 +213,14 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 3;
 		buttonMainPanel.add(stBtn, gb5);
 		
-		voteBtn = new JButton("voteBtn");
-		voteBtn.setPreferredSize(new Dimension(200,50));
-		voteBtn.addActionListener(this);
-		voteBtn.setVisible(false);
+		sVoteBtn = new JButton("sVoteBtn");
+		sVoteBtn.setPreferredSize(new Dimension(200,50));
+		sVoteBtn.addActionListener(this);
+		sVoteBtn.setVisible(false);
 		
 		gb5.gridx = 0;
 		gb5.gridy = 4;
-		buttonMainPanel.add(voteBtn, gb5);
+		buttonMainPanel.add(sVoteBtn, gb5);
 		
 		vote1Btn = new JButton("vote1Btn");
 		vote1Btn.setPreferredSize(new Dimension(200,50));
@@ -232,6 +230,24 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridx = 0;
 		gb5.gridy = 4;
 		buttonMainPanel.add(vote1Btn, gb5);
+		
+		vote2Btn = new JButton("vote2Btn");
+		vote2Btn.setPreferredSize(new Dimension(200,50));
+		vote2Btn.addActionListener(this);
+		vote2Btn.setVisible(false);
+		
+		gb5.gridx = 0;
+		gb5.gridy = 4;
+		buttonMainPanel.add(vote2Btn, gb5);
+		
+		nextBtn = new JButton("nextBtn");
+		nextBtn.setPreferredSize(new Dimension(200,50));
+		nextBtn.addActionListener(this);
+		nextBtn.setVisible(false);
+		
+		gb5.gridx = 0;
+		gb5.gridy = 4;
+		buttonMainPanel.add(nextBtn, gb5);
 
 		GridBagConstraints gbf = new GridBagConstraints();
 		gbf.insets = new Insets(5,0,5,0);
@@ -247,58 +263,81 @@ public class STTurn extends JPanel implements ActionListener {
 		
 		
 		// Button continue clicked -----------------------------------------------------------------------------------------
+		// contBnt ----------------------------------------------
 		if (btnClick.getSource() == contBtn) {
 			
 			if ((GameFlow.turn == GameFlow.n) && (GameFlow.st == GameFlow.n)) {
 				contBtn.setVisible(false);
 				confBtn.setVisible(false);
 				stBtn.setVisible(true);
-				voteBtn.setVisible(false);
+				sVoteBtn.setVisible(false);
+				vote1Btn.setVisible(false);
+				vote2Btn.setVisible(false);
+				nextBtn.setVisible(false);
+				
+				updateLabel1();
 			}
 			else {
 				contBtn.setVisible(false);
 				confBtn.setVisible(true);
 				stBtn.setVisible(false);
-				voteBtn.setVisible(false);
+				sVoteBtn.setVisible(false);
+				vote1Btn.setVisible(false);
+				vote2Btn.setVisible(false);
+				nextBtn.setVisible(false);
 			}
 			
+			System.out.print(GameFlow.turn + " : " + GameFlow.st + "\n");
 			GameFlow.pageChecker();
 		}
 		
-		
+		// stBtn ----------------------------------------------
 		if (btnClick.getSource() == stBtn) {
-			
 			dialogPU dialog = new dialogPU();
-			dialog.card_descPU();
-			stDesc = dialog.getText();
+			dialog.card_descPU();			
 			
 			contBtn.setVisible(true);
 			confBtn.setVisible(false);
 			stBtn.setVisible(false);
-			voteBtn.setVisible(false);
+			sVoteBtn.setVisible(false);
+			vote1Btn.setVisible(false);
+			vote2Btn.setVisible(false);
+			nextBtn.setVisible(false);
+			
+			
 			
 			GameFlow.deckToHand();
 			GameFlow.handToTable();
-//			GameFlow.updateLooper();
-			GameFlow.turnChecker(); // balikkan ke 0
-			GameFlow.increaseTurn();
+			
+			
+			GameFlow.turnChecker();
+						
 			GameFlow.pageChecker(); // move between pages (2nd page = +1 turn)
+			System.out.print(GameFlow.turn + " : " + GameFlow.st + "\n");
 		}	
 		
+		
+		// confBtn ----------------------------------------------
 		if (btnClick.getSource() == confBtn) {
 			
 			contBtn.setVisible(true);
 			confBtn.setVisible(false);
 			stBtn.setVisible(false);
-			voteBtn.setVisible(false);
+			sVoteBtn.setVisible(false);
+			vote1Btn.setVisible(false);
+			vote2Btn.setVisible(false);
+			nextBtn.setVisible(false);
 			
 			GameFlow.deckToHand();
 			GameFlow.handToTable();
+			
 			GameFlow.turnChecker(); // reset turn
 			
 			if ((GameFlow.turn == GameFlow.n) && (GameFlow.st == GameFlow.n)) {
-				GameFlow.increaseTurn();
-//				GameFlow.varInc();
+				
+				GameFlow.turnChecker(); // reset turn
+				
+				
 				hideVote();
 				GameFlow.moveToTemp();
 				GameFlow.shuffleTableCard();
@@ -306,35 +345,135 @@ public class STTurn extends JPanel implements ActionListener {
 				contBtn.setVisible(false);
 				confBtn.setVisible(false);
 				stBtn.setVisible(false);
-				voteBtn.setVisible(true);
+				sVoteBtn.setVisible(true);
+				vote1Btn.setVisible(false);
+				vote2Btn.setVisible(false);
+				nextBtn.setVisible(false);
 			}
 			else {
-				GameFlow.increaseTurn();
-				GameFlow.pageChecker(); // nav page 
-				GameFlow.updateLooper();
+//				GameFlow.turnChecker();
+				GameFlow.pageChecker(); // nav page 				
 			}
+			
+			
+			System.out.print(GameFlow.turn + " : " + GameFlow.st + "\n");
+			
 		}
 		
-		if (btnClick.getSource() == voteBtn) {
+		// sVoteBtn ----------------------------------------------
+		if (btnClick.getSource() == sVoteBtn) {
 			GameFlow.pageChecker1();
+			GameFlow.stCard();
+			
 			contBtn.setVisible(false);
 			confBtn.setVisible(false);
 			stBtn.setVisible(false);
-			voteBtn.setVisible(false);
+			sVoteBtn.setVisible(false);
 			vote1Btn.setVisible(true);
+			vote2Btn.setVisible(false);
+			nextBtn.setVisible(false);
 			
 			// store counter for how many people voted
 			
+			System.out.print(GameFlow.turn + " : " + GameFlow.st + "\n");
+			
 		}
 		
+		
+		// vote1Btn ----------------------------------------------
 		if (btnClick.getSource() == vote1Btn) {
+			
+			System.out.print("test: " + GameFlow.turn + " : " + GameFlow.st + "\n");
+			
 			GameFlow.pageChecker1();
-			GameFlow.increaseTurn();
+			
 			contBtn.setVisible(false);
 			confBtn.setVisible(false);
 			stBtn.setVisible(false);
-			voteBtn.setVisible(true);
+			sVoteBtn.setVisible(false);
 			vote1Btn.setVisible(false);
+			vote2Btn.setVisible(true);
+			nextBtn.setVisible(false);
+		}
+		
+		
+		// vote2Btn ----------------------------------------------
+		if (btnClick.getSource() == vote2Btn) {
+			
+			// run a method for the card checking
+			
+			GameFlow.turnChecker();
+
+			
+				if (GameFlow.turn == GameFlow.n && GameFlow.st == GameFlow.n) {
+				
+				// methods for calculation and card checking here
+				// methods to add points to the players
+				
+				// technically show panel yang voting results
+				System.out.println("this is the voting results");
+				
+				contBtn.setVisible(false);
+				confBtn.setVisible(false);
+				stBtn.setVisible(false);
+				sVoteBtn.setVisible(false);
+				vote1Btn.setVisible(false);
+				vote2Btn.setVisible(false);
+				nextBtn.setVisible(true);
+				
+			}
+			
+			else {
+				
+				contBtn.setVisible(false);
+				confBtn.setVisible(false);
+				stBtn.setVisible(false);
+				sVoteBtn.setVisible(false);
+				vote1Btn.setVisible(true);
+				vote2Btn.setVisible(false);
+				nextBtn.setVisible(false);
+				
+				GameFlow.pageChecker1();
+				
+			}
+				System.out.print(GameFlow.turn + " : " + GameFlow.st + "\n");
+		}
+		
+		
+		
+		// nextBtn ----------------------------------------------
+		if (btnClick.getSource() == nextBtn) {
+			
+			
+			if (GameFlow.st+1 == GameFlow.totalPlayer) {
+				GameFlow.setVar();
+				GameFlow.declareST();
+				GameFlow.updateTurn();
+			}
+			else {
+				GameFlow.varInc();
+				GameFlow.increaseST();
+				GameFlow.updateTurn();
+			}
+
+			displayAllCard();
+			displayPlayerCards();
+			
+			setLabel1();
+			displayPage1();
+			
+			GameFlow.removeTableCard();
+			GameFlow.setPage();
+			
+			contBtn.setVisible(true);
+			confBtn.setVisible(false);
+			stBtn.setVisible(false);
+			sVoteBtn.setVisible(false);
+			vote1Btn.setVisible(false);
+			vote2Btn.setVisible(false);
+			nextBtn.setVisible(false);
+			
+			System.out.print(GameFlow.turn + " : " + GameFlow.st + "\n");
 		}
 		
 		
@@ -409,6 +548,12 @@ public class STTurn extends JPanel implements ActionListener {
 		}
 	}
 	
+//	public static void displayCard() {
+//		for (int i = 0 ; i < 6; i++) {
+//			cardBtn[i].setVisible(true);
+//		}
+//	}
+	
 	public static void votingCards() {
 		for (int i = 0; i < GameFlow.tableCard.size(); i++) {
 			icon = new ImageIcon(STTurn.class.getResource(GameFlow.tempTableCard.get(i)));
@@ -416,6 +561,12 @@ public class STTurn extends JPanel implements ActionListener {
 			Image newimg = tempimage.getScaledInstance(200, 300,  java.awt.Image.SCALE_SMOOTH); // scale it smoothly  
 			newicon = new ImageIcon(newimg); 
 			image[i].setIcon(newicon);
+			cardBtn[i].setVisible(true);
+		}
+	}
+	
+	public static void displayAllCard() {
+		for (int i = 0 ; i < 6; i++) {
 			cardBtn[i].setVisible(true);
 		}
 	}
@@ -434,6 +585,10 @@ public class STTurn extends JPanel implements ActionListener {
 	public static void setLabel3() {
 		one.setText(GameFlow.playerArrList.get(GameFlow.turn).getClrArr() + " (" + GameFlow.playerArrList.get(GameFlow.turn).getNameArr() + ")");
 		two.setText("Vote a card");
+	}
+	
+	public static void updateLabel1() {
+		label1.setText("StoryTeller Turn");
 	}
 	
 	public static void hidePlayer() {

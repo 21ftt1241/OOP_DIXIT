@@ -206,7 +206,7 @@ public class dialogPU extends JPanel implements ActionListener {
     }
 
     public String getText(){
-        String output = desc_area.getText();
+        String output = desc_area.getText() + "";
         return output;
 
         // use this code to grab the card description fro other class
@@ -236,9 +236,9 @@ public class dialogPU extends JPanel implements ActionListener {
         }
 
         // Desc dialog event
-        if (btnClick.getSource() == btn1){
-            System.out.println(getText());
+        if (btnClick.getSource() == btn1){        
             dialogDesc.setVisible(false);
+            STTurn.label1.setText("Card description: " + getText());
         }else if (btnClick.getSource() == btn2){
             dialogDesc.setVisible(false);
         }

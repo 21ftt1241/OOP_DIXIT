@@ -5,11 +5,14 @@ import java.util.*;
 public class GameFlow {
 
 	public static int totalPlayer, turn;
-	public String pName, pClr;
-	public int pPoint;
+	public String pName, pClr, pc, vc;
+	public int pPoint, cc;
 	public Color pClr1;
+	
 	public static int page;
 	public static int st, n, looper;
+	
+	public static String stCard;
 	
 	
 	
@@ -30,14 +33,71 @@ public class GameFlow {
 	
 	public static ArrayList<String> discardedCard = new ArrayList<String>();
 		
-	public GameFlow(String name, String color, Color color1, int point) {
+	public GameFlow(String name, String color, Color color1, int point, String playerCard, String votedCard, int cardCounter) {
 		pName = name;
 		pClr = color;
 		pClr1 = color1;
 		pPoint = point;
+		pc = playerCard;
+		vc = votedCard;
+		cc = cardCounter;
+	}
+	
+	// Player ArrayList -----------------------------------------------------------------------------------------
+	
+	public String getNameArr() {
+		return pName;
+	}
+	
+	public String getClrArr() {
+		return pClr;
+	}
+	
+	public Color getClr1Arr() {
+		return pClr1;
+	}
+	
+	public int getPoint() {
+		return pPoint;
+	}
+	
+	public void setPoint(int point) {
+		pPoint = point;
 	}
 	
 	
+	public String getPC() {
+		return pc;
+	}
+	
+	public void setPC(String votedCard) {
+		pc = votedCard;
+	}
+	
+	public String getVC() {
+		return vc;
+	}
+	
+	public void setVC(String votedCard) {
+		vc = votedCard;
+	}
+	
+	public int getCC() {
+		return cc;
+	}
+	
+	public void setCC(int cardCounter) {
+		cc = cardCounter;
+	}
+	
+	
+	
+	public static void removeTableCard() {
+		for (int i = 0 ; i < totalPlayer; i++) {
+			tableCard.remove(0);
+			tempTableCard.remove(0);
+		}
+	}
 	// Test -----------------------------------------------------------------------------------------
 	public static void declareST() {
 		st = 0;
@@ -57,28 +117,33 @@ public class GameFlow {
 		turn = 0;
 	}
 	
+	public static void updateTurn() {
+		turn = st;
+	}
+	
 	public static void increaseTurn() {
 		turn += 1;
 	}
 	
 	public static void turnChecker() {
 		if (turn+1 == totalPlayer) {
-			turn = 0;
+			setTurn();
 		}
-	}
+		else {
+			increaseTurn();
+		}
+	}	
 	
-	public static void updateLooper() {
-		looper+=1;
-	}
-	
-	
-	
-	public static void varTest() {
+	public static void setVar() {
 		n = 0;
 	}
 	
 	public static void varInc() {
 		n+=1;
+	}
+	
+	public static void stCard() {
+		stCard = tableCard.get(0);
 	}
 	
 	
@@ -96,6 +161,10 @@ public class GameFlow {
 	
 	public static void setPage() {
 		page = 1;
+	}
+	
+	public static void setPage2() {
+		page = 2;
 	}
 	
 	public static void addPoint() {
@@ -154,27 +223,7 @@ public class GameFlow {
 	
 	
 	
-	// Player ArrayList -----------------------------------------------------------------------------------------
-	
-	public String getNameArr() {
-		return pName;
-	}
-	
-	public String getClrArr() {
-		return pClr;
-	}
-	
-	public Color getClr1Arr() {
-		return pClr1;
-	}
-	
-	public int getPoint() {
-		return pPoint;
-	}
-	
-	public void setPoint(int point) {
-		pPoint = point;
-	}
+
 	
 	
 	// Methods for PlayerSelect -----------------------------------------------------------------------------------------
@@ -184,16 +233,16 @@ public class GameFlow {
 	}
 	
 	public static void getDetail() {
-		int pPoint = 0;
-		String pName;
-		String pClr;
+		
+		String pName, pClr, pCard="", pVCard="";
 		Color pClr1;
+		int pPoint = 0, cCounter = 0;
 		
 		pName = PlayerSelect1.name; 
 		pClr = PlayerSelect1.color;
 		pClr1 = PlayerSelect1.color1;
 		
-		playerArrList.add(new GameFlow(pName,pClr, pClr1, pPoint));
+		playerArrList.add(new GameFlow(pName,pClr, pClr1, pPoint, pCard, pVCard, cCounter));
 	}
 	
 	// Methods for STTurn -----------------------------------------------------------------------------------------
@@ -233,19 +282,6 @@ public class GameFlow {
 		
 		tableCard.add(playerHand[turn].get(tempCard));
 		playerHand[turn].remove(tempCard);
-	}
-	
-	
-	public static void movePlayer() {
-		playerArrList.add(new GameFlow(
-				playerArrList.get(0).getNameArr(),
-				playerArrList.get(0).getClrArr(), 
-				playerArrList.get(0).getClr1Arr(), 
-				playerArrList.get(0).getPoint()));
-		
-		playerArrList.remove(0);
-		
-		
 	}
 	
 	public static void moveToTemp() {
