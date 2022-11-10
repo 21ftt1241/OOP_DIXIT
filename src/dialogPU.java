@@ -4,14 +4,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class dialogPU extends JPanel implements ActionListener{
+public class dialogPU extends JPanel implements ActionListener {
 
-    public JButton no_btn, yes_btn, btn1, btn2, btnReturn, btnMainMenu, btnExit, windowedSize, fullscreenSize;
+    public JButton no_btn, yes_btn, btn1, btn2, 
+    btnReturn, btnMainMenu, btnExit, windowedSize, fullscreenSize, muteMusic, playMusic;
     public JDialog ex_dialog, dialogDesc, dialogSettings, mainDialogSettings;
     public JTextArea desc_area;
 
     public String text;
-
+    // MainMenu d = new MainMenu();
     // void method with no returnable value to be called in other class
     public void dialog_ext(){
         JFrame exit_dialog = new JFrame();
@@ -108,29 +109,55 @@ public class dialogPU extends JPanel implements ActionListener{
         mainDialogSettings = new JDialog(mainSettings_dialog);
         mainDialogSettings.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
+        
         mainDialogSettings.setSize(300, 200);
         mainDialogSettings.setLocationRelativeTo(null);
         mainDialogSettings.setTitle("Settings");
+        
+        JLabel musicLabel = new JLabel("Music settings");
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        mainDialogSettings.add(musicLabel, gbc);
+        
+     // Mute music button
+        muteMusic = new JButton("Mute");
+        muteMusic.addActionListener(this);
+        muteMusic.setPreferredSize(new Dimension(300, 150)); 
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        mainDialogSettings.add(muteMusic, gbc);
+        
+     // Play music button
 
-        // 1920 x 1080
+        playMusic = new JButton("Play");
+        playMusic.addActionListener(this);
+        playMusic.setPreferredSize(new Dimension(300, 150));
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        mainDialogSettings.add(playMusic, gbc);
+        
+        JLabel windowLabel = new JLabel("Window settings");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        mainDialogSettings.add(windowLabel, gbc);
+        
+        // 1920 x 1080 button
         windowedSize = new JButton("1920 x 1080");
         windowedSize.addActionListener(this);
         windowedSize.setPreferredSize(new Dimension(200, 200)); 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.gridy = 3;
         mainDialogSettings.add(windowedSize, gbc);
 
-        // Fullscreen
+        // Fullscreen button
         fullscreenSize = new JButton("Fullscreen");
+        fullscreenSize.setPreferredSize(new Dimension(200, 200)); 
         fullscreenSize.addActionListener(this);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(15, 0, 0, 0);
-        mainDialogSettings.add(fullscreenSize, gbc);
-
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        
+        mainDialogSettings.add(fullscreenSize, gbc); 
         mainDialogSettings.setLocationRelativeTo(null);
         mainDialogSettings.setTitle("Settings");
         mainDialogSettings.setVisible(true);
@@ -216,6 +243,13 @@ public class dialogPU extends JPanel implements ActionListener{
             dialogDesc.setVisible(false);
         }
         
+        if (btnClick.getSource() == muteMusic) {
+        	MainMenu.stopMusic();
+        }
+        
+        if (btnClick.getSource() == playMusic) {
+        	MainMenu.playMusic();
+        }
         if (btnClick.getSource() == windowedSize){
         	CardLayoutManager.mainWindow.dispose();
         	CardLayoutManager.mainWindow.setUndecorated(false);
