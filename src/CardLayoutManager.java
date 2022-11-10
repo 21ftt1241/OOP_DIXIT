@@ -6,15 +6,14 @@ import javax.swing.*;
 
 public class CardLayoutManager {
 
-	static JFrame mainWindow;
+	static JFrame mainWindow = new JFrame("Dixit");;
 	static CardLayout cl;
 	static JPanel container;
 
 	//main method
 	public static void main(String[] args)  {
 
-		JFrame mainWindow = new JFrame("Dixit");
-		mainWindow.setSize(1280,720);
+		mainWindow.setSize(1920,1080);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,7 +45,7 @@ public class CardLayoutManager {
 		//Responsible for showing the very first screen of the game
 		showPage(1);
 	}
-
+	
 	//assigns number to pages, can be used in other java files/classes
 	public static void showPage(int pageNumber) {
 		switch(pageNumber) {
