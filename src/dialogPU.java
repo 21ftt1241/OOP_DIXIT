@@ -7,8 +7,9 @@ import javax.swing.*;
 public class dialogPU extends JPanel implements ActionListener {
 
     public JButton no_btn, yes_btn, btn1, btn2, 
-    btnReturn, btnMainMenu, btnExit, windowedSize, fullscreenSize, muteMusic, playMusic;
-    public JDialog ex_dialog, dialogDesc, dialogSettings, mainDialogSettings;
+    btnReturn, btnMainMenu, btnExit, windowedSize, fullscreenSize, muteMusic, playMusic,
+    btnPA, btnQuit;
+    public JDialog ex_dialog, dialogDesc, dialogSettings, mainDialogSettings, endDialog;
     public JTextArea desc_area;
 
     public String text;
@@ -62,22 +63,14 @@ public class dialogPU extends JPanel implements ActionListener {
         GridBagConstraints gbc = new GridBagConstraints();
 
         btn1 = new JButton("Confirm");
-        btn2 = new JButton("Cancel");
 
         btn1.addActionListener(this);
-        btn2.addActionListener(this);
 
         // add confirm btn to frame
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.insets = new Insets (0, 0, 0, 150);
         dialogDesc.add(btn1, gbc);
-
-        // add cancel btn to frame
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.insets = new Insets (0, 150, 0, 0);
-        dialogDesc.add(btn2, gbc);
 
         JLabel text1 = new JLabel("Describe your card", SwingConstants.CENTER);
         text1.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -205,6 +198,50 @@ public class dialogPU extends JPanel implements ActionListener {
         dialogSettings.setTitle("Settings");
         dialogSettings.setVisible(true);
     }
+    
+    public void dialogEnd(){
+        JFrame ed = new JFrame();
+        endDialog = new JDialog(ed);
+        endDialog.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        endDialog.setSize(450, 250);
+        endDialog.setLocationRelativeTo(null);
+        JLabel txt1 = new JLabel("Congratulations!");
+        txt1.setFont(new Font("Arial", Font.PLAIN, 24));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5,5,5,5);
+        endDialog.add(txt1, gbc);
+        // Use this return method to collect the name of the winning player
+        // public String users(){
+	    // 	String userName = "Player name here";
+	    // 	return userName;
+	    // }
+        // Display the winning players name
+        // MainMenu mm = new MainMenu();
+        // String userName = mm.users();
+        // JLabel txt2 = new JLabel("Player " + userName + " wins the game!");
+        JLabel txt2 = new JLabel("Insert player name here");
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(30, 0, 30, 0);
+        endDialog.add(txt2, gbc);
+        btnPA = new JButton("Play Again");
+        btnPA.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets (0, 0, 0, 150);
+        endDialog.add(btnPA, gbc);
+        btnQuit = new JButton("Quit game");
+        btnQuit.addActionListener(this);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(0, 150, 0, 0);
+        endDialog.add(btnQuit, gbc);
+        
+        
+        endDialog.setVisible(true);
+    }
 
     public String getText(){
         String output = desc_area.getText() + "";
@@ -268,6 +305,14 @@ public class dialogPU extends JPanel implements ActionListener {
         	CardLayoutManager.mainWindow.setUndecorated(true);
         	CardLayoutManager.mainWindow.setVisible(true);
         	mainDialogSettings.setVisible(false);
+        }
+        
+     // end dialog event
+        if (btnClick.getSource() == btnPA){
+            CardLayoutManager.showPage(1);
+            endDialog.setVisible(false);
+        }else if (btnClick.getSource() == btnQuit){
+            dialog_ext();
         }
         
     }
