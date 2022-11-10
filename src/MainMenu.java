@@ -24,22 +24,11 @@ public class MainMenu extends JPanel implements ActionListener {
 	public AudioInputStream audioStream = AudioSystem.getAudioInputStream(is);
 	public static Clip clip;
 	
-
+	
 	public MainMenu()  throws UnsupportedAudioFileException, IOException, LineUnavailableException  {
 		
 		//Calls Main menu music method
-		try {
-			playMenuMusic();
-		} catch (UnsupportedAudioFileException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		playMenuMusic();
 		
 		ImageIcon icon = new ImageIcon(getClass().getResource("dixit_cards/dixit-logo.png")); // assign image to a new ImageIcon
 		Image image = icon.getImage(); // transform it 
