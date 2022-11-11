@@ -1,7 +1,10 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class CardLayoutManager {
@@ -11,9 +14,9 @@ public class CardLayoutManager {
 	static JPanel container;
 
 	//main method
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
-		mainWindow.setSize(1920,1080);
+		mainWindow.setSize(1920, 1080);
 		mainWindow.setVisible(true);
 		mainWindow.setLocationRelativeTo(null);
 		mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,8 +61,6 @@ public class CardLayoutManager {
 		case 4: cl.show(container, "Storyteller"); 
 		break;
 		case 5: cl.show(container, "showCards"); 
-		break;
-		case 69: cl.show(container, "TestGrab");
 		break;
 		}
 	}
