@@ -220,8 +220,8 @@ public class dialogPU extends JPanel implements ActionListener {
         // Display the winning players name
         // MainMenu mm = new MainMenu();
         // String userName = mm.users();
-        // JLabel txt2 = new JLabel("Player " + userName + " wins the game!");
-        JLabel txt2 = new JLabel("Insert player name here");
+        JLabel txt2 = new JLabel(GameFlow.wClr + " (" + GameFlow.wName + ")\nis the winner!" );
+//        JLabel txt2 = new JLabel("Insert player name here");
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(30, 0, 30, 0);
@@ -309,6 +309,7 @@ public class dialogPU extends JPanel implements ActionListener {
         
      // end dialog event
         if (btnClick.getSource() == btnPA){
+        	GameFlow.resetPlayer();
             CardLayoutManager.showPage(1);
             endDialog.setVisible(false);
         }else if (btnClick.getSource() == btnQuit){
