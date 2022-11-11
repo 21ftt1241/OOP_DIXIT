@@ -1,5 +1,0 @@
-Point System
-
-- Goal of the game is to get 30 points.
-
-
