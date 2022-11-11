@@ -13,7 +13,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 	JButton backBtn, startBtn, btnSettings;
 	JButton [] pb = new JButton[6];
 	
-	JTextField [] ptf = new JTextField[6];
+	public static JTextField [] ptf = new JTextField[6];
 	
 	public static int [] status = new int[6];
 	
@@ -192,6 +192,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 						color1 = btnColor[i];
 						
 						GameFlow.getDetail();
+//						GameFlow.checkss();
 						
 					}	
 				}
