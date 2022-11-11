@@ -50,9 +50,10 @@ public class STTurn extends JPanel implements ActionListener {
 
 	static JPanel[] plVoting = new JPanel[6];
 	static JPanel[] sixBox = new JPanel[6];
-	static JPanel[] voters = new JPanel[5];
+	static JPanel[][] voters = new JPanel[6][5];
 	static JPanel votingPanel = new JPanel();
 	static JPanel displayVoters = new JPanel();
+	static JLabel[] displayST = new JLabel[6];
 
 	// test
 	dialogPU dialog = new dialogPU();
@@ -190,11 +191,14 @@ public class STTurn extends JPanel implements ActionListener {
 			plVoting[i] = new JPanel();
 			plVoting[i].setPreferredSize(new Dimension(200,20));
 			plVoting[i].setBackground(pClr[i]);
-
+			
+			displayST[i] = new JLabel("STORYTELLER");
+			plVoting[i].add(displayST[i]);
+//			displayST[i].setVisible(false);
+			
 			gbz.anchor = GridBagConstraints.SOUTH;
 			gbz.insets = new Insets(0,10,0,10);
 			votingPanel.add(plVoting[i], gbz);
-
 		}
 
 		gb3.gridx = 0;
@@ -236,7 +240,7 @@ public class STTurn extends JPanel implements ActionListener {
 		displayVoters.setLayout(new GridBagLayout());
 		displayVoters.setBackground(Color.decode("#CA9064"));
 		GridBagConstraints gbv = new GridBagConstraints();
-//		displayVoters.setVisible(false);
+		displayVoters.setVisible(false);
 
 		for(int i = 0; i < 6; i++) {
 
@@ -245,22 +249,20 @@ public class STTurn extends JPanel implements ActionListener {
 
 			sixBox[i].setPreferredSize(new Dimension(200,18));
 			sixBox[i].setBackground(Color.decode("#CA9064"));
-			for(int j = 0; j < 5; j++) {
-
-
-				voters[j] = new JPanel();
-				voters[j].setPreferredSize(new Dimension(35,18));
-				voters[j].setBackground(Color.WHITE);
-
-				gbv.insets = new Insets(0,10,0,10);
-				sixBox[i].add(voters[j], gbv);
-
-
-			}
 
 			gbv.insets = new Insets(5,10,5,10);
 			displayVoters.add(sixBox[i], gbv);
-
+		}
+		
+		for(int j = 0; j < 6; j++) {
+			for (int k = 0 ; k < 5 ; k++) {
+				voters[j][k] = new JPanel();
+				voters[j][k].setPreferredSize(new Dimension(35,18));
+				voters[j][k].setBackground(Color.WHITE);
+				
+				gbv.insets = new Insets(0,10,0,10);
+				sixBox[j].add(voters[j][k], gbv);
+			}
 		}
 
 		gb3.gridx = 0;
@@ -459,7 +461,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 				GameFlow.turnChecker(); // reset turn
 				disablePlayerInfo();
-
+				updatePlayerInfo();
 				hideVote();
 				GameFlow.moveToTemp();
 				GameFlow.shuffleTableCard();
@@ -519,6 +521,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 			GameFlow.storeIntoVC();
 			GameFlow.turnChecker();
+			updatePlayerInfo();
 
 
 
@@ -526,20 +529,20 @@ public class STTurn extends JPanel implements ActionListener {
 
 				// methods for calculation and card checking here
 				// methods to add points to the players
-				updateScore();
+				
 				GameFlow.cardChecker();
+				disablePlayerInfo();
+				
 				GameFlow.pointCalc();
+				updateScore();
+				
+				hideST();
 				
 				displayPLVoting();
-//				displayVoter();
 				GameFlow.addClrToPLV();
-//				GameFlow.addClrToVoter();
 				
-
-
-				// technically show panel yang voting results
-
-				System.out.println("this is the voting results");
+				displayVoter();
+				GameFlow.addClrToVoter();
 
 				contBtn.setVisible(false);
 				confBtn.setVisible(false);
@@ -548,6 +551,8 @@ public class STTurn extends JPanel implements ActionListener {
 				vote1Btn.setVisible(false);
 				vote2Btn.setVisible(false);
 				nextBtn.setVisible(true);
+				
+				setScore();
 
 			}
 
@@ -574,8 +579,6 @@ public class STTurn extends JPanel implements ActionListener {
 
 			GameFlow.checkss();
 			
-			GameFlow.pointChecker();
-
 
 			if (GameFlow.st+1 == GameFlow.totalPlayer) {
 				GameFlow.setVar();
@@ -606,6 +609,10 @@ public class STTurn extends JPanel implements ActionListener {
 			nextBtn.setVisible(false);
 
 			hidePLVoting();
+			hideVoter();
+			hideST();
+			
+			GameFlow.pointChecker();
 		}
 
 
@@ -749,37 +756,58 @@ public class STTurn extends JPanel implements ActionListener {
 		for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
 			plVoting[i].setVisible(true);
 		}
+		
+		votingPanel.setVisible(true);
 	}
 	
 	public static void hidePLVoting() {
-		for (int i = 0 ; i < 6 ; i++) {
-			plVoting[i].setVisible(false);
-		}
+		
+		votingPanel.setVisible(false);
 		
 	}
 	
 	
 	
-//	public static void displayVoter() {
-//		for (int i = 0 ; i < 5 ; i++) {
-//			voters[i].setVisible(false);
-//		}
-//		
-//		for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
-//			voters[i].setVisible(true);
-//		}
-//		
-//		votingPanel.setVisible(true);
-//	}
-//	
-//	public static void hideVoter() {
-//		for (int i = 0 ; i < 6 ; i++) {
-//			voters[i].setVisible(false);
-//		}
-//		
-//	}
-
+	public static void displayVoter() {
+		
+		for (int i = 0 ; i < 6 ; i++) {
+			sixBox[i].setVisible(false);
+		}
+		for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
+			sixBox[i].setVisible(true);
+		}
+		
+		
+		displayVoters.setVisible(true);
+	}
 	
+	
+	
+	public static void hideVoter() {
+
+		displayVoters.setVisible(false);
+		
+	}
+	
+	public static void hideVoters() {
+		
+		for (int i = 0 ; i < 6 ; i++) {
+			for (int j = 0 ; j < 5 ; j++) {
+//				voters[i][j] = new JPanel();
+				voters[i][j].setBackground(Color.decode("#CA9064"));
+			}
+		}
+		
+	}
+	
+	public static void hideST() {
+		
+		for (int i = 0 ; i < 6 ; i++) {
+			displayST[i].setVisible(false);
+		}
+		
+	}
+
 	
 	
 	public static void setScore() {
@@ -805,4 +833,6 @@ public class STTurn extends JPanel implements ActionListener {
 		userClr.setBackground(GameFlow.playerArrList.get(GameFlow.turn).getClr1Arr());
 		username.setText(GameFlow.playerArrList.get(GameFlow.turn).getNameArr());
 	}
+	
+	
 }

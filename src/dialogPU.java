@@ -309,8 +309,10 @@ public class dialogPU extends JPanel implements ActionListener {
         
      // end dialog event
         if (btnClick.getSource() == btnPA){
-        	GameFlow.resetPlayer();
+//        	GameFlow.resetPlayer();
+//        	GameFlow.resetGame();
             CardLayoutManager.showPage(1);
+        	
             endDialog.setVisible(false);
         }else if (btnClick.getSource() == btnQuit){
             dialog_ext();
