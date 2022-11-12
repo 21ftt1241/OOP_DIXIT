@@ -193,8 +193,7 @@ public class GameFlow {
 
 		for (int i = 0 ; i < totalPlayer ; i++) {
 
-			if (playerArrList.get(i).getPoint() > 6) { 
-				//				int highest = 0;
+			if (playerArrList.get(i).getPoint() > 30) { 
 				if (playerArrList.get(i).getPoint() > highest) {
 					highest = playerArrList.get(i).getPoint();
 					wName = playerArrList.get(i).getNameArr();
