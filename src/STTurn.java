@@ -37,7 +37,6 @@ public class STTurn extends JPanel implements ActionListener {
 
 	static GridBagConstraints gb2 = new GridBagConstraints();
 
-	static JButton settBtn = new JButton();
 	static JButton contBtn = new JButton();
 	static JButton confBtn = new JButton();
 	static JButton stBtn = new JButton();
@@ -46,7 +45,8 @@ public class STTurn extends JPanel implements ActionListener {
 	static JButton vote2Btn = new JButton();
 	static JButton nextBtn = new JButton();
 	static JButton[] cardBtn = new JButton[6];
-
+	static JButton settBtn = new JButton();
+	
 	static ImageIcon icon, newicon;
 
 	static JPanel[] plVoting = new JPanel[6];
@@ -301,11 +301,11 @@ public class STTurn extends JPanel implements ActionListener {
 		contBtn.setPreferredSize(new Dimension(200,100));
 		contBtn.addActionListener(this);
 		contBtn.setVisible(true);
+
 		gb5.gridx = 0;
 		gb5.gridy = 1;
 		buttonMainPanel.add(contBtn, gb5);
-
-		// settings button
+		
 		settBtn = new JButton("X");
 		settBtn.setBackground(Color.decode("#F3C94E"));
 		settBtn.setForeground(Color.decode("#000000"));
@@ -315,7 +315,7 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridx = 2;
 		gb5.gridy = 0;
 		add(settBtn, gb5);
-
+		
 		confBtn = new JButton("confBtn");
 		confBtn.setBackground(Color.decode("#F3C94E"));
 		confBtn.setForeground(Color.decode("#000000"));
@@ -398,15 +398,12 @@ public class STTurn extends JPanel implements ActionListener {
 	// Action Performed -----------------------------------------------------------------------------------------
 	public void actionPerformed(ActionEvent btnClick) {
 		MainMenu.playClick2();
-
-		// Button continue clicked -----------------------------------------------------------------------------------------
-
-		// setting button action event
-		if (btnClick.getSource() == settBtn){
-			dialog.settings();
-
-		}
 		
+		// setting button action event
+				if (btnClick.getSource() == settBtn){
+					dialog.settings();
+				}
+		// Button continue clicked -----------------------------------------------------------------------------------------
 		// contBnt ----------------------------------------------
 		if (btnClick.getSource() == contBtn) {
 
@@ -418,6 +415,8 @@ public class STTurn extends JPanel implements ActionListener {
 				vote1Btn.setVisible(false);
 				vote2Btn.setVisible(false);
 				nextBtn.setVisible(false);
+				
+				stBtn.setEnabled(false);
 
 				updateLabel1();
 			}
@@ -429,8 +428,14 @@ public class STTurn extends JPanel implements ActionListener {
 				vote1Btn.setVisible(false);
 				vote2Btn.setVisible(false);
 				nextBtn.setVisible(false);
+				
+				confBtn.setEnabled(false);
 			}
+			
+			
+			confBtn.setEnabled(false);
 
+			
 			GameFlow.pageChecker();
 		}
 
@@ -447,7 +452,7 @@ public class STTurn extends JPanel implements ActionListener {
 			vote2Btn.setVisible(false);
 			nextBtn.setVisible(false);
 
-
+//			tempCard = 10;
 
 			GameFlow.deckToHand();
 			GameFlow.handToTable();
@@ -504,6 +509,10 @@ public class STTurn extends JPanel implements ActionListener {
 			GameFlow.pageChecker1();
 			GameFlow.stCard();
 			
+			for (int i = 0 ; i < GameFlow.tableCard.size(); i++) {
+				cardBtn[i].setEnabled(true);
+			}
+			
 			
 			
 			contBtn.setVisible(false);
@@ -531,11 +540,30 @@ public class STTurn extends JPanel implements ActionListener {
 			vote1Btn.setVisible(false);
 			vote2Btn.setVisible(true);
 			nextBtn.setVisible(false);
+			
+			vote2Btn.setEnabled(false);
+			
+			
+			for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
+				for (int j = 0 ; j < GameFlow.totalPlayer ; j++) {
+					if (GameFlow.playerArrList.get(GameFlow.turn).getPC() == GameFlow.tempTableCard.get(j)) {
+						cardBtn[j].setVisible(false);
+					}
+					else {
+						cardBtn[j].setVisible(true);
+					}
+				}
+			}
 		}
 
 
 		// vote2Btn ----------------------------------------------
 		if (btnClick.getSource() == vote2Btn) {
+			
+			for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
+				cardBtn[i].setVisible(true);
+				
+			}
 
 			GameFlow.storeIntoVC();
 			GameFlow.turnChecker();
@@ -593,10 +621,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 
 		// nextBtn ----------------------------------------------
-		if (btnClick.getSource() == nextBtn) {
-
-			GameFlow.checkss();
-			
+		if (btnClick.getSource() == nextBtn) {			
 
 			if (GameFlow.st+1 == GameFlow.totalPlayer) {
 				GameFlow.setVar();
@@ -661,6 +686,12 @@ public class STTurn extends JPanel implements ActionListener {
 								)));
 
 				tempCard = i;
+				
+				if (tempCard >= 0 && tempCard <6) {
+					stBtn.setEnabled(true);
+					confBtn.setEnabled(true);
+					vote2Btn.setEnabled(true);
+				}
 			}
 		}
 
@@ -727,6 +758,7 @@ public class STTurn extends JPanel implements ActionListener {
 			newicon = new ImageIcon(newimg); 
 			image[i].setIcon(newicon);
 			cardBtn[i].setVisible(true);
+			cardBtn[i].setEnabled(false);
 		}
 	}
 
@@ -829,10 +861,10 @@ public class STTurn extends JPanel implements ActionListener {
 	
 	
 	public static void setScore() {
-		// update points
+		// update 
 		for (int i = 0 ; i < GameFlow.totalPlayer; i++) {
 			for (int j = 0 ; j < 6 ; j++) {
-				if (GameFlow.playerArrList.get(i).getClr1Arr() == pClr[j]) {					
+				if (GameFlow.playerArrList.get(i).getClr1Arr() == pClr[j]) {
 					npoint[j].setText(String.valueOf(GameFlow.playerArrList.get(i).getPoint()));
 				}
 			}
