@@ -487,6 +487,8 @@ public class STTurn extends JPanel implements ActionListener {
 			GameFlow.turnChecker(); // reset turn
 
 			if ((GameFlow.turn == GameFlow.n) && (GameFlow.st == GameFlow.n)) {
+				
+				label2.setVisible(false);
 
 				GameFlow.turnChecker(); // reset turn
 				disablePlayerInfo();
@@ -515,6 +517,7 @@ public class STTurn extends JPanel implements ActionListener {
 			GameFlow.pageChecker1();
 			GameFlow.stCard();
 			
+			
 			for (int i = 0 ; i < GameFlow.tableCard.size(); i++) {
 				cardBtn[i].setEnabled(true);
 			}
@@ -536,7 +539,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 		// vote1Btn ----------------------------------------------
 		if (btnClick.getSource() == vote1Btn) {
-
+			label2.setVisible(true);
 			GameFlow.pageChecker1();
 
 			contBtn.setVisible(false);
@@ -581,6 +584,10 @@ public class STTurn extends JPanel implements ActionListener {
 
 				// methods for calculation and card checking here
 				// methods to add points to the players
+				for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
+					cardBtn[i].setEnabled(false);
+				}
+				label2.setVisible(false);
 				
 				GameFlow.cardChecker();
 				disablePlayerInfo();
@@ -627,7 +634,12 @@ public class STTurn extends JPanel implements ActionListener {
 
 
 		// nextBtn ----------------------------------------------
-		if (btnClick.getSource() == nextBtn) {			
+		if (btnClick.getSource() == nextBtn) {	
+			
+			for (int i = 0 ; i < GameFlow.totalPlayer ; i++) {
+				cardBtn[i].setEnabled(true);
+			}
+			label2.setVisible(true);
 
 			if (GameFlow.st+1 == GameFlow.totalPlayer) {
 				GameFlow.setVar();
