@@ -87,10 +87,10 @@ public class STTurn extends JPanel implements ActionListener {
 		userClr.setPreferredSize(new Dimension(10,50));
 
 		username = new JLabel("username");
-		username.setFont(new Font("ARIAL", Font.PLAIN, 24));
+		username.setFont(new Font("ARIAL", Font.BOLD, 24));
 
 		turn = new JLabel("red turn");
-		turn.setFont(new Font("ARIAL", Font.PLAIN, 14));
+		turn.setFont(new Font("ARIAL", Font.ITALIC, 14));
 
 		gb11.gridheight = 2;
 		gb11.gridx = 0;
@@ -121,6 +121,7 @@ public class STTurn extends JPanel implements ActionListener {
 			plPanel[i].setPreferredSize(new Dimension(50,50));
 			plPanel[i].setBackground(pClr[i]);
 			npoint[i] = new JLabel("test");
+			npoint[i].setFont(new Font("ARIAL", Font.BOLD, 24));
 			plPanel[i].add(npoint[i]);
 			gb1.gridx = i + 1;
 
@@ -140,16 +141,16 @@ public class STTurn extends JPanel implements ActionListener {
 		text.setBackground(Color.decode("#CA9064"));
 		text.setPreferredSize(new Dimension(700,400));
 
-		gb2.insets = new Insets(55,0,55,0);
+		gb2.insets = new Insets(20,0,20,0);
 
 		one = new JLabel("Color (Username)");
-		one.setFont(new Font("ARIAL", Font.PLAIN, 24));
+		one.setFont(new Font("ARIAL", Font.BOLD, 24));
 
 		two = new JLabel("Storyteller's Turn");
-		two.setFont(new Font("ARIAL", Font.PLAIN, 40));
+		two.setFont(new Font("ARIAL", Font.BOLD, 50));
 
 		JLabel three = new JLabel("Press continue if ready");
-		three.setFont(new Font("ARIAL", Font.PLAIN, 20));
+		three.setFont(new Font("ARIAL", Font.BOLD, 20));
 
 		gb2.gridx = 0;
 		gb2.gridy = 0;
@@ -176,7 +177,8 @@ public class STTurn extends JPanel implements ActionListener {
 
 		// Label
 		label1 = new JLabel("Storyteller Turn");
-		gb3.insets = new Insets(30,0,30,0);
+		label1.setFont(new Font("ARIAL", Font.BOLD, 24));
+		gb3.insets = new Insets(10,0,10,0);
 		gb3.gridx = 0;
 		gb3.gridy = 1;
 		cardsMainPanel.add(label1, gb3);
@@ -194,7 +196,8 @@ public class STTurn extends JPanel implements ActionListener {
 			plVoting[i].setBackground(pClr[i]);
 			
 			displayST[i] = new JLabel("STORYTELLER");
-			plVoting[i].add(displayST[i]);
+			displayST[i].setFont(new Font("Arial", Font.BOLD, 16));
+			plVoting[i].add(displayST[i], gbz);
 //			displayST[i].setVisible(false);
 			
 			gbz.anchor = GridBagConstraints.SOUTH;
@@ -231,7 +234,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 		}
 
-		gb3.insets = new Insets(20,0,20,0);
+//		gb3.insets = new Insets(20,0,20,0);
 
 		gb3.gridx = 0;
 		gb3.gridy = 3;
@@ -286,7 +289,8 @@ public class STTurn extends JPanel implements ActionListener {
 
 		// Pick a card Label2
 		label2 = new JLabel("Pick a card");
-		label2.setBackground(Color.decode("#EBD6B1"));
+		label2.setFont(new Font("Arial", Font.BOLD, 20));
+		label2.setBackground(Color.decode("#CA9064"));
 		gb5.insets = new Insets(5,0,5,0);
 		gb5.gridx = 0;
 		gb5.gridy = 0;
@@ -294,10 +298,10 @@ public class STTurn extends JPanel implements ActionListener {
 		label2.setVisible(false);
 
 		// Button
-		contBtn = new JButton("contBtn");
+		contBtn = new JButton("Continue");
 		contBtn.setBackground(Color.decode("#F3C94E"));
 		contBtn.setForeground(Color.decode("#000000"));
-		contBtn.setFont(new Font("Arial", Font.PLAIN, 24));
+		contBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		contBtn.setPreferredSize(new Dimension(200,100));
 		contBtn.addActionListener(this);
 		contBtn.setVisible(true);
@@ -316,10 +320,10 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 0;
 		add(settBtn, gb5);
 		
-		confBtn = new JButton("confBtn");
+		confBtn = new JButton("Confirm");
 		confBtn.setBackground(Color.decode("#F3C94E"));
 		confBtn.setForeground(Color.decode("#000000"));
-		confBtn.setFont(new Font("Arial", Font.PLAIN, 24));
+		confBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		confBtn.setPreferredSize(new Dimension(200,100));
 		confBtn.addActionListener(this);
 		confBtn.setVisible(false);
@@ -328,10 +332,10 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 2;
 		buttonMainPanel.add(confBtn, gb5);
 
-		stBtn = new JButton("stBtn");
+		stBtn = new JButton("Confirm");
 		stBtn.setBackground(Color.decode("#F3C94E"));
 		stBtn.setForeground(Color.decode("#000000"));
-		stBtn.setFont(new Font("Arial", Font.PLAIN, 24));
+		stBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		stBtn.setPreferredSize(new Dimension(200,100));
 		stBtn.addActionListener(this);
 		stBtn.setVisible(false);
@@ -340,10 +344,10 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 3;
 		buttonMainPanel.add(stBtn, gb5);
 
-		sVoteBtn = new JButton("sVoteBtn");
+		sVoteBtn = new JButton("Start Voting");
 		sVoteBtn.setBackground(Color.decode("#F3C94E"));
 		sVoteBtn.setForeground(Color.decode("#000000"));
-		sVoteBtn.setFont(new Font("Arial", Font.PLAIN, 24));
+		sVoteBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		sVoteBtn.setPreferredSize(new Dimension(200,50));
 		sVoteBtn.addActionListener(this);
 		sVoteBtn.setVisible(false);
@@ -352,10 +356,10 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 4;
 		buttonMainPanel.add(sVoteBtn, gb5);
 
-		vote1Btn = new JButton("vote1Btn");
+		vote1Btn = new JButton("Continue");
 		vote1Btn.setBackground(Color.decode("#F3C94E"));
 		vote1Btn.setForeground(Color.decode("#000000"));
-		vote1Btn.setFont(new Font("Arial", Font.PLAIN, 24));
+		vote1Btn.setFont(new Font("Arial", Font.BOLD, 24));
 		vote1Btn.setPreferredSize(new Dimension(200,50));
 		vote1Btn.addActionListener(this);
 		vote1Btn.setVisible(false);
@@ -364,10 +368,10 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 4;
 		buttonMainPanel.add(vote1Btn, gb5);
 
-		vote2Btn = new JButton("vote2Btn");
+		vote2Btn = new JButton("Confirm");
 		vote2Btn.setBackground(Color.decode("#F3C94E"));
 		vote2Btn.setForeground(Color.decode("#000000"));
-		vote2Btn.setFont(new Font("Arial", Font.PLAIN, 24));
+		vote2Btn.setFont(new Font("Arial", Font.BOLD, 24));
 		vote2Btn.setPreferredSize(new Dimension(200,50));
 		vote2Btn.addActionListener(this);
 		vote2Btn.setVisible(false);
@@ -376,8 +380,10 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 4;
 		buttonMainPanel.add(vote2Btn, gb5);
 
-		nextBtn = new JButton("nextBtn");
-		nextBtn.setFont(new Font("Arial", Font.PLAIN, 24));
+		nextBtn = new JButton("Next Round");
+		nextBtn.setBackground(Color.decode("#F3C94E"));
+		nextBtn.setForeground(Color.decode("#000000"));
+		nextBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		nextBtn.setPreferredSize(new Dimension(200,50));
 		nextBtn.addActionListener(this);
 		nextBtn.setVisible(false);
