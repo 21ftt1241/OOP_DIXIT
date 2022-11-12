@@ -13,37 +13,37 @@ public class dialogPU extends JPanel implements ActionListener {
     public JTextArea desc_area;
 
     public String text;
-    // MainMenu d = new MainMenu();
-    // void method with no returnable value to be called in other class
+
+    // exit game dialog pop up
     public void dialog_ext(){
+        // Create the frame for the exit dialog pop up
         JFrame exit_dialog = new JFrame();
         ex_dialog = new JDialog(exit_dialog);
         ex_dialog.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
         ex_dialog.setSize(300, 150);
         ex_dialog.setLocationRelativeTo(null);
         ex_dialog.setTitle("Exit Dixit");
 
         JLabel text1 = new JLabel("Are you sure you want to quit? ");
 
+        // Exit dialog "Yes" button
         yes_btn = new JButton("Yes");
         yes_btn.addActionListener(this);
-       
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(0, 20, 0, 10);
         ex_dialog.add(yes_btn, gbc);
 
+        // Exit dialog "No" button
         no_btn = new JButton("No");
         no_btn.addActionListener(this);
-
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(0, 0, 0, 0);
         ex_dialog.add(no_btn, gbc);
 
-         // The text
+         // Text label
          gbc.fill = GridBagConstraints.HORIZONTAL;
          gbc.gridwidth = 2;
          gbc.gridx = 0;
@@ -54,24 +54,24 @@ public class dialogPU extends JPanel implements ActionListener {
     }
 
 
-       // card descriptor pop up
+       // card descriptor pop up method
     public void card_descPU(){
+        // dialog description frame
         dialogDesc = new JDialog(dialogDesc);
         dialogDesc.setSize(450, 300);
         dialogDesc.setLocationRelativeTo(null);
         dialogDesc.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        btn1 = new JButton("Confirm");
-
-        btn1.addActionListener(this);
-
         // add confirm btn to frame
+        btn1 = new JButton("Confirm");
+        btn1.addActionListener(this);      
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.insets = new Insets (0, 0, 0, 0);
         dialogDesc.add(btn1, gbc);
 
+        // Text label
         JLabel text1 = new JLabel("Describe your card", SwingConstants.CENTER);
         text1.setFont(new Font("Arial", Font.PLAIN, 24));
         gbc.gridx = 1;
@@ -97,13 +97,12 @@ public class dialogPU extends JPanel implements ActionListener {
         dialogDesc.setVisible(true);
     }
 
- // in game settings dialog
+ // in game settings dialog pop up
     public void mainSettings(){
         JFrame mainSettings_dialog = new JFrame();
         mainDialogSettings = new JDialog(mainSettings_dialog);
         mainDialogSettings.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        
         mainDialogSettings.setSize(300, 200);
         mainDialogSettings.setLocationRelativeTo(null);
         mainDialogSettings.setTitle("Settings");
@@ -122,7 +121,6 @@ public class dialogPU extends JPanel implements ActionListener {
         mainDialogSettings.add(muteMusic, gbc);
         
      // Play music button
-
         playMusic = new JButton("Play");
         playMusic.addActionListener(this);
         playMusic.setPreferredSize(new Dimension(300, 150));
@@ -135,7 +133,7 @@ public class dialogPU extends JPanel implements ActionListener {
         gbc.gridy = 2;
         mainDialogSettings.add(windowLabel, gbc);
         
-        // 1920 x 1080 button
+        // Windowed button
         windowedSize = new JButton("Windowed");
         windowedSize.addActionListener(this);
         windowedSize.setPreferredSize(new Dimension(200, 200)); 
@@ -159,6 +157,7 @@ public class dialogPU extends JPanel implements ActionListener {
     
     // in game settings dialog
     public void settings(){
+        // add settings dialog pop up
         JFrame settings_dialog = new JFrame();
         dialogSettings = new JDialog(settings_dialog);
         dialogSettings.setLayout(new GridBagLayout());
@@ -212,44 +211,41 @@ public class dialogPU extends JPanel implements ActionListener {
     }
     
     public void dialogEnd(){
+
+        
     	//Play Victory sound
     	MainMenu.stopMusic();
     	MainMenu.playVictory();
-    	
-    	
+
+        // end dialog frame
         JFrame ed = new JFrame();
         endDialog = new JDialog(ed);
         endDialog.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         endDialog.setSize(450, 250);
         endDialog.setLocationRelativeTo(null);
-        endDialog.setAlwaysOnTop(true);
+
         JLabel txt1 = new JLabel("Congratulations!");
         txt1.setFont(new Font("Arial", Font.PLAIN, 24));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5,5,5,5);
         endDialog.add(txt1, gbc);
-        // Use this return method to collect the name of the winning player
-        // public String users(){
-	    // 	String userName = "Player name here";
-	    // 	return userName;
-	    // }
-        // Display the winning players name
-        // MainMenu mm = new MainMenu();
-        // String userName = mm.users();
+        
+        // Winning player text, grabbed using GameFlow class wClr and WName.
         JLabel txt2 = new JLabel(GameFlow.wClr + " (" + GameFlow.wName + ")\n is the winner!" );
-//        JLabel txt2 = new JLabel("Insert player name here");
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(30, 0, 30, 0);
         endDialog.add(txt2, gbc);
+
         btnPA = new JButton("Play Again");
         btnPA.addActionListener(this);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets (0, 0, 0, 150);
         endDialog.add(btnPA, gbc);
+
         btnQuit = new JButton("Quit game");
         btnQuit.addActionListener(this);
         gbc.gridx = 0;
@@ -262,13 +258,9 @@ public class dialogPU extends JPanel implements ActionListener {
     }
 
     public String getText(){
+        // Used to grab the text from the text area on dialog desc module
         String output = desc_area.getText() + "";
         return output;
-
-        // use this code to grab the card description fro other class
-        //dialogPU dialog = new dialogPU();
-        // String x = dialog.getText();
-        // System.out.println(x);
     }
 
     // pop up action event
@@ -296,22 +288,28 @@ public class dialogPU extends JPanel implements ActionListener {
         }
 
         // Desc dialog event
+        // Open card descriptor dialog
         if (btnClick.getSource() == btn1){        
             dialogDesc.setVisible(false);
             STTurn.label1.setText("Card description: " + getText());
         }else if (btnClick.getSource() == btn2){
+            // close card descriptor dialog
             dialogDesc.setVisible(false);
         }
         
+        // Mute game music
         if (btnClick.getSource() == muteMusic) {
         	MainMenu.stopMusic();
         	mainDialogSettings.setVisible(false);
         }
         
+        // play game music
         if (btnClick.getSource() == playMusic) {
         	MainMenu.playMusic();
         	mainDialogSettings.setVisible(false);
         }
+
+        // Change game windows size to windowed
         if (btnClick.getSource() == windowedSize){
         	CardLayoutManager.mainWindow.dispose();
         	CardLayoutManager.mainWindow.setUndecorated(false);
@@ -321,6 +319,7 @@ public class dialogPU extends JPanel implements ActionListener {
             mainDialogSettings.setVisible(false);
         }
         
+        // change game windows size to fullscreen
         if (btnClick.getSource() == fullscreenSize){
         	CardLayoutManager.mainWindow.dispose();
         	CardLayoutManager.mainWindow.setExtendedState(JFrame.MAXIMIZED_BOTH); 
@@ -329,18 +328,16 @@ public class dialogPU extends JPanel implements ActionListener {
         	mainDialogSettings.setVisible(false);
         }
         
-     // end dialog event
+        // end dialog event
+        // Return the player to main menu
         if (btnClick.getSource() == btnPA){
-//        	GameFlow.resetPlayer();
-//        	GameFlow.resetGame();
         	MainMenu.stopVictory();
         	MainMenu.playMusic();
             CardLayoutManager.showPage(1);
-        	
             endDialog.setVisible(false);
         }else if (btnClick.getSource() == btnQuit){
+            // exit the game
             dialog_ext();
         }
-        
     }
 }
