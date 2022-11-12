@@ -20,6 +20,7 @@ public class showCards extends JPanel {
 	JPanel user = new JPanel();
 	
 	JPanel[] plPanel = new JPanel[6];
+	JPanel[] plVoting = new JPanel[6];
 	Color[] pClr = {Color.RED, Color.YELLOW, Color.GREEN, 
 			Color.BLUE, Color.CYAN, Color.MAGENTA};
 	int[] point = {0, 0, 0, 0, 0, 0};
@@ -40,20 +41,29 @@ public class showCards extends JPanel {
 		JPanel userClr = new JPanel();
 		userClr.setBackground(pClr[0]);
 		userClr.setPreferredSize(new Dimension(10,50));
-		JLabel username = new JLabel("username");
-		JLabel turn = new JLabel("red turn");
 		
+		JLabel username = new JLabel("username");
+		username.setFont(new Font("ARIAL", Font.PLAIN, 24));
+		
+		JLabel turn = new JLabel("red turn");
+		turn.setFont(new Font("ARIAL", Font.PLAIN, 14));
+		
+		gb11.gridheight = 2;
 		gb11.gridx = 0;
 		gb11.gridy = 0;
-		user.add(userClr, gb1);
+		user.add(userClr, gb11);
 		
+		gb11.anchor = GridBagConstraints.WEST;
+		gb11.insets = new Insets(0,10,20,0);
 		gb11.gridx = 1;
 		gb11.gridy = 0;
-		user.add(username, gb1);
+		user.add(username, gb11);
 		
+		gb11.anchor = GridBagConstraints.WEST;
+		gb11.insets = new Insets(20,10,0,0);
 		gb11.gridx = 1;
 		gb11.gridy = 1;
-		user.add(turn, gb1);
+		user.add(turn, gb11);
 		
 		gb11.gridx = 0;
 		gb11.gridy = 0;
@@ -67,7 +77,7 @@ public class showCards extends JPanel {
 			
 			JLabel npoint = new JLabel(String.valueOf(point[i]));
 			
-			plPanel[i].add(npoint);
+			plPanel[i].add(npoint, gb1);
 			
 			gb1.insets = new Insets(0,10,0,10);
 			
@@ -108,13 +118,20 @@ public class showCards extends JPanel {
 		cardDisplay.setBackground(Color.WHITE);
 		GridBagConstraints gb3 = new GridBagConstraints();
 		
+		int x = 0;
+		int y = 0;
+		
 		for(int i = 0; i < 6; i++) {
+			
+			plVoting[i] = new JPanel();
+			plVoting[i].setPreferredSize(new Dimension(150,50));
+			plVoting[i].setBackground(pClr[i]);
 			
 			card[i] = new JButton();
 			card[i].setPreferredSize(new Dimension(160,300));
 //			card[i].setBackground(image); 
 			
-			gb3.insets = new Insets(0,10,0,10);
+			gb3.insets = new Insets(10,10,10,10);
 			
 			cardDisplay.add(card[i], gb3);
 			
