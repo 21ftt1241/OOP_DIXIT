@@ -106,6 +106,8 @@ public class GameFlow {
 		}
 	}
 
+	
+	
 	public static void pointCalc() {
 
 
@@ -183,19 +185,15 @@ public class GameFlow {
 	//	}
 
 	public static void pointChecker() {
-
 		dialogPU dialog = new dialogPU();
 
 		int highest = -1;
 		int counter = 0;
 		// winner
 
-
-
 		for (int i = 0 ; i < totalPlayer ; i++) {
 
-			if (playerArrList.get(i).getPoint() > 8) { 
-				//				int highest = 0;
+			if (playerArrList.get(i).getPoint() > 30) { 
 				if (playerArrList.get(i).getPoint() > highest) {
 					highest = playerArrList.get(i).getPoint();
 					wName = playerArrList.get(i).getNameArr();
@@ -208,18 +206,22 @@ public class GameFlow {
 
 		for (int i = 0 ; i < totalPlayer ; i++) {
 			if (playerArrList.get(i).getPoint() == highest) {
+
 				dialog.dialogEnd();
 				resetGame();
+				
 			}
 		}
-
-
-
-
 	}
 	
 	public static void resetPlayer() {
 		PlayerSelect1.totalPlayer = totalPlayer;
+	}
+	
+	public static void resetStatus() {
+		for (int i = 0 ; i < totalPlayer ; i++) {
+			PlayerSelect1.status[i] = 0;
+		}
 	}
 
 	public static void resetGame() {
@@ -261,6 +263,8 @@ public class GameFlow {
 			discardedCard.remove(0);
 		}
 		
+		
+		resetStatus();
 		
 
 		// refresh game logic

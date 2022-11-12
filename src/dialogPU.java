@@ -162,7 +162,8 @@ public class dialogPU extends JPanel implements ActionListener {
         dialogSettings = new JDialog(settings_dialog);
         dialogSettings.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        dialogSettings.setSize(600, 300);
+
+        dialogSettings.setSize(800, 350);
         dialogSettings.setLocationRelativeTo(null);
         dialogSettings.setTitle("Settings");
 
@@ -176,12 +177,21 @@ public class dialogPU extends JPanel implements ActionListener {
         gbc.insets = new Insets(10, 0, 0, 0);
         dialogSettings.add(btnReturn, gbc);
 
+        btnMainMenu = new JButton("Exit to Main Menu");
+        btnMainMenu.addActionListener(this);
+        btnMainMenu.setPreferredSize(new Dimension(170, 50)); 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        dialogSettings.add(btnMainMenu, gbc);
+        
         // add exit game button
         btnExit = new JButton("Exit");
         btnExit.addActionListener(this);
         btnExit.setPreferredSize(new Dimension(170, 50));
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.insets = new Insets(20, 0, 0, 0);
         dialogSettings.add(btnExit, gbc);
 
@@ -190,7 +200,7 @@ public class dialogPU extends JPanel implements ActionListener {
         advSettings.addActionListener(this);
         advSettings.setPreferredSize(new Dimension (170, 50));
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.insets = new Insets (20, 0, 10, 0);
         dialogSettings.add(advSettings, gbc);
 
@@ -201,6 +211,12 @@ public class dialogPU extends JPanel implements ActionListener {
     }
     
     public void dialogEnd(){
+
+        
+    	//Play Victory sound
+    	MainMenu.stopMusic();
+    	MainMenu.playVictory();
+
         // end dialog frame
         JFrame ed = new JFrame();
         endDialog = new JDialog(ed);
@@ -215,9 +231,9 @@ public class dialogPU extends JPanel implements ActionListener {
         gbc.gridy = 0;
         gbc.insets = new Insets(5,5,5,5);
         endDialog.add(txt1, gbc);
-
+        
         // Winning player text, grabbed using GameFlow class wClr and WName.
-        JLabel txt2 = new JLabel(GameFlow.wClr + " (" + GameFlow.wName + ")\nis the winner!" );
+        JLabel txt2 = new JLabel(GameFlow.wClr + " (" + GameFlow.wName + ")\n is the winner!" );
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(30, 0, 30, 0);
@@ -257,6 +273,11 @@ public class dialogPU extends JPanel implements ActionListener {
             System.exit(0);
         }else if (btnClick.getSource() == advSettings){
             mainSettings();
+        }
+        else if (btnClick.getSource() == btnMainMenu) {
+        	CardLayoutManager.showPage(1);
+        	GameFlow.resetGame();
+        	dialogSettings.setVisible(false);
         }
 
         // Exit Dialog event
@@ -310,6 +331,8 @@ public class dialogPU extends JPanel implements ActionListener {
         // end dialog event
         // Return the player to main menu
         if (btnClick.getSource() == btnPA){
+        	MainMenu.stopVictory();
+        	MainMenu.playMusic();
             CardLayoutManager.showPage(1);
             endDialog.setVisible(false);
         }else if (btnClick.getSource() == btnQuit){
