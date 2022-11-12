@@ -651,6 +651,8 @@ public class STTurn extends JPanel implements ActionListener {
 				GameFlow.increaseST();
 				GameFlow.updateTurn();
 			}
+			
+			
 
 			displayAllCard();
 			displayPlayerCards();
@@ -674,6 +676,7 @@ public class STTurn extends JPanel implements ActionListener {
 			hideST();
 			
 			GameFlow.pointChecker();
+			
 		}
 
 
@@ -808,6 +811,10 @@ public class STTurn extends JPanel implements ActionListener {
 
 	public static void hidePlayer() {
 		// Hide player
+		for (int i = 0 ; i < 6 ; i++) {
+			plPanel[i].setVisible(true);
+		}
+		
 		for (int i = 0 ; i < 6 ; i++) {
 			if (PlayerSelect1.status[i] == 0) {
 				plPanel[i].setVisible(false);

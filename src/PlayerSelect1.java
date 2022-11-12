@@ -198,7 +198,7 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 				}
 
 				// Shuffle the player's arraylist
-//				GameFlow.shufflePlayer();
+				GameFlow.shufflePlayer();
 //				GameFlow.printTest();
 				
 				
