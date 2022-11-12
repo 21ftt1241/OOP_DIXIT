@@ -141,7 +141,7 @@ public class GameFlow {
 
 					// ST receiving points for being voted atleast once
 					playerArrList.get(i).setPoint(playerArrList.get(i).getPoint()+3);
-					System.out.println("dapat add point here");
+//					System.out.println("dapat add point here");
 
 					// Loop to allocate marks for voter
 					for (int k = 0 ; k < totalPlayer ; k++) {
@@ -194,7 +194,7 @@ public class GameFlow {
 
 		for (int i = 0 ; i < totalPlayer ; i++) {
 
-			if (playerArrList.get(i).getPoint() > 15) { 
+			if (playerArrList.get(i).getPoint() > 8) { 
 				//				int highest = 0;
 				if (playerArrList.get(i).getPoint() > highest) {
 					highest = playerArrList.get(i).getPoint();
@@ -216,6 +216,10 @@ public class GameFlow {
 
 
 
+	}
+	
+	public static void resetPlayer() {
+		PlayerSelect1.totalPlayer = totalPlayer;
 	}
 
 	public static void resetGame() {
@@ -262,7 +266,7 @@ public class GameFlow {
 		// refresh game logic
 		//reset totalPlayer
 		totalPlayer = 0;
-
+		resetPlayer();
 		//set page
 		setPage();
 
@@ -276,7 +280,7 @@ public class GameFlow {
 		setVar();
 
 
-
+//		System.out.println("-----------------------------------------------------------");
 
 
 	}
@@ -533,24 +537,26 @@ public class GameFlow {
 
 
 	public static void deckToHand() {
-
-		if (mainDeck.size() == 0) {
-			for (int i = 0 ; i < discardedCard.size() ; i++) {
-				mainDeck.add(discardedCard.get(0));
-				discardedCard.remove(0);
-			}
-		}
 		playerHand[turn].add(mainDeck.get(0));
 		mainDeck.remove(0);
 	}
 
 	public static void handToTable() {
 		int tempCard = STTurn.tempCard;
+		
+		if (mainDeck.size() == 0) {
+			for (int i = 0 ; i < discardedCard.size() ; i++) {
+				mainDeck.add(discardedCard.get(0));
+				discardedCard.remove(0);
+				Collections.shuffle(mainDeck);
+			}
+		}
 
 		playerArrList.get(turn).setPC(playerHand[turn].get(tempCard));
 		tableCard.add(playerHand[turn].get(tempCard));
 		discardedCard.add(playerHand[turn].get(tempCard));
 		playerHand[turn].remove(tempCard);
+		
 	}
 
 	public static void storeIntoVC() {
