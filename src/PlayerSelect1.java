@@ -5,18 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PlayerSelect1 extends JPanel implements ActionListener{
-	
+
 	dialogPU dialog = new dialogPU();
-	
+
 	JLabel l1;
-	
+
 	JButton backBtn, startBtn, btnSettings;
 	JButton [] pb = new JButton[6];
-	
+
 	public static JTextField [] ptf = new JTextField[6];
-	
+
 	public static int [] status = new int[6];
-	
+
 	String [][] p = {
 			{"Player 1", "RED"},
 			{"Player 2", "YELLOW"},
@@ -25,36 +25,39 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			{"Player 5", "CYAN"},
 			{"Player 6", "MAGENTA"}
 	};
-		
+
 	public static Color [] btnColor = {Color.RED,Color.YELLOW,Color.GREEN,
 			Color.BLUE,Color.CYAN,Color.MAGENTA};
+	public static Color color1;
 
 	public static int totalPlayer, point;
-	public static Color color1;
 	public static String name, color;
-	
-	
 
-	
+
 	// -----------------------------------------------------------------------------------------
 	public PlayerSelect1() {
-		
+
+		// Set layout ----------------
 		setLayout(new GridBagLayout());
 		setBackground(Color.decode("#EBD6B1"));
-		
+
 		GridBagConstraints container = new GridBagConstraints();
-		
+
+
+		// create back btn ----------------
 		backBtn = new JButton("<");
 		backBtn.setBackground(Color.decode("#F3C94E"));
 		backBtn.setForeground(Color.decode("#000000"));
 		backBtn.setFont(new Font("Arial", Font.BOLD, 24));
 		backBtn.addActionListener(this);		
-		
+
 		container.anchor = GridBagConstraints.NORTHWEST;
 		container.insets = new Insets(5, 5, 5, 5);
 
 		add(backBtn, container);	
 
+
+		// create settings btn ----------------
 		btnSettings = new JButton("X");
 		btnSettings.setBackground(Color.decode("#F3C94E"));
 		btnSettings.setForeground(Color.decode("#000000"));
@@ -63,7 +66,9 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 		container.anchor = GridBagConstraints.NORTHEAST;	
 		container.gridx = 2;
 		add(btnSettings, container);
-		
+
+
+		// modify container ----------------
 		container.insets = new Insets(5, 5, 5, 5);
 		container.weightx = 0.5;
 		container.weighty = 0.5;
@@ -71,12 +76,13 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 
 		l1 = new JLabel("Choose your Color");
 		l1.setFont(new Font("Arial", Font.BOLD, 32));
-		
+
 		container.gridx = 1;
 		container.gridy = 0;
 		add(l1, container);
-		
-//		Player buttons
+
+
+		// create player buttons ----------------
 		int x = 0;
 		int y = 1;
 
@@ -85,21 +91,22 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			pb[i].setPreferredSize(new Dimension(50, 50));
 			pb[i].setBackground(btnColor[i]);
 			pb[i].addActionListener(this);
-			
+
 			container.gridx = x;
 			container.gridy = y;
 			add(pb[i], container);
-			
+
 			x = x + 1;
-			
+
 			if (x == 3) {
 				x = 0;
 				y = 3;
 			}
-			
 		}
-		
-//		Player Name TextField
+
+
+		// create player name textField ----------------
+		// 
 		x = 0;
 		y = 2;
 
@@ -110,32 +117,35 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			ptf[j].setFont(new Font("Arial", Font.PLAIN, 24));
 			ptf[j].setDocument(new JTextFieldLimit(10));
 			ptf[j].setEnabled(false);
-			
+
 			container.gridx = x;
 			container.gridy = y;
 			add(ptf[j], container);
-			
+
 			x = x + 1;
 			if (x == 3) {
 				x = 0;
 				y = 4;
 			}
 		}
-		
-		// StartGame Button
+
+
+		// create start game button ---------------
 		startBtn = new JButton("Start Game");
 		startBtn.setForeground(Color.decode("#000000"));
 		startBtn.setBackground(Color.decode("#F3C94E"));
 		startBtn.setFont(new Font("Arial", Font.PLAIN, 24));
 		startBtn.setPreferredSize(new Dimension(300, 50));
 		startBtn.addActionListener(this);
-		
+
 		container.gridx = 1;
 		container.gridy = 5;
 		add(startBtn, container);	
 	}
-	
-	// Method to show JOptionPane
+
+
+	// -----------------------------------------------------------------------------------------
+	// create JOptionPane to set minimum 3 player ----------------
 	public class NotEnoughPlayer {
 		JFrame f;
 		NotEnoughPlayer() {
@@ -143,29 +153,32 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 			JOptionPane.showMessageDialog(f, "Requires 3 or more player to start the game.");
 		}
 	}
-	
-	
-	// ActionPerform -----------------------------------------------------------------------------------------
+
+
+	// -----------------------------------------------------------------------------------------
+	// create actionPerformed----------------
 	public void actionPerformed(ActionEvent btnclick) {
 		MainMenu.playClick2();
+		
+		
+		// back btn event ----------------
 		if (btnclick.getSource() == backBtn) {
 			CardLayoutManager.showPage(1);
 		}
 
+		// settings btn event ---------------
 		if (btnclick.getSource() == btnSettings){
 			dialog.settings();
 		} 
-		
-		
-		// Player Button -----------------------------------------------------------------------------------------
+
+
+		// +1 player if enabled ----------------
 		for (int k = 0 ; k < 6 ; k++) {
 			if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == false){
 				ptf[k].setEnabled(true);
 				ptf[k].setBackground(Color.decode("#FFFFFF"));
 				ptf[k].setText(p[k][0]);
-				
 				status[k] = 1;
-				
 				totalPlayer+=1;
 			}
 			else if (btnclick.getSource() == pb[k] && ptf[k].isEnabled() == true) {
@@ -176,61 +189,58 @@ public class PlayerSelect1 extends JPanel implements ActionListener{
 				totalPlayer-=1;
 			}
 		}
-		
-		
-		// Start game logics test -----------------------------------------------------------------------------------------
+
+
+		// start btn event ---------------
 		if(btnclick.getSource() == startBtn) {
 			
+			
+			// run a method to get totalPlayer ---------------
 			GameFlow.getTotalPlayer();	
 			
+			
+			// store player information into player arrayList ---------------
 			if (totalPlayer >= 3) {
 				for (int i = 0 ; i < 6 ; i++) {
 					if (ptf[i].isEnabled() == true) {
-						
 						name = ptf[i].getText();
 						color = p[i][1];
 						color1 = btnColor[i];
-						
 						GameFlow.getDetail();
-//						GameFlow.checkss();
-						
 					}	
 				}
 
-				// Shuffle the player's arraylist
+				
+				// shuffle the player arrayList ---------------
 				GameFlow.shufflePlayer();
-//				GameFlow.printTest();
-				
-				
-				// Set turn to 0
+
+				// set turn to 0 ---------------
 				GameFlow.setTurn();
-				
-				// Set page to 1
+
+				// set page to 1 ---------------
 				GameFlow.setPage();
-				GameFlow.declareST();
 				
-				// Change label at STTurn
+				// set storyTeller to 0 ---------------
+				GameFlow.declareST();
+
+				// display for STTurn ---------------
 				STTurn.hidePlayer();
 				STTurn.setLabel1();
 				STTurn.setScore();
-				
-				// Create main deck
-//				GameFlow gf = new GameFlow();
+
+				// create main deck ---------------
 				GameFlow.createMainDeck();
-				
-				// Create player hand
+
+				// create player hand ---------------
 				GameFlow.createPlayerHand();
-				
-				// Display the first player hand
+
+				// display player hand ---------------
 				STTurn.displayPlayerCards();
-				
-				
-				
-				
-				// Open STTurn
+
+				// Open STTurn class ---------------
 				CardLayoutManager.showPage(4);
 			}
-			
+
 			else {
 				new NotEnoughPlayer();
 				CardLayoutManager.showPage(3);

@@ -18,7 +18,7 @@ public class dialogPU extends JPanel implements ActionListener {
     public void dialog_ext(){
         // Create the frame for the exit dialog pop up
         JFrame exit_dialog = new JFrame();
-        ex_dialog = new JDialog(exit_dialog);
+        ex_dialog = new JDialog(exit_dialog, true);
         ex_dialog.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         ex_dialog.setSize(300, 150);
@@ -57,9 +57,10 @@ public class dialogPU extends JPanel implements ActionListener {
        // card descriptor pop up method
     public void card_descPU(){
         // dialog description frame
-        dialogDesc = new JDialog(dialogDesc);
+        dialogDesc = new JDialog(dialogDesc, true);
         dialogDesc.setSize(450, 300);
         dialogDesc.setLocationRelativeTo(null);
+	dialogDesc.setAlwaysOnTop(true);
         dialogDesc.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -219,7 +220,7 @@ public class dialogPU extends JPanel implements ActionListener {
 
         // end dialog frame
         JFrame ed = new JFrame();
-        endDialog = new JDialog(ed);
+        endDialog = new JDialog(ed, true);
         endDialog.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         endDialog.setSize(450, 250);
@@ -337,7 +338,8 @@ public class dialogPU extends JPanel implements ActionListener {
             endDialog.setVisible(false);
         }else if (btnClick.getSource() == btnQuit){
             // exit the game
-            dialog_ext();
+            endDialog.setVisible(false);
+            System.exit(0);
         }
     }
 }
