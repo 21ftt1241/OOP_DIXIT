@@ -36,7 +36,7 @@ public class GameRules extends JPanel implements ActionListener {
 		try {
 			ruleExplain.read(rulesText, "gamerules");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Auto-generated catch block 
 			e.printStackTrace();
 		}
 		
