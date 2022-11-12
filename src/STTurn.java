@@ -45,7 +45,6 @@ public class STTurn extends JPanel implements ActionListener {
 	static JButton vote1Btn = new JButton();
 	static JButton vote2Btn = new JButton();
 	static JButton nextBtn = new JButton();
-	static JButton settBtn = new JButton();
 	static JButton[] cardBtn = new JButton[6];
 
 	static ImageIcon icon, newicon;
@@ -306,10 +305,7 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridy = 1;
 		buttonMainPanel.add(contBtn, gb5);
 
-<<<<<<< Updated upstream
 		// settings button
-=======
->>>>>>> Stashed changes
 		settBtn = new JButton("X");
 		settBtn.setBackground(Color.decode("#F3C94E"));
 		settBtn.setForeground(Color.decode("#000000"));
@@ -404,16 +400,11 @@ public class STTurn extends JPanel implements ActionListener {
 		MainMenu.playClick2();
 
 		// Button continue clicked -----------------------------------------------------------------------------------------
-<<<<<<< Updated upstream
-		// settings button
-		if (btnClick.getSource() == settBtn){
-			dialog.settings();
-			
-=======
+
 		// setting button action event
 		if (btnClick.getSource() == settBtn){
 			dialog.settings();
->>>>>>> Stashed changes
+
 		}
 		
 		// contBnt ----------------------------------------------

@@ -136,7 +136,7 @@ public class dialogPU extends JPanel implements ActionListener {
         mainDialogSettings.add(windowLabel, gbc);
         
         // 1920 x 1080 button
-        windowedSize = new JButton("1920 x 1080");
+        windowedSize = new JButton("Windowed");
         windowedSize.addActionListener(this);
         windowedSize.setPreferredSize(new Dimension(200, 200)); 
         gbc.fill = GridBagConstraints.HORIZONTAL;
