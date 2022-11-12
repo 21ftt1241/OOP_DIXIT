@@ -214,6 +214,7 @@ public class dialogPU extends JPanel implements ActionListener {
         GridBagConstraints gbc = new GridBagConstraints();
         endDialog.setSize(450, 250);
         endDialog.setLocationRelativeTo(null);
+        endDialog.setAlwaysOnTop(true);
         JLabel txt1 = new JLabel("Congratulations!");
         txt1.setFont(new Font("Arial", Font.PLAIN, 24));
         gbc.gridx = 0;
