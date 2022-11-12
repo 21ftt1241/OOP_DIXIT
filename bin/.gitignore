@@ -1,3 +1,5 @@
+/dixit_cards/
+/resources/
 /CardLayoutManager.class
 /GameFlow.class
 /GameRules.class
@@ -6,8 +8,4 @@
 /PlayerSelect1$NotEnoughPlayer.class
 /PlayerSelect1.class
 /STTurn.class
-/TestGrab.class
 /dialogPU.class
-/dixit_cards/
-/resources/
-/showCards.class
