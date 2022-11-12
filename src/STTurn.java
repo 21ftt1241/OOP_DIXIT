@@ -45,7 +45,8 @@ public class STTurn extends JPanel implements ActionListener {
 	static JButton vote2Btn = new JButton();
 	static JButton nextBtn = new JButton();
 	static JButton[] cardBtn = new JButton[6];
-
+	static JButton settBtn = new JButton();
+	
 	static ImageIcon icon, newicon;
 
 	static JPanel[] plVoting = new JPanel[6];
@@ -304,7 +305,17 @@ public class STTurn extends JPanel implements ActionListener {
 		gb5.gridx = 0;
 		gb5.gridy = 1;
 		buttonMainPanel.add(contBtn, gb5);
-
+		
+		settBtn = new JButton("X");
+		settBtn.setBackground(Color.decode("#F3C94E"));
+		settBtn.setForeground(Color.decode("#000000"));
+		settBtn.setFont(new Font("Arial", Font.BOLD, 24));
+		settBtn.addActionListener(this);
+		gb5.anchor = GridBagConstraints.NORTHEAST;	
+		gb5.gridx = 2;
+		gb5.gridy = 0;
+		add(settBtn, gb5);
+		
 		confBtn = new JButton("confBtn");
 		confBtn.setBackground(Color.decode("#F3C94E"));
 		confBtn.setForeground(Color.decode("#000000"));
@@ -387,7 +398,11 @@ public class STTurn extends JPanel implements ActionListener {
 	// Action Performed -----------------------------------------------------------------------------------------
 	public void actionPerformed(ActionEvent btnClick) {
 		MainMenu.playClick2();
-
+		
+		// setting button action event
+				if (btnClick.getSource() == settBtn){
+					dialog.settings();
+				}
 		// Button continue clicked -----------------------------------------------------------------------------------------
 		// contBnt ----------------------------------------------
 		if (btnClick.getSource() == contBtn) {

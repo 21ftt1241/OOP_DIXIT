@@ -150,7 +150,7 @@ public class MainMenu extends JPanel implements ActionListener {
 
 		else if(btnclick.getSource() == b3) {
 			dialog.dialog_ext();
-			//dialog.dialogEnd();
+			dialog.dialogEnd();
 		}
 	}
 }
