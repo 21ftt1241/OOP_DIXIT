@@ -8,7 +8,7 @@ public class dialogPU extends JPanel implements ActionListener {
 
     public JButton no_btn, yes_btn, btn1, btn2, 
     btnReturn, btnMainMenu, btnExit, windowedSize, fullscreenSize, muteMusic, playMusic,
-    btnPA, btnQuit;
+    btnPA, btnQuit, advSettings;
     public JDialog ex_dialog, dialogDesc, dialogSettings, mainDialogSettings, endDialog;
     public JTextArea desc_area;
 
@@ -69,7 +69,7 @@ public class dialogPU extends JPanel implements ActionListener {
         // add confirm btn to frame
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.insets = new Insets (0, 0, 0, 150);
+        gbc.insets = new Insets (0, 0, 0, 0);
         dialogDesc.add(btn1, gbc);
 
         JLabel text1 = new JLabel("Describe your card", SwingConstants.CENTER);
@@ -136,7 +136,7 @@ public class dialogPU extends JPanel implements ActionListener {
         mainDialogSettings.add(windowLabel, gbc);
         
         // 1920 x 1080 button
-        windowedSize = new JButton("1920 x 1080");
+        windowedSize = new JButton("Windowed");
         windowedSize.addActionListener(this);
         windowedSize.setPreferredSize(new Dimension(200, 200)); 
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -164,35 +164,38 @@ public class dialogPU extends JPanel implements ActionListener {
         dialogSettings.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        dialogSettings.setSize(300, 200);
+        dialogSettings.setSize(600, 300);
         dialogSettings.setLocationRelativeTo(null);
         dialogSettings.setTitle("Settings");
 
         // add return btn
         btnReturn = new JButton("Return");
         btnReturn.addActionListener(this);
-        btnReturn.setPreferredSize(new Dimension(100, 100)); 
+        btnReturn.setPreferredSize(new Dimension(170, 50)); 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 0, 0);
         dialogSettings.add(btnReturn, gbc);
 
-        // add main menu button
-        btnMainMenu = new JButton("Main Menu");
-        btnMainMenu.addActionListener(this);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(15, 0, 0, 0);
-        dialogSettings.add(btnMainMenu, gbc);
-
         // add exit game button
         btnExit = new JButton("Exit");
         btnExit.addActionListener(this);
+        btnExit.setPreferredSize(new Dimension(170, 50));
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.insets = new Insets(15, 0, 0, 0);
+        gbc.insets = new Insets(20, 0, 0, 0);
         dialogSettings.add(btnExit, gbc);
+
+        // add advance settings button
+        advSettings = new JButton("Advance Settings");
+        advSettings.addActionListener(this);
+        advSettings.setPreferredSize(new Dimension (170, 50));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets (20, 0, 10, 0);
+        dialogSettings.add(advSettings, gbc);
+
 
         dialogSettings.setLocationRelativeTo(null);
         dialogSettings.setTitle("Settings");
@@ -259,11 +262,10 @@ public class dialogPU extends JPanel implements ActionListener {
         // setting dialog event
         if (btnClick.getSource() == btnReturn){
             dialogSettings.setVisible(false);
-        }else if (btnClick.getSource() == btnMainMenu){
-            dialogSettings.setVisible(false);
-            CardLayoutManager.showPage(1);
         }else if (btnClick.getSource() == btnExit){
             System.exit(0);
+        }else if (btnClick.getSource() == advSettings){
+            mainSettings();
         }
 
         // Exit Dialog event

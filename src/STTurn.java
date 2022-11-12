@@ -37,6 +37,7 @@ public class STTurn extends JPanel implements ActionListener {
 
 	static GridBagConstraints gb2 = new GridBagConstraints();
 
+	static JButton settBtn = new JButton();
 	static JButton contBtn = new JButton();
 	static JButton confBtn = new JButton();
 	static JButton stBtn = new JButton();
@@ -300,10 +301,20 @@ public class STTurn extends JPanel implements ActionListener {
 		contBtn.setPreferredSize(new Dimension(200,100));
 		contBtn.addActionListener(this);
 		contBtn.setVisible(true);
-
 		gb5.gridx = 0;
 		gb5.gridy = 1;
 		buttonMainPanel.add(contBtn, gb5);
+
+		// settings button
+		settBtn = new JButton("X");
+		settBtn.setBackground(Color.decode("#F3C94E"));
+		settBtn.setForeground(Color.decode("#000000"));
+		settBtn.setFont(new Font("Arial", Font.BOLD, 24));
+		settBtn.addActionListener(this);
+		gb5.anchor = GridBagConstraints.NORTHEAST;	
+		gb5.gridx = 2;
+		gb5.gridy = 0;
+		add(settBtn, gb5);
 
 		confBtn = new JButton("confBtn");
 		confBtn.setBackground(Color.decode("#F3C94E"));
@@ -389,6 +400,13 @@ public class STTurn extends JPanel implements ActionListener {
 		MainMenu.playClick2();
 
 		// Button continue clicked -----------------------------------------------------------------------------------------
+
+		// setting button action event
+		if (btnClick.getSource() == settBtn){
+			dialog.settings();
+
+		}
+		
 		// contBnt ----------------------------------------------
 		if (btnClick.getSource() == contBtn) {
 
