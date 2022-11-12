@@ -1,5 +1,3 @@
-/dixit_cards/
-/resources/
 /CardLayoutManager.class
 /GameFlow.class
 /GameRules.class
@@ -9,3 +7,5 @@
 /PlayerSelect1.class
 /STTurn.class
 /dialogPU.class
+/dixit_cards/
+/resources/

@@ -4,7 +4,7 @@ Point System
 
 Rule 1:
 
-If all players voted for the storyteller’s card or if no player has voted for the storyteller’s card:
+If all players voted for the storyteller's card or if no player has voted for the storyteller's card:
 
 - The storyteller does not score points.
 - The other players each score 2.
@@ -12,10 +12,10 @@ If all players voted for the storyteller’s card or if no player has voted for 
 
 Rule 2:
 
-If some players voted for the storyteller’s card, but not all of them:
+If some players voted for the storyteller's card, but not all of them:
 
 - The storyteller scores 3 .
-- Players who voted for the storyteller’s card also score 3 .
+- Players who voted for the storyteller's card also score 3 .
 - The others do not score points.
 
 Rule 3:

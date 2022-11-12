@@ -22,10 +22,13 @@ public class MainMenu extends JPanel implements ActionListener {
 	
 	public URL is = MainMenu.class.getResource("dixit_cards/menuMusic.wav");
 	public URL is2 = MainMenu.class.getResource("dixit_cards/clickSound.wav");
+	public URL is3 = MainMenu.class.getResource("dixit_cards/victorySound.wav");
 	public AudioInputStream audioStream = AudioSystem.getAudioInputStream(is);
 	public AudioInputStream audioStream2 = AudioSystem.getAudioInputStream(is2);
+	public AudioInputStream audioStream3 = AudioSystem.getAudioInputStream(is3);
 	public static Clip clip;
 	public static Clip clip2;
+	public static Clip clip3;
 	
 	
 	public MainMenu()  throws UnsupportedAudioFileException, IOException, LineUnavailableException  {
@@ -33,6 +36,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		//Calls Main menu music method
 		playMenuMusic();
 		playClick();
+		importVictory();
 		
 		ImageIcon icon = new ImageIcon(getClass().getResource("dixit_cards/dixit-logo.png")); // assign image to a new ImageIcon
 		Image image = icon.getImage(); // transform it 
@@ -118,6 +122,19 @@ public class MainMenu extends JPanel implements ActionListener {
 		   	       
 	}
 	
+	public void importVictory() throws LineUnavailableException, IOException, LineUnavailableException   {
+		 //clip2.setMicrosecondPosition(0);
+		clip3 = AudioSystem.getClip();
+		clip3.open(audioStream3);
+		FloatControl gainControl = (FloatControl) clip3.getControl(FloatControl.Type.MASTER_GAIN);
+		gainControl.setValue(-25.0f); // Reduce volume by 10 decibels.
+		   	       
+	}
+	
+	public static void playVictory()   {
+		clip3.start();   	       
+	}
+	
 	public static void playClick2()   {
 		clip2.setMicrosecondPosition(0);
 		clip2.start();   	       
@@ -126,6 +143,10 @@ public class MainMenu extends JPanel implements ActionListener {
 	public static void playMusic()   {
 		 clip.setMicrosecondPosition(0);
 		 clip.start();   	       
+	}
+	
+	public static void stopVictory()   {
+		 clip3.stop();   	       
 	}
 	
 	public static void stopMusic()   {
@@ -138,6 +159,7 @@ public class MainMenu extends JPanel implements ActionListener {
 		//Main Menu button performs
 		if(btnclick.getSource() == b1) {
 			CardLayoutManager.showPage(3);
+			//playVictory();
 			//
 		}
 		else if(btnclick.getSource() == b2) {
