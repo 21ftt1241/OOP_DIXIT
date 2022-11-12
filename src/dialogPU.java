@@ -164,7 +164,7 @@ public class dialogPU extends JPanel implements ActionListener {
         dialogSettings.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        dialogSettings.setSize(600, 300);
+        dialogSettings.setSize(800, 350);
         dialogSettings.setLocationRelativeTo(null);
         dialogSettings.setTitle("Settings");
 
@@ -178,12 +178,21 @@ public class dialogPU extends JPanel implements ActionListener {
         gbc.insets = new Insets(10, 0, 0, 0);
         dialogSettings.add(btnReturn, gbc);
 
+        btnMainMenu = new JButton("Exit to Main Menu");
+        btnMainMenu.addActionListener(this);
+        btnMainMenu.setPreferredSize(new Dimension(170, 50)); 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        dialogSettings.add(btnMainMenu, gbc);
+        
         // add exit game button
         btnExit = new JButton("Exit");
         btnExit.addActionListener(this);
         btnExit.setPreferredSize(new Dimension(170, 50));
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.insets = new Insets(20, 0, 0, 0);
         dialogSettings.add(btnExit, gbc);
 
@@ -192,7 +201,7 @@ public class dialogPU extends JPanel implements ActionListener {
         advSettings.addActionListener(this);
         advSettings.setPreferredSize(new Dimension (170, 50));
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.insets = new Insets (20, 0, 10, 0);
         dialogSettings.add(advSettings, gbc);
 
@@ -271,6 +280,11 @@ public class dialogPU extends JPanel implements ActionListener {
             System.exit(0);
         }else if (btnClick.getSource() == advSettings){
             mainSettings();
+        }
+        else if (btnClick.getSource() == btnMainMenu) {
+        	CardLayoutManager.showPage(1);
+        	GameFlow.resetGame();
+        	dialogSettings.setVisible(false);
         }
 
         // Exit Dialog event
